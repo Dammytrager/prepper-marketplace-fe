@@ -25,7 +25,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 })
 export class PlmModule {
   constructor(private _ngRedux: NgRedux<AppState>, private _reduxDevTools: DevToolsExtension) {
-    const enhancers: StoreEnhancer<AppState>[] = !environment.production && this._reduxDevTools.isEnabled() ? [this._reduxDevTools.enhancer()] : [];
+    const enhancers: StoreEnhancer<AppState>[] = !environment.production && this._reduxDevTools.isEnabled() ?
+      [this._reduxDevTools.enhancer()] : [];
 
     this._ngRedux.configureStore(RootReducer, INITIAL_STATE, [], enhancers);
   }

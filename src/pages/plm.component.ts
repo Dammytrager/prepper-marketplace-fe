@@ -255,7 +255,7 @@ dom.watch();
   templateUrl: './plm.html',
   styleUrls: ['../static/scss/pages/plm.scss']
 })
-export class PlmComponent implements OnInit{
+export class PlmComponent implements OnInit {
   constructor(private _router: Router, private _ngRedux: NgRedux<AppState>) {}
 
   ngOnInit(): void {
