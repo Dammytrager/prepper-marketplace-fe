@@ -8,7 +8,7 @@ import {StoreEnhancer} from 'redux';
 import {environment} from '../../environments/environment';
 import {INITIAL_STATE, RootReducer} from '../state/reducers/root.reducer';
 import {MainRoute} from '../routes/main.route';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {SharedModule} from './shared.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     NgReduxModule,
-    FontAwesomeModule,
+    SharedModule,
     MainRoute
   ],
   providers: [],
