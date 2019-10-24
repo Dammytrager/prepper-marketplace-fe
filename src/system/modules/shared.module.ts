@@ -6,11 +6,13 @@ import {RouterModule} from '@angular/router';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import {DashboardHeaderComponent} from '../../components/dashboard-header/dashboard-header.component';
 
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    DashboardHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
     RouterModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    NavbarComponent
+    NavbarComponent,
+    DashboardHeaderComponent
   ],
   entryComponents: []
 })
