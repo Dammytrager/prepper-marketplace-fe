@@ -2,4 +2,16 @@
   &-white {
     color: $white;
   }
+
+  &-alt-info {
+    color: $info-color $im;
+  }
+
+  &-alt-success {
+    color: $success-color $im;
+  }
+
+  &-alt-danger {
+    color: $alt-danger $im;
+  }
 }

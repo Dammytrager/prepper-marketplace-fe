@@ -5,7 +5,16 @@ import {AppState} from '../system/interfaces/state/plm.interface';
 import {SITE} from '../system/state/actions/site.action';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import {Title} from '@angular/platform-browser';
-import {faBars, faBook, faSearch, faSignOutAlt, faTachometerAlt, faTimes, faWallet} from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowCircleRight,
+  faBars,
+  faBook, faCaretDown, faCaretUp, faChevronUp,
+  faSearch,
+  faSignOutAlt, faSyncAlt,
+  faTachometerAlt,
+  faTimes,
+  faWallet, faWrench
+} from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faSearch,
@@ -14,7 +23,13 @@ library.add(
   faWallet,
   faSignOutAlt,
   faBars,
-  faTimes
+  faTimes,
+  faArrowCircleRight,
+  faSyncAlt,
+  faChevronUp,
+  faWrench,
+  faCaretUp,
+  faCaretDown
 );
 
 dom.watch();

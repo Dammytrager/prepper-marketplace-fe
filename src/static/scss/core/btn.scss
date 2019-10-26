@@ -1,0 +1,28 @@
+.btn {
+  &-alt-primary {
+    background-color: $alt-blue $im;
+    border-color: $alt-blue;
+    color: #125a96 $im;
+  }
+
+  &-alt-success {
+    background-color: $alt-success $im;
+    border-color: $alt-success;
+    color: #5c852c $im;
+  }
+
+  &-block-option {
+    display: inline-block;
+    padding: 6px 5px;
+    line-height: 1.2;
+    color: $white;
+    font-weight: 400;
+    background: 0 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

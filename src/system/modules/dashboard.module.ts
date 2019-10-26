@@ -6,6 +6,7 @@ import {DashboardRoutes} from '../routes/dashboard.routes';
 import {DashboardHome} from '../../pages/dashboard/dashboard-home/dashboard-home';
 import {Courses} from '../../pages/dashboard/courses/courses';
 import {Earnings} from '../../pages/dashboard/earnings/earnings';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {Earnings} from '../../pages/dashboard/earnings/earnings';
   ],
   imports: [
     SharedModule,
-    DashboardRoutes
+    DashboardRoutes,
+    ChartsModule
   ],
   providers: []
 })
