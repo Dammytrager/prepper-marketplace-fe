@@ -1,4 +1,189 @@
-<div class="plm-dashboard-home plm-dashboard-content mxw-1200 mt-24 mx-auto">
+<div class="plm-dashboard-home plm-dashboard-content mxw-1200 mx-auto">
   <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
-  Dashboard Home
+  <div class="dashboard-home-cards row">
+    <div class="col-md-6">
+      <div class="card mb-24">
+        <div class="card-body">
+          <div class="d-flex justify-content-start">
+            <fa-icon class="icon" [icon]="['fas', 'book']" size="2x"></fa-icon>
+          </div>
+          <div class="py-20 row">
+            <div class="col-6 border-r">
+              <div class="text-right">
+                <div class="font-w600 font-size-h3">16</div>
+                <div class="font-w600 text-muted text-uppercase nm-size">coursepacks</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="text-left">
+                <div class="font-w600 font-size-h3">4</div>
+                <div class="font-w600 text-muted text-uppercase nm-size">approved</div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-alt-primary nm-size">
+              <fa-icon [icon]="['fas', 'arrow-circle-right']"></fa-icon> &nbsp;
+              View Courses
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card mb-24">
+        <div class="card-body">
+          <div class="d-flex justify-content-end">
+            <fa-icon class="icon" [icon]="['fas', 'wallet']" size="2x"></fa-icon>
+          </div>
+          <div class="py-20 row">
+            <div class="col-6 border-r">
+              <div class="text-right">
+                <div class="font-w600 font-size-h3 text-alt-info">1500</div>
+                <div class="font-w600 text-muted text-uppercase nm-size">sold</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="text-left">
+                <div class="font-w600 font-size-h3 text-alt-success">$7500</div>
+                <div class="font-w600 text-muted text-uppercase nm-size">earned</div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-alt-success nm-size">
+              <fa-icon [icon]="['fas', 'arrow-circle-right']"></fa-icon> &nbsp;
+              View Earnings
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-home-chart row">
+    <div class="col-md-6">
+      <div class="card mb-24">
+        <div class="card-body p-0">
+          <div class="chart-header d-flex justify-content-between bg-alt-primary">
+            <h3 class="block-title">
+              Sales <small>This week</small>
+            </h3>
+            <div class="block-options">
+              <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                <fa-icon [icon]="['fas', 'sync-alt']"></fa-icon>
+              </button>
+              <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle">
+                <fa-icon [icon]="['fas', 'chevron-up']"></fa-icon>
+              </button>
+              <button type="button" class="btn-block-option">
+                <fa-icon [icon]="['fas', 'wrench']"></fa-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="chart-body pt-3">
+            <canvas baseChart width="345" height="150"
+                    [datasets]="lineChartData"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [labels]="lineChartLabels"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins"
+            >
+            </canvas>
+          </div>
+
+          <div class="chart-footer">
+            <div class="row items-push">
+              <div class="col-6 col-sm-4 text-center text-sm-left mb-20">
+                <div class="font-size-sm font-w600 text-uppercase text-muted">This Month</div>
+                <div class="font-size-h4 font-w600">720</div>
+                <div class="font-w600 text-alt-success">
+                  <fa-icon [icon]="['fas', 'caret-up']"></fa-icon> +16%
+                </div>
+              </div>
+              <div class="col-6 col-sm-4 text-center text-sm-left mb-20">
+                <div class="font-size-sm font-w600 text-uppercase text-muted">This Week</div>
+                <div class="font-size-h4 font-w600">160</div>
+                <div class="font-w600 text-alt-danger">
+                  <fa-icon [icon]="['fas', 'caret-down']"></fa-icon> -3%
+                </div>
+              </div>
+              <div class="col-12 col-sm-4 text-center text-sm-left mb-20">
+                <div class="font-size-sm font-w600 text-uppercase text-muted">Average</div>
+                <div class="font-size-h4 font-w600">24.3</div>
+                <div class="font-w600 text-alt-success">
+                  <fa-icon [icon]="['fas', 'caret-up']"></fa-icon> +9%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card mb-24">
+        <div class="card-body p-0">
+          <div class="chart-header d-flex justify-content-between bg-alt-primary">
+            <h3 class="block-title">
+              Earnings <small>This week</small>
+            </h3>
+            <div class="block-options">
+              <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                <fa-icon [icon]="['fas', 'sync-alt']"></fa-icon>
+              </button>
+              <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle">
+                <fa-icon [icon]="['fas', 'chevron-up']"></fa-icon>
+              </button>
+              <button type="button" class="btn-block-option">
+                <fa-icon [icon]="['fas', 'wrench']"></fa-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="chart-body pt-3">
+            <canvas baseChart width="345" height="150"
+                    [datasets]="lineChartData"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors2"
+                    [labels]="lineChartLabels"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins"
+            >
+            </canvas>
+          </div>
+
+          <div class="chart-footer">
+            <div class="row items-push">
+              <div class="col-6 col-sm-4 text-center text-sm-left mb-20">
+                <div class="font-size-sm font-w600 text-uppercase text-muted">This Month</div>
+                <div class="font-size-h4 font-w600">$ 6,540</div>
+                <div class="font-w600 text-alt-success">
+                  <fa-icon [icon]="['fas', 'caret-up']"></fa-icon> +4%
+                </div>
+              </div>
+              <div class="col-6 col-sm-4 text-center text-sm-left mb-20">
+                <div class="font-size-sm font-w600 text-uppercase text-muted">This Week</div>
+                <div class="font-size-h4 font-w600">$ 1,525</div>
+                <div class="font-w600 text-alt-danger">
+                  <fa-icon [icon]="['fas', 'caret-down']"></fa-icon> -7%
+                </div>
+              </div>
+              <div class="col-12 col-sm-4 text-center text-sm-left mb-20">
+                <div class="font-size-sm font-w600 text-uppercase text-muted">Balance</div>
+                <div class="font-size-h4 font-w600">$ 9,652</div>
+                <div class="font-w600 text-alt-success">
+                  <fa-icon [icon]="['fas', 'caret-up']"></fa-icon> +35%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

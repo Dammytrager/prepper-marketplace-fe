@@ -2,4 +2,8 @@
   &-transparent {
     background: $transparent;
   }
+
+  &-alt-primary {
+    background-color: $primary-blue $im;
+  }
 }

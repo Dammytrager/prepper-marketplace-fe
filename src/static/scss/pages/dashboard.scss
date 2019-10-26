@@ -3,5 +3,48 @@
   &-content {
     padding-top: 24px;
   }
+  &-home {
+    .card {
+      &-body {
+        padding: 20px;
+        .icon {
+          color: #e4e7ed;
+        }
+        .chart {
+          &-header {
+            padding: 14px 20px;
+            .block {
+              &-title {
+                color: rgba(255,255,255,.9);
+                flex: 1 1 auto;
+                min-height: 28px;
+                margin: 0;
+                font-size: 1.142857rem;
+                font-weight: 400;
+                line-height: 28px;
 
+                small {
+                  color: rgba(255,255,255,.7);
+                }
+              }
+
+              &-options {
+                flex: 0 0 auto;
+                padding-left: 10px;
+                min-height: 28px;
+              }
+            }
+          }
+
+          &-footer {
+            transition: opacity .2s ease-out;
+            margin: 0 auto;
+            padding: 20px 20px 1px;
+            width: 100%;
+            overflow-x: visible;
+          }
+        }
+      }
+    }
+  }
 }
