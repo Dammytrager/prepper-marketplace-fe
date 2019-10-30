@@ -1,0 +1,22 @@
+<div class="plm-courses mb-24 card ribbon cursor-pointer">
+  <div class="card-body p-0">
+    <div class="ribbon-box font-w600">
+      ${{data.price}}
+    </div>
+    <div class="book-icon p-20 w-100">
+      <div class="mx-auto my-20 circle d-flex justify-content-center bg-corporate align-items-center icon">
+        <fa-icon [icon]="['fas', 'book']"></fa-icon>
+      </div>
+      <plm-ratings *ngIf="data.ratings" [ratings]="data.ratings"></plm-ratings>
+      <div class="font-size-sm text-muted w-100 text-center" *ngIf="data.ratings">
+        ({{data.reviews}} reviews)
+      </div>
+    </div>
+    <div class="lessons nm-size bg-body-light text-center">
+      {{data.lessons}} lessons &bull; {{data.hours}} hours
+    </div>
+    <div class="title p-20 font-w600 nm-size text-center">
+      {{data.title}}
+    </div>
+  </div>
+</div>

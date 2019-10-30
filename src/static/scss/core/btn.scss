@@ -5,6 +5,12 @@
     color: #125a96 $im;
   }
 
+  &-alt-secondary {
+    background-color: $secondary-color $im;
+    border-color: $secondary-color;
+    color: #171717 $im;
+  }
+
   &-alt-success {
     background-color: $alt-success $im;
     border-color: $alt-success;
@@ -24,5 +30,11 @@
     &:hover {
       opacity: 1;
     }
+  }
+
+  &--sm {
+    padding: .357143rem .642857rem $im;
+    font-size: .9286rem $im;
+    line-height: 16px $im;
   }
 }

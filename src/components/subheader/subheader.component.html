@@ -1,0 +1,14 @@
+<div class="plm-subheader d-flex justify-content-between">
+  <div class="title">
+    <span class="icon" *ngIf="data?.title?.icon">
+      <fa-icon [icon]="data?.title?.icon"></fa-icon>
+    </span>
+    {{data?.title?.text}}
+  </div>
+  <div class="action" *ngIf="data?.action">
+    <button [class]="'btn font-w600 btn--sm btn-alt-' + data?.action?.color">
+      <fa-icon [icon]="data?.action?.icon" *ngIf="data?.action?.icon"></fa-icon>
+      {{data?.action?.text}}
+    </button>
+  </div>
+</div>

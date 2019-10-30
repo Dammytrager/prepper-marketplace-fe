@@ -1,7 +1,8 @@
 .plm-dashboard {
   background-color: $dashboard-background;
+  min-height: 92vh;
   &-content {
-    padding-top: 24px;
+    padding: 24px 24px 1px;
   }
   &-home {
     .card {
@@ -46,5 +47,9 @@
         }
       }
     }
+  }
+
+  &-courses {
+
   }
 }

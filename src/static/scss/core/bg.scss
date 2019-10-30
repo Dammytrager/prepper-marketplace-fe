@@ -6,4 +6,28 @@
   &-alt-primary {
     background-color: $primary-blue $im;
   }
+
+  &-info {
+    background-color: $info-color;
+  }
+
+  &-corporate {
+    background-color: $corporate-color;
+  }
+
+  &-flat {
+    background-color: $flat-color;
+  }
+
+  &-pulse {
+    background-color: $pulse-color;
+  }
+
+  &-elegance {
+    background-color: $elegance-color;
+  }
+
+  &-body-light {
+    background-color: $body-light-color;
+  }
 }

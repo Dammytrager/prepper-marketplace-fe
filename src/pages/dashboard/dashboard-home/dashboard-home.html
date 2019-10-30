@@ -1,5 +1,6 @@
 <div class="plm-dashboard-home plm-dashboard-content mxw-1200 mx-auto">
   <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
+
   <div class="dashboard-home-cards row">
     <div class="col-md-6">
       <div class="card mb-24">
@@ -22,7 +23,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button type="button" class="btn btn-alt-primary nm-size">
+            <button type="button" class="btn btn-alt-primary nm-size font-w600">
               <fa-icon [icon]="['fas', 'arrow-circle-right']"></fa-icon> &nbsp;
               View Courses
             </button>
@@ -30,6 +31,7 @@
         </div>
       </div>
     </div>
+
     <div class="col-md-6">
       <div class="card mb-24">
         <div class="card-body">
@@ -51,7 +53,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button type="button" class="btn btn-alt-success nm-size">
+            <button type="button" class="btn btn-alt-success nm-size font-w600">
               <fa-icon [icon]="['fas', 'arrow-circle-right']"></fa-icon> &nbsp;
               View Earnings
             </button>
@@ -186,4 +188,6 @@
       </div>
     </div>
   </div>
+
+  <plm-dashboard-footer></plm-dashboard-footer>
 </div>
