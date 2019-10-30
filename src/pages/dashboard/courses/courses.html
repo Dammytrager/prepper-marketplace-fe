@@ -1,5 +1,20 @@
 <div class="plm-dashboard-courses plm-dashboard-content mxw-1200 mx-auto">
   <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
-  Courses
+
+  <plm-subheader [data]="subheaderData1"></plm-subheader>
+  <div class="row">
+    <div class="col-md-6 col-xl-3" *ngFor="let course of courses">
+      <plm-course *ngIf="!course.ratings" [data]="course"></plm-course>
+    </div>
+  </div>
+
+  <plm-subheader [data]="subheaderData2"></plm-subheader>
+  <div class="row">
+    <div class="col-md-6 col-xl-3" *ngFor="let course of courses">
+      <plm-course *ngIf="course.ratings" [data]="course"></plm-course>
+    </div>
+  </div>
+
+  <plm-dashboard-footer></plm-dashboard-footer>
 </div>
 

@@ -1,0 +1,8 @@
+<div class="plm-ratings yellow text-center">
+  <fa-icon [icon]="ratings < 0.5 ? faRegularStar : (ratings >= 1 ? faSolidStar : faStarHalfAlt)">
+  </fa-icon>
+  <fa-icon [icon]="ratings < 1.5 ? faRegularStar : ratings >= 2 ? faSolidStar : faStarHalfAlt"></fa-icon>
+  <fa-icon [icon]="ratings < 2.5 ? faRegularStar : ratings >= 3 ? faSolidStar : faStarHalfAlt"></fa-icon>
+  <fa-icon [icon]="ratings < 3.5 ? faRegularStar : ratings >= 4 ? faSolidStar : faStarHalfAlt"></fa-icon>
+  <fa-icon [icon]="ratings < 4.5 ? faRegularStar : ratings >= 5 ? faSolidStar : faStarHalfAlt"></fa-icon>
+</div>

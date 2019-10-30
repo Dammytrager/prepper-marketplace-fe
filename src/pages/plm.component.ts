@@ -8,13 +8,14 @@ import {Title} from '@angular/platform-browser';
 import {
   faArrowCircleRight,
   faBars,
-  faBook, faCaretDown, faCaretUp, faChevronUp,
+  faBook, faCaretDown, faCaretUp, faChevronUp, faHeart, faPlus,
   faSearch,
-  faSignOutAlt, faSyncAlt,
+  faSignOutAlt, faStarHalf, faSyncAlt,
   faTachometerAlt,
   faTimes,
   faWallet, faWrench
 } from '@fortawesome/free-solid-svg-icons';
+import {faCheckCircle, faStar} from '@fortawesome/free-regular-svg-icons';
 
 library.add(
   faSearch,
@@ -29,7 +30,12 @@ library.add(
   faChevronUp,
   faWrench,
   faCaretUp,
-  faCaretDown
+  faCaretDown,
+  faHeart,
+  faPlus,
+  faStar,
+  faStarHalf,
+  faCheckCircle
 );
 
 dom.watch();
@@ -37,8 +43,7 @@ dom.watch();
 
 @Component({
   selector: 'plm-root',
-  templateUrl: './plm.html',
-  styleUrls: ['../static/scss/pages/plm.scss']
+  templateUrl: './plm.html'
 })
 export class PlmComponent implements OnInit {
   constructor(

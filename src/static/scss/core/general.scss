@@ -1,3 +1,7 @@
+body {
+  height: 100vh;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -22,11 +26,28 @@
   margin-top: 20px;
 }
 
+.my-20 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 .py-20 {
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
+.pb-20 {
+  padding-bottom: 20px;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
 .border-r {
   border-right: 1px solid #e4e7ed $im;
+}
+
+.circle {
+  border-radius: 50%;
 }

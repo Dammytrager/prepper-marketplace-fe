@@ -4,29 +4,31 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import {DashboardHeaderComponent} from '../../components/dashboard-header/dashboard-header.component';
+import {RatingsComponent} from '../../components/ratings/ratings.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    DashboardHeaderComponent
+    RatingsComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     CommonModule,
     RouterModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FormsModule,
     NavbarComponent,
-    DashboardHeaderComponent
+    RatingsComponent
   ],
   entryComponents: []
 })
