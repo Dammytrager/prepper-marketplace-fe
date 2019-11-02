@@ -6,9 +6,10 @@
     {{data?.title?.text}}
   </div>
   <div class="action" *ngIf="data?.action">
-    <button [class]="'btn font-w600 btn--sm btn-alt-' + data?.action?.color">
+    <button [class]="'btn font-w600 btn--sm btn-alt-' + data?.action?.color" *ngIf="!data?.action?.template">
       <fa-icon [icon]="data?.action?.icon" *ngIf="data?.action?.icon"></fa-icon>
       {{data?.action?.text}}
     </button>
+    <ng-content *ngIf="data?.action?.template" select=".action-template"></ng-content>
   </div>
 </div>

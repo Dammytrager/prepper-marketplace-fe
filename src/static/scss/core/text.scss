@@ -8,11 +8,15 @@
   }
 
   &-alt-success {
-    color: $success-color $im;
+    color: $text-alt-success $im;
+  }
+
+  &-warning {
+    color: $warning-color;
   }
 
   &-alt-danger {
-    color: $alt-danger $im;
+    color: $bg-alt-danger $im;
   }
 
   &-primary-blue {
