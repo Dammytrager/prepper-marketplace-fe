@@ -1,0 +1,37 @@
+.table {
+  font-size: $nm-size;
+  tbody {
+    tr {
+      td {
+        padding: 10px $im;
+      }
+    }
+  }
+}
+
+.table-striped {
+  tbody {
+    tr {
+      &:nth-of-type(odd) {
+        background-color: rgba(0,0,0,0.02) $im;
+      }
+    }
+  }
+}
+
+.td-150px {
+  width: 150px $im;
+}
+
+
+.td-100px {
+  width: 100px $im;
+}
+
+.td-10 {
+  width: 10%;
+}
+
+.td-auto {
+  width: auto $im;
+}

@@ -1,4 +1,113 @@
 <div class="plm-dashboard-earnings plm-dashboard-content mxw-1200 mx-auto">
   <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
-  Earnings
+
+  <plm-subheader [data]="subheaderData1"></plm-subheader>
+  <div class="card mb-24 br-4 p-20 pb-0">
+    <div class="table-responsive">
+      <table class="table table-borderless table-striped">
+        <thead>
+          <tr>
+            <th class="td-100px">ID</th>
+            <th class="">COURSES</th>
+            <th class="td-auto text-center">QTY</th>
+            <th class="td-10 text-right">UNIT</th>
+            <th class="td-10 text-right">PRICE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sale of sales">
+            <td class="td-100px font-w600 cursor-pointer text-primary-blue">{{sale?.id}}</td>
+            <td class="cursor-pointer text-primary-blue">{{sale?.course}}</td>
+            <td class="td-auto text-center">{{sale?.quantity}}</td>
+            <td class="td-10 text-right">${{sale?.unit | number: '1.2-2'}}</td>
+            <td class="td-10 text-right">${{sale?.price | number: '1.2-2'}}</td>
+          </tr>
+          <tr>
+            <td class="td-100px"></td>
+            <td class=""></td>
+            <td class="td-auto"></td>
+            <td class="td-10 text-right font-w600">Total Price</td>
+            <td class="td-10 text-right">${{total(sales) | number: '1.2-2'}}</td>
+          </tr>
+          <tr>
+            <td class="td-100px"></td>
+            <td class=""></td>
+            <td class="td-auto"></td>
+            <td class="td-10 text-right font-w600">Total Paid</td>
+            <td class="td-10 text-right">${{total(sales) | number: '1.2-2'}}</td>
+          </tr>
+          <tr class="bg-alt-success">
+            <td class="td-100px"></td>
+            <td class=""></td>
+            <td class="td-auto"></td>
+            <td class="td-10 text-right font-w600 text-uppercase">Total Due</td>
+            <td class="td-10 text-right">${{0 | number: '1.2-2'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <plm-subheader [data]="subheaderData2">
+    <ng-container class="action-template">
+      <div class="d-flex">
+        <div class="dropdown mr-2">
+          <button class="btn btn-outline-secondary btn--sm dropdown-toggle" type="button" id="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            All
+          </button>
+          <div class="dropdown-menu dropdown-menu-right px-2" aria-labelledby="status">
+            <a class="dropdown-item" href="#">
+              <fa-icon [icon]="['fas', 'spinner']" class="text-warning spin"></fa-icon>&nbsp;
+              Pending
+            </a>
+            <a class="dropdown-item" href="#">
+              <fa-icon [icon]="['fas', 'sync-alt']" class="text-alt-info spin"></fa-icon>&nbsp;
+              Processing
+            </a>
+            <a class="dropdown-item" href="#">
+              <fa-icon [icon]="['fas', 'times']" class="text-alt-danger"></fa-icon>&nbsp;
+              Completed
+            </a>
+            <a class="dropdown-item" href="#">
+              <fa-icon [icon]="['fas', 'check']" class="text-alt-success"></fa-icon>&nbsp;
+              Completed
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item active-dropdown" href="#">
+              <fa-icon [icon]="['far', 'circle']"></fa-icon>&nbsp;
+              All
+            </a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary btn--sm dropdown-toggle" type="button" id="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Today
+          </button>
+          <div class="dropdown-menu dropdown-menu-right px-2" aria-labelledby="status">
+            <a class="dropdown-item active-dropdown" href="#">
+              <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon>&nbsp;
+              Today
+            </a>
+            <a class="dropdown-item" href="#">
+              <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon>&nbsp;
+              This Week
+            </a>
+            <a class="dropdown-item" href="#">
+              <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon>&nbsp;
+              This Month
+            </a>
+            <a class="dropdown-item" href="#">
+              <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon>&nbsp;
+              This Year
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <fa-icon [icon]="['far', 'circle']"></fa-icon>&nbsp;
+              All Time
+            </a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </plm-subheader>
 </div>

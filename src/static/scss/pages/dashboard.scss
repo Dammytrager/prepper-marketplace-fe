@@ -50,6 +50,49 @@
   }
 
   &-courses {
+  }
 
+  &-earnings {
+    .btn.btn-outline-secondary {
+      &:hover, &:focus, &:active {
+        background-color: #cbd2dd;
+        color: #6c757d;
+      }
+    }
+
+    .dropdown-menu {
+      .dropdown-item {
+        padding: 5px 10px;
+        margin-bottom: 5px;
+        font-size: $nm-size;
+        &:hover {
+          background-color: $bg-alt-secondary;
+        }
+      }
+      .active-dropdown {
+        background-color: $bg-alt-secondary $im;
+      }
+    }
   }
 }
+.spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+  -moz-animation: fa-spin 2s infinite linear;
+}
+
+@keyframes fa-spin {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(359deg)}
+}
+
+@-webkit-keyframes fa-spin {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(359deg)}
+}
+
+@-moz-keyframes fa-spin {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(359deg)}
+}
+

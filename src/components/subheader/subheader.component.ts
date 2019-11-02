@@ -17,7 +17,8 @@ export class SubheaderComponent implements OnInit {
     action: {
       icon: false,
       text: '',
-      color: 'primary'
+      color: 'primary',
+      template: false
     }
   };
 

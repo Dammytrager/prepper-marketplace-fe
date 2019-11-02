@@ -2,6 +2,7 @@ interface SubheaderContent {
   icon?: boolean | string[];
   text?: string;
   color?: 'primary' | 'secondary';
+  template?: boolean;
 }
 
 export interface SubheaderInterface {

@@ -1,20 +1,29 @@
 .btn {
+  box-shadow: none $im;
   &-alt-primary {
-    background-color: $alt-blue $im;
-    border-color: $alt-blue;
-    color: #125a96 $im;
+    background-color: $bg-alt-blue $im;
+    border-color: $bg-alt-blue;
+    color: $text-alt-primary $im;
+    &:hover {
+      background-color: #9acbf3 $im;
+      border-color: #9acbf3 $im;
+    }
   }
 
   &-alt-secondary {
-    background-color: $secondary-color $im;
-    border-color: $secondary-color;
-    color: #171717 $im;
+    background-color: $bg-alt-secondary $im;
+    border-color: $bg-alt-secondary;
+    color: $text-alt-secondary $im;
+    &:hover {
+      background-color: #c5cdd8 $im;
+      border-color: #c5cdd8;
+    }
   }
 
   &-alt-success {
-    background-color: $alt-success $im;
-    border-color: $alt-success;
-    color: #5c852c $im;
+    background-color: $bg-alt-success $im;
+    border-color: $bg-alt-success;
+    color: $text-alt-success $im;
   }
 
   &-block-option {
@@ -34,7 +43,7 @@
 
   &--sm {
     padding: .357143rem .642857rem $im;
-    font-size: .9286rem $im;
+    font-size: .8286rem $im;
     line-height: 16px $im;
   }
 }
