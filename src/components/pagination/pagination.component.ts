@@ -6,7 +6,7 @@ import {PaginationInterface} from './pagination.Interface';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit{
+export class PaginationComponent implements OnInit {
   @Input() options: PaginationInterface;
   _defaultsOptions: PaginationInterface = {
     collectionSize: 100,
