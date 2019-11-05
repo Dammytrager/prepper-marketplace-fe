@@ -7,19 +7,23 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import {RatingsComponent} from '../../components/ratings/ratings.component';
+import {NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {PaginationComponent} from '../../components/pagination/pagination.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    RatingsComponent
+    RatingsComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbPaginationModule
   ],
   exports: [
     CommonModule,
@@ -27,8 +31,10 @@ import {RatingsComponent} from '../../components/ratings/ratings.component';
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbPaginationModule,
     NavbarComponent,
-    RatingsComponent
+    RatingsComponent,
+    PaginationComponent
   ],
   entryComponents: []
 })

@@ -73,6 +73,28 @@
         background-color: $bg-alt-secondary $im;
       }
     }
+
+    .payments {
+      box-shadow: 0 1px 1px #e4e7ed;
+      border: none $im;
+
+      .badge {
+        color: $white $im;
+        padding: 3px 5px $im;
+      }
+
+      .input-group {
+        .form-control.search {
+          padding: 6px 14px;
+          font-size: $nm-size $im;
+        }
+        .search-btn {
+          background-color: #f0f2f5;
+          border-color: #cbd2dd;
+          font-size: $nm-size;
+        }
+      }
+    }
   }
 }
 .spin {

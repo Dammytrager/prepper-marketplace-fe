@@ -4,6 +4,9 @@ import {SubheaderInterface} from '../../../components/subheader/subheader.interf
 import {SALES} from '../../../static/dummy/sales';
 import {CURRENCY} from '../../../system/constants/static-content';
 import {SalesInterface} from '../../../system/interfaces/sales.interface';
+import {PAYMENTS} from '../../../static/dummy/payments';
+import {PaymentsInterface} from '../../../system/interfaces/payments.interface';
+import {PaginationInterface} from '../../../components/pagination/pagination.Interface';
 
 @Component({
   selector: 'plm-earnings',
@@ -34,9 +37,11 @@ export class Earnings implements OnInit, OnDestroy {
   };
 
   sales = SALES;
+  payments = PAYMENTS;
   currency = CURRENCY;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {}
 
@@ -44,6 +49,15 @@ export class Earnings implements OnInit, OnDestroy {
     let sum = 0;
     sales.forEach((sale) => sum += sale.price);
     return sum;
+  }
+
+  statusClass = (status) => {
+    return {
+      'bg-success': status === 'completed',
+      'bg-warning': status === 'pending',
+      'bg-info': status === 'processing',
+      'bg-danger': status === 'canceled'
+    };
   }
 
   ngOnDestroy() {}
