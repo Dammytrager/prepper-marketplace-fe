@@ -25,22 +25,19 @@
           <tr>
             <td class="td-100px"></td>
             <td class=""></td>
-            <td class="td-auto"></td>
-            <td class="td-10 text-right font-w600">Total Price</td>
+            <td class="text-right font-w600" colspan="2">Total Price</td>
             <td class="td-10 text-right">${{total(sales) | number: '1.2-2'}}</td>
           </tr>
           <tr>
             <td class="td-100px"></td>
             <td class=""></td>
-            <td class="td-auto"></td>
-            <td class="td-10 text-right font-w600">Total Paid</td>
+            <td class="text-right font-w600" colspan="2">Total Paid</td>
             <td class="td-10 text-right">${{total(sales) | number: '1.2-2'}}</td>
           </tr>
           <tr class="bg-alt-success">
             <td class="td-100px"></td>
             <td class=""></td>
-            <td class="td-auto"></td>
-            <td class="td-10 text-right font-w600 text-uppercase">Total Due</td>
+            <td class="text-right font-w600 text-uppercase" colspan="2">Total Due</td>
             <td class="td-10 text-right">${{0 | number: '1.2-2'}}</td>
           </tr>
         </tbody>
@@ -110,4 +107,46 @@
       </div>
     </ng-container>
   </plm-subheader>
+  <div class="card payments mb-24 br-4">
+    <div class="p-20 bg-body-light">
+      <div class="input-group">
+        <input type="text" class="form-control nm-size search" placeholder="Search payments" name="search-input">
+        <div class="input-group-append">
+          <button type="submit" class="btn px-15 nm-size search-btn">
+            <fa-icon [icon]="['fas','search']"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive p-20">
+      <table class="table table-borderless table-striped">
+        <thead>
+          <tr>
+          <th class="td-100px">ID</th>
+          <th class="">STATUS</th>
+          <th class="">DATE</th>
+          <th class="">TIME</th>
+          <th class="">PROCESSED BY</th>
+          <th class="text-right">VALUE</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of payments">
+            <td class="td-100px font-w600 cursor-pointer text-primary-blue">{{payment?.id}}</td>
+            <td>
+              <span [ngClass]="statusClass(payment?.status)" class="badge p-1 font-w600">{{payment?.status | titlecase}}</span>
+            </td>
+            <td class="">{{payment?.date}}</td>
+            <td class="text-primary-blue cursor-pointer">{{payment?.time}}</td>
+            <td class="text-primary-blue cursor-pointer font-w600">{{payment?.processor}}</td>
+            <td class="text-right">${{payment?.value}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <plm-pagination [options]="{classNames: 'd-flex justify-content-end', size: 'sm'}"></plm-pagination>
+    </div>
+  </div>
+
 </div>

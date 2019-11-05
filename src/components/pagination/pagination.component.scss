@@ -1,0 +1,35 @@
+@import "variables";
+
+.plm-pagination {
+  /deep/ {
+    .pagination {
+      .page-item {
+        .page-link {
+          color: $text-alt-secondary;
+          background-color: $dashboard-background $im;
+          border-color: $dashboard-background $im;
+          &:active, &:focus {
+            box-shadow: none $im;
+          }
+          &:hover {
+            background-color: #c5cdd8 $im;
+          }
+        }
+      }
+      .active {
+        .page-link {
+          color: $white $im;
+          background-color: $primary-blue $im;
+          border-color: $primary-blue $im;
+        }
+      }
+      .disabled {
+        .page-link {
+          color: #6c757d $im;
+          background-color: $white $im;
+          border-color: $white $im;
+        }
+      }
+    }
+  }
+}

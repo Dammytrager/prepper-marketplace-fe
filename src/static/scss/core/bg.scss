@@ -11,6 +11,18 @@
     background-color: $bg-alt-success $im;
   }
 
+  &-danger {
+    background-color: $bg-alt-danger $im;
+  }
+
+  &-success {
+    background-color: $success-color $im;
+  }
+
+  &-warning {
+    background-color: $warning-color $im;
+  }
+
   &-info {
     background-color: $info-color;
   }
