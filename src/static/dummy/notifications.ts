@@ -26,4 +26,4 @@ export const NOTIFICATIONS: NotificationsInterface[] = [
     message: 'New Purchases! +$250',
     time: '1 day ago'
   },
-]
+];
