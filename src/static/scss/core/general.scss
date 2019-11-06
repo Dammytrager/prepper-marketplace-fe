@@ -32,8 +32,13 @@ body {
 }
 
 .py-20 {
-  padding-top: 20px;
-  padding-bottom: 20px;
+   padding-top: 20px;
+   padding-bottom: 20px;
+ }
+
+.py-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .pb-20 {
@@ -42,6 +47,20 @@ body {
 
 .p-20 {
   padding: 20px;
+}
+
+.mr-15 {
+  margin-right: 15px;
+}
+
+.card {
+  border: none $im;
+}
+
+.card.box-shadow {
+  &:hover {
+    box-shadow: 0 0 36px #d8dde5;
+  }
 }
 
 .border-r {
@@ -54,4 +73,13 @@ body {
 
 .br-4 {
   border-radius: 4px $im;
+}
+
+.br-0 {
+  border-radius: 0 $im;
+}
+
+.badge {
+  color: $white $im;
+  padding: 3px 5px $im;
 }

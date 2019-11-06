@@ -24,6 +24,10 @@
     background-color: $bg-alt-success $im;
     border-color: $bg-alt-success;
     color: $text-alt-success $im;
+    &:hover {
+      background-color: #d3e9b8 $im;
+      border-color: #d3e9b8 $im;
+    }
   }
 
   &-block-option {

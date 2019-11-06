@@ -64,6 +64,36 @@ button {
   }
 }
 
+.dropdown-btn {
+  padding: .571429rem 1rem;
+  border-radius: 50px;
+  font-size: 14px $im;
+  &:hover, &:focus {
+    background-color: #212529 $im;
+  }
+}
+
+.dropdown-menu {
+  padding: 8px $im;
+  font-size: $nm-size $im;
+  .disabled {
+    margin-bottom: 5px;
+  }
+
+  .dropdown-item {
+    &:hover {
+      background-color: $dashboard-background;
+    }
+  }
+  &-user {
+    min-width: 200px;
+  }
+
+  &-notification {
+    width: 300px;
+  }
+}
+
 .mobile-nav {
   z-index: 100;
   background-color: $navbar-color;
