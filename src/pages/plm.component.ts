@@ -8,11 +8,11 @@ import {Title} from '@angular/platform-browser';
 import {
   faArrowCircleRight,
   faBars,
-  faBook, faCalendar, faCaretDown, faCaretUp, faCheck, faChevronUp, faHeart, faPlus,
+  faBook, faCalendar, faCaretDown, faCaretUp, faCheck, faChevronDown, faChevronUp, faExclamationTriangle, faFlag, faHeart, faPlus,
   faSearch,
   faSignOutAlt, faSpinner, faStarHalf, faSyncAlt,
   faTachometerAlt,
-  faTimes,
+  faTimes, faUser,
   faWallet, faWrench
 } from '@fortawesome/free-solid-svg-icons';
 import {faCalendarAlt, faCheckCircle, faCircle, faStar} from '@fortawesome/free-regular-svg-icons';
@@ -28,6 +28,7 @@ library.add(
   faArrowCircleRight,
   faSyncAlt,
   faChevronUp,
+  faChevronDown,
   faWrench,
   faCaretUp,
   faCaretDown,
@@ -39,7 +40,10 @@ library.add(
   faSpinner,
   faCheck,
   faCircle,
-  faCalendarAlt
+  faCalendarAlt,
+  faUser,
+  faFlag,
+  faExclamationTriangle
 );
 
 dom.watch();
