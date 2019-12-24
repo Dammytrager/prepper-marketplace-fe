@@ -23,8 +23,20 @@
     color: $warning-color $im;
   }
 
-  &-info {
-    color: $info-color;
+  &-corporate {
+    color: $corporate-color;
+  }
+
+  &-flat {
+    color: $flat-color;
+  }
+
+  &-pulse {
+    color: $pulse-color;
+  }
+
+  &-elegance {
+    color: $elegance-color;
   }
 
   &-alt-danger {
@@ -33,9 +45,5 @@
 
   &-primary-blue {
     color: $primary-blue $im;
-  }
-
-  &-pulse {
-    color: $pulse-color $im;
   }
 }

@@ -1,0 +1,31 @@
+<div class="plm-dashboard-courses plm-dashboard-content mxw-1200 mx-auto">
+  <plm-dashboard-header [data]="dashboardHeaderdata">
+    <ng-container class="additional-content">
+      <div class="mt-10">
+        <div class="text-center nm-size mb-1 font-w600">
+          Published
+        </div>
+        <div class="switch-cont">
+          <label class="switch mx-auto">
+            <input type="checkbox" class="switch_1">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </ng-container>
+  </plm-dashboard-header>
+  <plm-subheader [data]="subheaderData" (open)="showCreateContent()"></plm-subheader>
+  <plm-create-content *ngIf="showCreate" [data]="createContentData" (close)="hideCreateContent()"></plm-create-content>
+  <div class="row">
+    <div class="col-lg-4" *ngFor="let course of courses; let i = index">
+      <div class="text-center course-item p-20 mb-24 course-box-shadow cursor-pointer">
+        <div class="p-20 mb-1">
+          <fa-icon [icon]="['fas', 'book']" [size]="'3x'" [ngClass]="bookColors(i)"></fa-icon>
+        </div>
+        <p class="font-w600 font-size-lg mb-0">{{course.title}}</p>
+        <p class="font-w600 font-size-sm text-muted mb-0 text-uppercase">{{course.lessons}} lessons</p>
+      </div>
+    </div>
+  </div>
+  <plm-dashboard-footer></plm-dashboard-footer>
+</div>
