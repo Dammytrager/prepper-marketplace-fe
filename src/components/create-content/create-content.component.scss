@@ -1,0 +1,51 @@
+@import "variables";
+
+.plm-create-content {
+  background-color: $body-light-color;
+  .header {
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    .title {
+      min-height: 28px;
+      margin: 0;
+      font-size: 1.142857rem;
+      line-height: 28px;
+    }
+    .options {
+      display: inline-block;
+      padding: 6px 5px;
+      line-height: 1.2;
+      color: #6c757d;
+      background: 0 0;
+      border: none;
+    }
+  }
+
+  .body {
+    .form-control {
+      height: calc(1.428572em + .857143rem + 2px);
+      padding: .428571rem 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.428572;
+      color: #575757;
+      background-clip: padding-box;
+      border: 1px solid #d4dae3;
+      border-radius: .25rem;
+    }
+    select {
+      padding: .428571rem 2rem .428571rem 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+      vertical-align: middle;
+      background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 1rem center/8px 10px;
+      -webkit-appearance: none;
+    }
+    button {
+      font-size: $nm-size;
+      padding-top: .428571rem;
+      padding-bottom: .428571rem;
+    }
+  }
+}

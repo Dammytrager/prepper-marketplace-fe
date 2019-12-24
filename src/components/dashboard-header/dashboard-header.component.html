@@ -1,8 +1,9 @@
-<div class="plm-dashboard-header mb-24">
+<div class="plm-dashboard-header mb-24" [class.blue]="data.bgColor === 'blue'" [class.white]="data.bgColor === 'white'">
   <div class="plm-dashboard-header-content">
-    <div class="text-center text-white py-20">
+    <div class="text-center py-20">
       <h2 class="font-w700">{{data?.bigHeader}}</h2>
-      <div class="small-text">{{data?.smallHeader}}</div>
+      <div class="small-text" [class.text-muted]="data.bgColor === 'white'">{{data?.smallHeader}}</div>
+      <ng-content *ngIf="data?.additionalContent" select=".additional-content"></ng-content>
     </div>
   </div>
 </div>

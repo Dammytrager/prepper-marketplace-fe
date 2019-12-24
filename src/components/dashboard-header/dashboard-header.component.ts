@@ -10,7 +10,9 @@ export class DashboardHeaderComponent implements OnInit {
   @Input() data: DashboardHeaderInterface;
   _dataDefaults: DashboardHeaderInterface = {
     bigHeader: '',
-    smallHeader: ''
+    smallHeader: '',
+    bgColor: 'blue',
+    additionalContent: false
 };
 
   constructor() {}

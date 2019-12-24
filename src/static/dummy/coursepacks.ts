@@ -1,6 +1,6 @@
-import {CourseData} from '../../components/courses/courses.interface';
+import {CoursePackData} from '../../components/courses/courses.interface';
 
-export const Coursepacks: CourseData[] = [
+export const Coursepacks: CoursePackData[] = [
   {
     price: 3,
     title: 'SVG Bible',

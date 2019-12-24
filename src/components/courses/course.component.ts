@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CourseData} from './courses.interface';
+import {CoursePackData} from './courses.interface';
 
 @Component({
   selector: 'plm-course',
@@ -7,6 +7,6 @@ import {CourseData} from './courses.interface';
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent {
-  @Input() data: CourseData;
+  @Input() data: CoursePackData;
   constructor() {}
 }

@@ -29,4 +29,12 @@ export class NavbarComponent implements OnInit {
 
     return icon;
   }
+
+  hideSideNav() {
+    this.showMobile = false;
+  }
+
+  showSideNav() {
+    this.showMobile = true;
+  }
 }

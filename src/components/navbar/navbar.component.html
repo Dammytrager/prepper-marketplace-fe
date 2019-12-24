@@ -70,7 +70,7 @@
         <fa-icon [icon]="['fas', 'search']" class="text-white cursor-pointer" (click)="showSearch = true"></fa-icon>
       </div>
 
-      <button class="navbar-toggler border-0 pt-0" type="button" (click)="showMobile = true">
+      <button class="navbar-toggler border-0 pt-0" type="button" (click)="showSideNav()">
         <fa-icon [icon]="['fas', 'bars']" class="md-size text-white"></fa-icon>
       </button>
     </div>
@@ -187,23 +187,23 @@
     <a class="navbar-brand" style="width: 95%">
       <img src="assets/images/logo.png">
     </a>
-    <div class="close d-flex align-items-center cursor-pointer mr-3" (click)="showMobile = false">
+    <div class="close d-flex align-items-center cursor-pointer mr-3" (click)="hideSideNav()">
       <fa-icon [icon]="['fas', 'times']" class="text-danger nm-size"></fa-icon>
     </div>
   </div>
   <ul class="navbar-nav mobile-nav-body d-block">
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'home']">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'home']" (click)="hideSideNav()">
         <fa-icon [icon]="['fas', 'tachometer-alt']"></fa-icon> &nbsp; Dashboard
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'home']">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'courses']" (click)="hideSideNav()">
         <fa-icon [icon]="['fas', 'book']"></fa-icon> &nbsp; Coursepacks
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'home']">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'earnings']" (click)="hideSideNav()">
         <fa-icon [icon]="['fas', 'wallet']"></fa-icon> &nbsp; Earnings
       </a>
     </li>

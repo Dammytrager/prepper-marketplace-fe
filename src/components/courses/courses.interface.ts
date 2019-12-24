@@ -1,4 +1,4 @@
-export interface CourseData {
+export interface CoursePackData {
   title: string;
   price: number;
   lessons: number;
@@ -6,4 +6,9 @@ export interface CourseData {
   approved?: boolean;
   ratings?: number;
   reviews?: number;
+}
+
+export interface CourseInterface {
+  title: string;
+  lessons: number;
 }

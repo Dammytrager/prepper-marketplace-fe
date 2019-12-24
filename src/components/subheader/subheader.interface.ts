@@ -3,6 +3,7 @@ interface SubheaderContent {
   text?: string;
   color?: 'primary' | 'secondary';
   template?: boolean;
+  run?: () => void;
 }
 
 export interface SubheaderInterface {

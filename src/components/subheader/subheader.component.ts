@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SubheaderInterface} from './subheader.interface';
 
 @Component({
@@ -7,6 +7,7 @@ import {SubheaderInterface} from './subheader.interface';
   styleUrls: ['./subheader.component.scss']
 })
 export class SubheaderComponent implements OnInit {
+  @Output() open: EventEmitter<any> = new EventEmitter();
   @Input() data: SubheaderInterface;
 
   _defaultData: SubheaderInterface = {
@@ -18,11 +19,15 @@ export class SubheaderComponent implements OnInit {
       icon: false,
       text: '',
       color: 'primary',
-      template: false
+      template: false,
     }
   };
 
    constructor() {}
+
+   runAction() {
+     this.open.emit();
+   }
 
    ngOnInit() {
      this.data = {...this._defaultData, ...this.data};
