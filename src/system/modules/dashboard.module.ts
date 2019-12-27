@@ -13,6 +13,7 @@ import {SubheaderComponent} from '../../components/subheader/subheader.component
 import {CourseComponent} from '../../components/courses/course.component';
 import {CreateContentComponent} from '../../components/create-content/create-content.component';
 import {Courses} from '../../pages/dashboard/coursepacks/courses/courses';
+import {Lessons} from '../../pages/dashboard/coursepacks/courses/lessons/lessons';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {Courses} from '../../pages/dashboard/coursepacks/courses/courses';
     Coursepacks,
     Earnings,
     Courses,
+    Lessons,
     DashboardHeaderComponent,
     DashboardFooterComponent,
     SubheaderComponent,

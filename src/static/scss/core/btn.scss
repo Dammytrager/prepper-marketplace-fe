@@ -50,4 +50,8 @@
     font-size: .8286rem $im;
     line-height: 16px $im;
   }
+
+  &-rounded {
+    border-radius: 50px $im;
+  }
 }

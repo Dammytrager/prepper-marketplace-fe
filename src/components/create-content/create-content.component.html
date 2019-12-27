@@ -7,8 +7,8 @@
       <span class="iconify" data-icon="simple-line-icons:close" data-inline="false"></span>
     </div>
   </div>
-  <div class="body p-20 pb-0 d-flex">
-    <div [class.col-md-9]="data.formFieldsCount === 1" [class.col-md-5]="data.formFieldsCount === 2" [class.px-0]="data.formFieldsCount === 2">
+  <div class="body p-20 pb-md-0 d-md-flex">
+    <div [class.col-md-9]="data.formFieldsCount === 1" [class.col-md-5]="data.formFieldsCount === 2" [class.px-mb-0]="data.formFieldsCount === 2">
       <div *ngFor="let field of data.formFields">
         <div class="form-group" *ngIf="field.type === 'text'">
           <input type="text" class="form-control" [placeholder]="field.placeholder">
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3 px-0">
+    <div class="col-md-3 px-mb-0">
       <button type="button" class="btn btn-block btn-alt-success font-w600">
         <fa-icon [icon]="data.button.icon"></fa-icon>&nbsp;
         {{data.button.text}}

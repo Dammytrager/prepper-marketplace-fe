@@ -18,7 +18,7 @@
   <plm-create-content *ngIf="showCreate" [data]="createContentData" (close)="hideCreateContent()"></plm-create-content>
   <div class="row">
     <div class="col-lg-4" *ngFor="let course of courses; let i = index">
-      <div class="text-center course-item p-20 mb-24 course-box-shadow cursor-pointer">
+      <div class="text-center course-item p-20 mb-24 course-box-shadow cursor-pointer" [routerLink]="['/dashboard/cours', 'some']">
         <div class="p-20 mb-1">
           <fa-icon [icon]="['fas', 'book']" [size]="'3x'" [ngClass]="bookColors(i)"></fa-icon>
         </div>
