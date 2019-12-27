@@ -92,7 +92,7 @@
     }
   }
 
-  &-courses {
+  &-courses, &-lessons {
     /deep/ {
       .small-text {
         font-size: 1.285714rem;
@@ -155,6 +155,12 @@
 
       .course-item {
         background-color: $white;
+      }
+    }
+
+    .actions {
+      button {
+
       }
     }
   }

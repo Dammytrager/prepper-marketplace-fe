@@ -5,6 +5,7 @@ import {Coursepacks} from '../../pages/dashboard/coursepacks/coursepacks';
 import {Earnings} from '../../pages/dashboard/earnings/earnings';
 import {DashboardHome} from '../../pages/dashboard/dashboard-home/dashboard-home';
 import {Courses} from '../../pages/dashboard/coursepacks/courses/courses';
+import {Lessons} from '../../pages/dashboard/coursepacks/courses/lessons/lessons';
 
 const DASHBOARD_ROUTES: Routes = [
   {
@@ -35,6 +36,13 @@ const DASHBOARD_ROUTES: Routes = [
       {
         path: 'courses/:id',
         component: Courses,
+        data: {
+          title: 'Dashboard | Your Coursepacks'
+        }
+      },
+      {
+        path: ':courseId/:lessonId',
+        component: Lessons,
         data: {
           title: 'Dashboard | Your Coursepacks'
         }

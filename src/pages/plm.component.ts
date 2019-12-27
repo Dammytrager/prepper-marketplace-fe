@@ -8,7 +8,7 @@ import {Title} from '@angular/platform-browser';
 import {
   faArrowCircleRight,
   faBars,
-  faBook, faCalendar, faCaretDown, faCaretUp, faCheck, faChevronDown, faChevronUp, faExclamationTriangle, faFlag, faHeart, faPlus,
+  faBook, faCalendar, faCaretDown, faCaretUp, faCheck, faChevronDown, faChevronUp, faEdit, faExclamationTriangle, faFlag, faHeart, faPlus,
   faSearch,
   faSignOutAlt, faSpinner, faStarHalf, faSyncAlt,
   faTachometerAlt,
@@ -43,7 +43,8 @@ library.add(
   faCalendarAlt,
   faUser,
   faFlag,
-  faExclamationTriangle
+  faExclamationTriangle,
+  faEdit
 );
 
 dom.watch();
