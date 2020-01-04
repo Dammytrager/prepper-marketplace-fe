@@ -13,7 +13,7 @@ It is a documentation of the UI components used in this project
 Run `npm run storybook` . Navigate to `http://localhost:4200/` to check the components
 
 #### Build Storybook Server
-Run `npm run storybook` to automatically generate the storybook component UI documentation as a standalone app
+Run `npm run build-storybook` to automatically generate the storybook component UI documentation as a standalone app
 
 ## Code scaffolding
 
