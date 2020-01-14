@@ -4,3 +4,41 @@
     border-color: $blue $im;
   }
 }
+
+
+.form-group.no-border {
+  position: relative;
+  margin-top: 30px;
+
+  input.form-control {
+    border-radius: 0 $im;
+    border-top: none $im;
+    border-right: none $im;
+    border-left: none $im;
+    box-shadow: none;
+
+    &:focus {
+      border-bottom: solid 2px #97a5ba $im;
+    }
+  }
+
+  span {
+    font-size: $nm-size;
+    font-weight: 400;
+    position: absolute;
+    cursor: text;
+    top: 0;
+    transition: 0.2s;
+    transition-timing-function: ease;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    opacity: 0.75;
+  }
+  input:focus + span, input:not(:placeholder-shown) + span {
+    opacity: 1;
+    transform: scale(0.85) translateY(-100%) translateX(-10px);
+  }
+}
+
+//.custom-checkbox {
+//  input[type="checkbox"]
+//}

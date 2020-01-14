@@ -1,3 +1,5 @@
 export interface SiteInterface {
-  route: string;
+  url: string;
+  title: string;
+  extraInfo: any;
 }
