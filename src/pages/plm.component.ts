@@ -6,7 +6,7 @@ import {SITE} from '../system/state/actions/site.action';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import {Title} from '@angular/platform-browser';
 import {
-  faArrowCircleRight,
+  faArrowCircleRight, faAsterisk,
   faBars,
   faBook, faCalendar, faCaretDown, faCaretUp, faCheck, faChevronDown, faChevronUp, faEdit, faExclamationTriangle, faFlag, faHeart, faPlus,
   faSearch,
@@ -44,7 +44,8 @@ library.add(
   faUser,
   faFlag,
   faExclamationTriangle,
-  faEdit
+  faEdit,
+  faAsterisk
 );
 
 dom.watch();
@@ -69,17 +70,28 @@ export class PlmComponent implements OnInit {
   setRoute() {
     this._router.events.subscribe((data) => {
       if (data instanceof NavigationEnd) {
+        let title;
         let child = this._route.firstChild;
         while (child.firstChild) {
           child = child.firstChild;
         }
         if (child.snapshot.data['title']) {
-          const title = child.snapshot.data['title'];
+          title = child.snapshot.data['title'];
           this._title.setTitle(title);
+          this._ngRedux.dispatch({
+            type: SITE.CHANGE_TITLE,
+            title: title
+          });
+        }
+        if (child.snapshot.data['pageInfo']) {
+          this._ngRedux.dispatch({
+            type: SITE.CHANGE_EXTRA_INFO,
+            extraInfo: child.snapshot.data['pageInfo']
+          });
         }
         this._ngRedux.dispatch({
-          type: SITE.CHANGE_ROUTE,
-          route: data.urlAfterRedirects
+          type: SITE.CHANGE_URL,
+          url: data.urlAfterRedirects
         });
       }
     });

@@ -6,6 +6,7 @@ import {Earnings} from '../../pages/dashboard/earnings/earnings';
 import {DashboardHome} from '../../pages/dashboard/dashboard-home/dashboard-home';
 import {Courses} from '../../pages/dashboard/coursepacks/courses/courses';
 import {Lessons} from '../../pages/dashboard/coursepacks/courses/lessons/lessons';
+import {TITLE} from '../constants/route-data';
 
 const DASHBOARD_ROUTES: Routes = [
   {
@@ -16,35 +17,35 @@ const DASHBOARD_ROUTES: Routes = [
         path: 'home',
         component: DashboardHome,
         data: {
-          title: 'Dashboard'
+          title: TITLE.DASHBOARD_HOME
         }
       },
       {
         path: 'courses',
         component: Coursepacks,
         data: {
-          title: 'Dashboard | Your Coursepacks'
+          title: TITLE.DASHBOARD_COURSEPACKS
         }
       },
       {
         path: 'earnings',
         component: Earnings,
         data: {
-          title: 'Dashboard | Your Earnings'
+          title: TITLE.DASHBOARD_EARNINGS
         }
       },
       {
         path: 'courses/:id',
         component: Courses,
         data: {
-          title: 'Dashboard | Your Coursepacks'
+          title: TITLE.DASHBOARD_COURSES
         }
       },
       {
         path: ':courseId/:lessonId',
         component: Lessons,
         data: {
-          title: 'Dashboard | Your Coursepacks'
+          title: TITLE.DASHBOARD_LESSONS
         }
       },
       {

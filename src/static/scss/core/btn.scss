@@ -30,6 +30,16 @@
     }
   }
 
+  &-alt-danger {
+    background-color: #fae9e8 $im;
+    border-color: #fae9e8;
+    color: #af1310 $im;
+    &:hover {
+      background-color: #f1c1be $im;
+      border-color: #f1c1be $im;
+    }
+  }
+
   &-block-option {
     display: inline-block;
     padding: 6px 5px;
