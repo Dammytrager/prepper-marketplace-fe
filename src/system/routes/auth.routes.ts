@@ -16,7 +16,7 @@ const AUTH_ROUTES: Routes = [
         path: 'sign-in',
         component: SignIn,
         data: {
-          title: TITLE.USER_SIGN_IN,
+          title: TITLE.AUTH_SIGN_IN,
           pageInfo: AUTH_PAGE.SIGN_IN
         }
       },
@@ -24,7 +24,7 @@ const AUTH_ROUTES: Routes = [
         path: 'sign-up',
         component: SignUp,
         data: {
-          title: TITLE.USER_SIGN_UP,
+          title: TITLE.AUTH_SIGN_UP,
           pageInfo: AUTH_PAGE.SIGN_UP
         }
       },
@@ -32,7 +32,7 @@ const AUTH_ROUTES: Routes = [
         path: 'forgot-password',
         component: ForgotPassword,
         data: {
-          title: TITLE.USER_FORGOT_PASSWORD,
+          title: TITLE.AUTH_FORGOT_PASSWORD,
           pageInfo: AUTH_PAGE.FORGOT_PASSWORD
         }
       },
@@ -40,7 +40,7 @@ const AUTH_ROUTES: Routes = [
         path: 'admin-unlock',
         component: AdminUnlock,
         data: {
-          title: TITLE.USER_ADMIN_UNLOCK,
+          title: TITLE.AUTH_ADMIN_UNLOCK,
           pageInfo: AUTH_PAGE.ADMIN_UNLOCK
         }
       }

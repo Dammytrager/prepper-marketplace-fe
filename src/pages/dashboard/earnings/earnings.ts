@@ -5,11 +5,9 @@ import {SALES} from '../../../static/dummy/sales';
 import {CURRENCY} from '../../../system/constants/static-content';
 import {SalesInterface} from '../../../system/interfaces/sales.interface';
 import {PAYMENTS} from '../../../static/dummy/payments';
-import {PaymentsInterface} from '../../../system/interfaces/payments.interface';
-import {PaginationInterface} from '../../../components/pagination/pagination.Interface';
 
 @Component({
-  selector: 'plm-earnings',
+  selector: 'plm-dashboard-earnings',
   templateUrl: './earnings.html'
 })
 export class Earnings implements OnInit, OnDestroy {
@@ -38,7 +36,6 @@ export class Earnings implements OnInit, OnDestroy {
 
   sales = SALES;
   payments = PAYMENTS;
-  currency = CURRENCY;
 
   constructor() {
   }

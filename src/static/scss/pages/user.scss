@@ -1,0 +1,25 @@
+.plm-dashboard-user {
+  &-settings {
+    &-header {
+      h2 {
+        font-size: 2.142857rem;
+      }
+    }
+
+    &-body {
+      .form-heading {
+        margin-bottom: 20px;
+        padding-top: 30px;
+        padding-bottom: 8px;
+        font-size: 1.428571rem;
+        font-weight: 400;
+        line-height: 28px;
+        border-bottom: 1px solid $bg-alt-secondary;
+      }
+
+      input {
+        font-size: 14px $im;
+      }
+    }
+  }
+}

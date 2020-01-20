@@ -1,0 +1,26 @@
+<div class="plm-auth__admin-unlock px-30">
+  <div class="text-center">
+    <img src="assets/images/avatar15.jpg" class="rounded-circle">
+  </div>
+
+  <form>
+    <div class="form-group no-border">
+      <input class="form-control" type="password" placeholder=" ">
+      <span>Password</span>
+    </div>
+
+    <div class="mt-3 text-center">
+      <button class="user-btn btn btn-alt-danger font-w600 sm-size">
+        <span class="iconify" data-icon="simple-line-icons:lock-open" data-inline="false"></span>&nbsp;
+        <span class="nm-size">Unlock</span>
+      </button>
+    </div>
+
+    <div class="mt-30 text-center">
+      <a class="text-muted nm-size custom-links" routerLink="/auth/sign-in">
+        <fa-icon [icon]="['fas', 'user']" [size]="'sm'" class="mr-1"></fa-icon>
+        Not you? Sign In
+      </a>
+    </div>
+  </form>
+</div>

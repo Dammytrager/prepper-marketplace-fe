@@ -1,0 +1,47 @@
+<div class="plm-auth__sign-up px-30">
+  <form>
+    <div class="form-group no-border">
+      <input class="form-control" type="text" placeholder=" ">
+      <span>Username</span>
+    </div>
+
+    <div class="form-group no-border">
+      <input class="form-control" type="email" placeholder=" ">
+      <span>Email</span>
+    </div>
+
+    <div class="form-group no-border">
+      <input class="form-control" type="password" placeholder=" ">
+      <span>Password</span>
+    </div>
+
+    <div class="form-group no-border">
+      <input class="form-control" type="password" placeholder=" ">
+      <span>Confirm Password</span>
+    </div>
+
+    <div class="form-check custom-checkbox">
+      <input class="form-check-input custom-control-input" type="checkbox" id="sign-up-terms">
+      <label for="sign-up-terms" class="custom-control-label font-w600 nm-size">I agree to Terms & Conditions</label>
+    </div>
+
+    <div class="mt-3">
+      <button class="user-btn btn btn-alt-success font-w600 sm-size">
+        <fa-icon [icon]="['fas', 'plus']"></fa-icon>&nbsp;
+        <span class="nm-size">Create Account</span>
+      </button>
+    </div>
+
+    <div class="mt-30">
+      <a class="text-muted nm-size custom-links" routerLink="">
+        <fa-icon [icon]="['fas', 'book']" [size]="'sm'" class="mr-2"></fa-icon>
+        Read terms
+      </a>
+      &nbsp; &nbsp;
+      <a class="text-muted nm-size custom-links" routerLink="/auth/sign-in">
+        <fa-icon [icon]="['fas', 'user']" [size]="'sm'" class="mr-2"></fa-icon>
+        Sign In
+      </a>
+    </div>
+  </form>
+</div>

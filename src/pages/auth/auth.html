@@ -1,0 +1,31 @@
+<div class="plm-auth">
+  <div class="background">
+    <div [class]="'row bg-' + pageInfo.background + '-op'">
+      <div class="col-md-6 col-xl-8 d-none d-md-flex align-items-end text-white">
+        <div class="p-40">
+          <p class="xxl-size font-w600 mb-1">
+            {{pageInfo.backdrop.bigText}}
+          </p>
+          <p class="lg-size font-w400" *ngIf="pageInfo.backdrop.smallText">{{pageInfo.backdrop.smallText}}</p>
+          <div class="font-italic sm-size my-24 text-white-op">
+            Copyright &copy; 2020
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-4 bg-white d-flex align-items-center">
+        <div class="plm-auth__content p-24 w-100">
+          <div class="plm-auth__content-header px-30 py-10">
+            <div class="image" [class.text-center]="pageInfo.contentArea.position === 'center'">
+              <img src="assets/images/logo2.png">
+            </div>
+            <h1 class="h3 font-w700 mb-10 mt-30" [class.text-center]="pageInfo.contentArea.position === 'center'">{{pageInfo.contentArea.title}}</h1>
+            <h2 class="h5 text-muted font-w400 mb-0" [class.text-center]="pageInfo.contentArea.position === 'center'">{{pageInfo.contentArea.subtitle}}</h2>
+          </div>
+          <div class="plm-auth__content-body">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

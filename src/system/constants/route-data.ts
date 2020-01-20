@@ -4,10 +4,11 @@ const TITLE = {
   DASHBOARD_EARNINGS: 'Dashboard | Your Earnings',
   DASHBOARD_COURSES: 'Dashboard | Your Courses',
   DASHBOARD_LESSONS: 'Dashboard | Your Lessons',
-  USER_SIGN_IN: 'User | Sign In',
-  USER_SIGN_UP: 'User | Sign Up',
-  USER_FORGOT_PASSWORD: 'User | Forgot Password',
-  USER_ADMIN_UNLOCK: 'User | Admin Unlock'
+  AUTH_SIGN_IN: 'Auth | Sign In',
+  AUTH_SIGN_UP: 'Auth | Sign Up',
+  AUTH_FORGOT_PASSWORD: 'AUTH | Forgot Password',
+  AUTH_ADMIN_UNLOCK: 'Auth | Admin Unlock',
+  USER_SETTINGS: 'User | Settings'
 };
 
 const AUTH_PAGE = {
