@@ -6,7 +6,7 @@ import {COURSES} from '../../../../static/dummy/courses';
 import {CourseInterface} from '../../../../components/courses/courses.interface';
 
 @Component({
-  selector: 'plm-courses',
+  selector: 'plm-dashboard-coursepacks-courses',
   templateUrl: './courses.html'
 })
 export class Courses implements OnInit, OnDestroy {

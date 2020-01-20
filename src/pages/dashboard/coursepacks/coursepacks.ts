@@ -6,7 +6,7 @@ import {CoursePackData} from '../../../components/courses/courses.interface';
 import {CreateContentInterface} from '../../../components/create-content/create-content.interface';
 
 @Component({
-  selector: 'plm-courses',
+  selector: 'plm-dashboard-coursepacks',
   templateUrl: './coursepacks.html'
 })
 export class Coursepacks implements OnInit, OnDestroy {

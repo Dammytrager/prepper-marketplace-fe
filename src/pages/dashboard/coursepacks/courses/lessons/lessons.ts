@@ -5,7 +5,7 @@ import {SubheaderInterface} from '../../../../../components/subheader/subheader.
 import {LESSONS} from '../../../../../static/dummy/lessons';
 
 @Component({
-  selector: 'plm-lessons',
+  selector: 'plm-dashboard-coursepacks-courses-lessons',
   templateUrl: './lessons.html'
 })
 export class Lessons implements OnInit, OnDestroy {

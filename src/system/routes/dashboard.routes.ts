@@ -35,6 +35,10 @@ const DASHBOARD_ROUTES: Routes = [
         }
       },
       {
+        path: 'user',
+        loadChildren: '../modules/user.module#UserModule'
+      },
+      {
         path: 'courses/:id',
         component: Courses,
         data: {
@@ -53,7 +57,7 @@ const DASHBOARD_ROUTES: Routes = [
         redirectTo: 'home'
       }
     ]
-  }
+  },
 ];
 
 @NgModule({
