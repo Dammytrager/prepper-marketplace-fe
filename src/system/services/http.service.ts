@@ -10,32 +10,17 @@ export class HttpService {
 
   _headers: HttpHeaders = new HttpHeaders();
 
-  /**
-   * Http Service Constructor
-   * @param {HttpClient} http
-   */
   constructor(private http: HttpClient) {
   }
 
-  /**
-   * GET | Sends Http GET request
-   * @param url
-   * @returns {Promise<HttpResponse<any>>}
-   */
   get(url: string) {
-    return this.http.get(url,{
+    return this.http.get(url, {
       headers: this.Headers
     }).pipe(
       map((res: HttpResponse<any>) => res)
     ).toPromise();
   }
 
-  /**
-   * download | Sends Http GET request to download a file
-   * @param {string} url
-   * @param {{}} options
-   * @returns {Promise<Object>}
-   */
   download(url: string, options = {}) {
     return this.http.get(url, {
       headers: this.Headers,
@@ -43,13 +28,6 @@ export class HttpService {
     }).toPromise();
   }
 
-  /**
-   * POST | Sends Http POST request
-   * @param {string} url
-   * @param {object} data
-   * @param headers
-   * @returns {Promise<HttpResponse<any>>}
-   */
   post(url: string, data: object, headers?) {
     return this.http.post(url, data, {
       headers: headers || this.Headers
@@ -58,12 +36,6 @@ export class HttpService {
     ).toPromise();
   }
 
-  /**
-   * PUT | Sends Http PUT request
-   * @param {string} url
-   * @param {object} data
-   * @returns {Promise<HttpResponse<any>>}
-   */
   put(url: string, data: object) {
     return this.http.put(url, data, {
       headers: this.Headers
@@ -72,12 +44,6 @@ export class HttpService {
     ).toPromise();
   }
 
-  /**
-   * DELETE | Sends Http DELETE request
-   * @param {string} url
-   * @param {object} data
-   * @returns {Promise<HttpResponse<any>>}
-   */
   delete(url: string, data?: object) {
     return this.http.delete(url, {
       headers: this.Headers
@@ -86,10 +52,6 @@ export class HttpService {
     ).toPromise();
   }
 
-  /**
-   * Set Headers | Set appropriate custom headers
-   * @param {{token: string}} data
-   */
   setHeaders(data?: { token: string }, content_type?) {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Content-Type', content_type || 'application/json');
@@ -99,20 +61,10 @@ export class HttpService {
     this._headers = headers;
   }
 
-  /**
-   * Get Headers | Return custom request headers
-   * @returns {HttpHeaders}
-   * @constructor
-   */
   get Headers() {
     return this._headers;
   }
 
-  /**
-   * Custom Headers | Add Custom Header to Request
-   * @param {{name: string; value: string}[]} options
-   * @returns {HttpHeaders}
-   */
   customHeaders(options: { name: string, value: string }[]) {
     let headers: HttpHeaders = new HttpHeaders();
     options.forEach(header => {

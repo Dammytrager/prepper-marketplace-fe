@@ -15,48 +15,27 @@ export class ForageService {
     };
 
     constructor() {
-        //localForage.config(this.forageOptions);
+        // localForage.config(this.forageOptions);
     }
 
-    /**
-     * Local Get | Get data from local storage based on 'key'
-     * @param {string} key
-     * @returns {string}
-     */
     localGet(key: string) {
         return localForage.getItem(key);
     }
 
-    /**
-     * Local Set | Set data in local storage based on 'key'
-     * @param {{key: string; data: any}} obj
-     */
     localSet(obj: { key: string, data: any }) {
         if (obj && obj.key) {
             return localForage.setItem(obj.key, obj.data);
         }
     }
 
-    /**
-     * Local Remove | Delete data from local storage based on 'key'
-     * @param {string} key
-     */
     localRemove(key: string) {
         return localForage.removeItem(key);
     }
 
-    /**
-     * Keys | Returns all keys in storage
-     * @param cb
-     * @returns {any}
-     */
     keys(cb?) {
         return localForage.keys(cb);
     }
 
-    /**
-     * Local Clear | Clear the storage
-     */
     localClear() {
         localForage.clear();
     }
