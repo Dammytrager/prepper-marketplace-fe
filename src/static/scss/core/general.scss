@@ -127,3 +127,7 @@ body {
   color: $white $im;
   padding: 3px 5px $im;
 }
+
+.disabled {
+  cursor: not-allowed;
+}

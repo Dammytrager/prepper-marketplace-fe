@@ -1,34 +1,76 @@
 <div class="plm-auth__sign-up px-30">
-  <form>
+  <form [formGroup]="signUpForm">
     <div class="form-group no-border">
-      <input class="form-control" type="text" placeholder=" ">
+      <input class="form-control"
+             [class.is-invalid]="username.touched && username.invalid"
+             formControlName="username" type="text" placeholder=" ">
       <span>Username</span>
+      <!--errors-->
+      <div *ngIf="username?.errors && username?.touched">
+        <small *ngIf="username?.errors.required" class="text-danger">
+          This field is required
+        </small>
+      </div>
     </div>
 
     <div class="form-group no-border">
-      <input class="form-control" type="email" placeholder=" ">
+      <input class="form-control"
+             [class.is-invalid]="email.touched && email.invalid"
+             formControlName="email" type="email" placeholder=" ">
       <span>Email</span>
+      <!--errors-->
+      <div *ngIf="email?.errors && email?.touched">
+        <small *ngIf="email?.errors.required" class="text-danger">
+          This field is required
+        </small>
+        <small *ngIf="!email?.errors.required && email.errors.patternFail" class="text-danger">
+          Enter a valid Email
+        </small>
+      </div>
     </div>
 
     <div class="form-group no-border">
-      <input class="form-control" type="password" placeholder=" ">
+      <input class="form-control"
+             [class.is-invalid]="password.touched && password.invalid"
+             formControlName="password" type="password" placeholder=" ">
       <span>Password</span>
+      <!--errors-->
+      <div *ngIf="password?.errors && password?.touched">
+        <small *ngIf="password?.errors.required" class="text-danger">
+          This field is required
+        </small>
+      </div>
     </div>
 
     <div class="form-group no-border">
-      <input class="form-control" type="password" placeholder=" ">
+      <input class="form-control"
+             [class.is-invalid]="(confirm_password.touched && password.touched) && (confirm_password.invalid || signUpForm.errors?.misMatch)"
+             formControlName="confirm_password" type="password" placeholder=" ">
       <span>Confirm Password</span>
+      <!--errors-->
+      <div class="" *ngIf='signUpForm.errors'>
+        <small *ngIf='(!password.errors?.required && confirm_password.touched) && (confirm_password.errors?.required || signUpForm.errors?.misMatch)'
+               class='text-danger'>
+          Passwords do not Match
+        </small>
+      </div>
     </div>
 
     <div class="form-check custom-checkbox">
-      <input class="form-check-input custom-control-input" type="checkbox" id="sign-up-terms">
+      <input class="form-check-input custom-control-input"
+             value="checked" name="sign-up-terms" formControlName="terms"
+             type="checkbox" id="sign-up-terms">
       <label for="sign-up-terms" class="custom-control-label font-w600 nm-size">I agree to Terms & Conditions</label>
     </div>
 
     <div class="mt-3">
-      <button class="user-btn btn btn-alt-success font-w600 sm-size">
-        <fa-icon [icon]="['fas', 'plus']"></fa-icon>&nbsp;
-        <span class="nm-size">Create Account</span>
+      <button class="user-btn btn btn-alt-success font-w600 sm-size"
+              [class.disabled]="signUpForm.invalid || !terms.value || showLoader"
+              [disabled]="signUpForm.invalid || !terms.value || showLoader"
+              (click)="register()">
+        <fa-icon [class.d-none]="showLoader" [icon]="['fas', 'plus']"></fa-icon>&nbsp;
+        <span class="nm-size">{{btnText}}</span>
+        <plm-loader *ngIf="showLoader" class="float-right ml-3" [data]="{type: 2}"></plm-loader>
       </button>
     </div>
 

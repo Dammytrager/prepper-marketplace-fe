@@ -9,13 +9,17 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import {RatingsComponent} from '../../components/ratings/ratings.component';
 import {NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {PaginationComponent} from '../../components/pagination/pagination.component';
-
+import {LoaderComponent} from '../../components/loader/loader.component';
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     RatingsComponent,
-    PaginationComponent
+    PaginationComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,8 @@ import {PaginationComponent} from '../../components/pagination/pagination.compon
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    HttpClientModule
   ],
   exports: [
     CommonModule,
@@ -34,7 +39,8 @@ import {PaginationComponent} from '../../components/pagination/pagination.compon
     NgbPaginationModule,
     NavbarComponent,
     RatingsComponent,
-    PaginationComponent
+    PaginationComponent,
+    LoaderComponent
   ],
   entryComponents: []
 })
