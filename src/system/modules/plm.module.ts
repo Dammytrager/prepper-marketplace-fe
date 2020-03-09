@@ -9,6 +9,8 @@ import {environment} from '../../environments/environment';
 import {INITIAL_STATE, RootReducer} from '../state/reducers/root.reducer';
 import {MainRoute} from '../routes/main.route';
 import {SharedModule} from './shared.module';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,10 @@ import {SharedModule} from './shared.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     NgReduxModule,
     SharedModule,
+    ToastrModule.forRoot(),
     MainRoute
   ],
   providers: [],

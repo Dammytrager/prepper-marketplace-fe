@@ -10,7 +10,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 It is a documentation of the UI components used in this project
 
 #### Start Storybook Server
-Run `npm run storybook` . Navigate to `http://localhost:4200/` to check the components
+Run `npm run storybook` . Navigate to `http://localhost:6006/` to check the components
 
 #### Build Storybook Server
 Run `npm run build-storybook` to automatically generate the storybook component UI documentation as a standalone app
@@ -34,3 +34,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+### Author
+
+Malomo Damilare [damilaremalomo@gmail.com](damilaremalomo@gmail.com)
