@@ -19,10 +19,7 @@ export class SignUp implements OnInit, OnDestroy {
 
   constructor(
     private _fb: FormBuilder,
-    private _user: UserService,
-    private _router: Router,
-    private _route: ActivatedRoute,
-    private _toastr: ToastrService) {}
+    private _user: UserService) {}
 
   ngOnInit() {
     this.btnText = BUTTON.CREATE_ACCOUNT;
@@ -34,7 +31,6 @@ export class SignUp implements OnInit, OnDestroy {
       terms: ['', Validators.required]
     }, {validator: confirmPassword});
 
-    // this._toastr.error('hello \n hi');
   }
 
   get username() {
@@ -57,7 +53,7 @@ export class SignUp implements OnInit, OnDestroy {
     return this.signUpForm.get('terms');
   }
 
-  register() {
+  async register() {
     if (this.signUpForm.valid) {
       this.showLoader = true;
       this.btnText = BUTTON.CREATING;
@@ -66,32 +62,9 @@ export class SignUp implements OnInit, OnDestroy {
         email: this.email.value,
         password: this.password.value
       };
-      this._user.registerUser(userData)
-        .then((response) => {
-        const returnUrl = this._route.snapshot.queryParamMap.get('returnUrl') || '/auth/sign-in';
-        this._router.navigate([returnUrl]).then(() => {
-          this._toastr.success(SUCCESS_MSG.ACCOUNT_CREATED, '', {timeOut: 7000});
-        });
-      })
-        .catch((err) => {
-        console.log(err);
-        if (err.error.code === ERROR_CODES.DUPLICATE_KEY) {
-          this._toastr.error(FAILURE_MSG.ACCOUNT_EXISTS);
-        } else if (err.error.code === ERROR_CODES.VALIDATION_ERROR) {
-          let message = '';
-          err.error.errors.forEach((error) => {
-            message += error + ',br>';
-          });
-          this._toastr.error(message, '', {
-            enableHtml: true,
-            timeOut: 7000
-          });
-        }
-      })
-        .finally(() => {
-          this.showLoader = false;
-          this.btnText = BUTTON.CREATE_ACCOUNT;
-      });
+      await this._user.registerUser(userData);
+      this.showLoader = false;
+      this.btnText = BUTTON.CREATE_ACCOUNT;
     }
   }
 
