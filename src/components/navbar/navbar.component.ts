@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NOTIFICATIONS} from '../../static/dummy/notifications';
+import {UserService} from '../../system/services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'plm-navbar',
@@ -11,7 +13,8 @@ export class NavbarComponent implements OnInit {
   showMobile = false;
   notifications = NOTIFICATIONS;
 
-  constructor() {}
+  constructor(private _user: UserService,
+              private _router: Router) {}
 
   ngOnInit() {}
 
@@ -36,5 +39,10 @@ export class NavbarComponent implements OnInit {
 
   showSideNav() {
     this.showMobile = true;
+  }
+
+  async logout() {
+    await this._user.logout();
+    this._router.navigate(['/auth/sign-in']);
   }
 }

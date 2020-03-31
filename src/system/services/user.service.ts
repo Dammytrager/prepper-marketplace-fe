@@ -9,7 +9,6 @@ import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../interfaces/state/plm.interface';
 import {USER} from '../state/actions/user.action';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -55,7 +54,7 @@ export class UserService {
   login(loginData) {
     const returnUrl = this._route.snapshot.queryParamMap.get('returnUrl') || '/dashboard/home';
     this._http.post(`${this.hostApi}/auth/login`, loginData)
-      .then((response: any) => {
+      .then(async (response: any) => {
         this._storage.localSet({key: 'token', data: response.token}).then((data) => {
           this._toastr.success(SUCCESS_MSG.LOGIN_SUCCESSFUL);
           this._router.navigate([returnUrl]);
@@ -65,7 +64,31 @@ export class UserService {
         });
       })
       .catch((err) => {
-        console.log(err);
+        const {error: {errors}} = err;
+        let message = '';
+        errors.forEach((error) => {
+          message += error + '<br>';
+        });
+        this._toastr.error(message, '', {
+          enableHtml: true,
+          timeOut: 7000
+        });
       });
+  }
+
+  async logout() {
+    await this._storage.localRemove('token').then(() => {
+      this._ngRedux.dispatch({type: USER.CHANGE_LOGIN_STATUS, status: false});
+    });
+  }
+
+  async isLoggedin() {
+    await this._storage.localGet('token').then((token) => {
+      if (token) {
+        this._ngRedux.dispatch({type: USER.CHANGE_LOGIN_STATUS, status: true});
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 }

@@ -7,11 +7,13 @@ import {DashboardHome} from '../../pages/dashboard/dashboard-home/dashboard-home
 import {Courses} from '../../pages/dashboard/coursepacks/courses/courses';
 import {Lessons} from '../../pages/dashboard/coursepacks/courses/lessons/lessons';
 import {TITLE} from '../constants/route-data';
+import {DashboardGuard} from './dashboard.guard';
 
 const DASHBOARD_ROUTES: Routes = [
   {
     path: '',
     component: Dashboard,
+    canActivate: [DashboardGuard],
     children: [
       {
         path: 'home',
