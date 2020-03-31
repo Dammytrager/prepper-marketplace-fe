@@ -6,11 +6,13 @@ import {SignUp} from '../../pages/auth/sign-up/sign-up';
 import {ForgotPassword} from '../../pages/auth/forgot-password/forgot-password';
 import {AdminUnlock} from '../../pages/auth/admin-unlock/admin-unlock';
 import {TITLE, AUTH_PAGE} from '../constants/route-data';
+import {AuthGuard} from './auth.guard';
 
 const AUTH_ROUTES: Routes = [
   {
     path: '',
     component: Auth,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'sign-in',
@@ -18,7 +20,7 @@ const AUTH_ROUTES: Routes = [
         data: {
           title: TITLE.AUTH_SIGN_IN,
           pageInfo: AUTH_PAGE.SIGN_IN
-        }
+        },
       },
       {
         path: 'sign-up',
@@ -26,7 +28,7 @@ const AUTH_ROUTES: Routes = [
         data: {
           title: TITLE.AUTH_SIGN_UP,
           pageInfo: AUTH_PAGE.SIGN_UP
-        }
+        },
       },
       {
         path: 'forgot-password',

@@ -27,7 +27,7 @@
 margin-right: 3px;
 }
 .spinner-1.blue span {
-  background-color: $primary-blue;
+  background-color: $text-alt-primary;
 }
 .spinner-1.green  span {
   background-color: $text-alt-success;
@@ -69,9 +69,9 @@ margin-right: 3px;
 }
 
 .spinner-2.blue:after {
-  border-top-color: $primary-blue;
-  border-bottom-color: $primary-blue;
-  border-left-color: $primary-blue;
+  border-top-color: $text-alt-primary;
+  border-bottom-color: $text-alt-primary;
+  border-left-color: $text-alt-primary;
 }
 .spinner-2.green:after {
   border-top-color: $text-alt-success;
@@ -130,8 +130,8 @@ margin-right: 3px;
 }
 
 .spinner-3.blue:after {
-  border-top-color: $primary-blue;
-  border-bottom-color: $primary-blue;
+  border-top-color: $text-alt-primary;
+  border-bottom-color: $text-alt-primary;
 }
 .spinner-3.green:after {
   border-top-color: $text-alt-success;

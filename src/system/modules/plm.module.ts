@@ -11,6 +11,8 @@ import {MainRoute} from '../routes/main.route';
 import {SharedModule} from './shared.module';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DashboardGuard} from '../routes/dashboard.guard';
+import {AuthGuard} from '../routes/auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ToastrModule.forRoot(),
     MainRoute
   ],
-  providers: [],
+  providers: [DashboardGuard, AuthGuard],
   bootstrap: [PlmComponent]
 })
 export class PlmModule {
