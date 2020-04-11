@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from './http.service';
 import {environment} from '../../environments/environment';
-import {ERROR_CODES, FAILURE_MSG, SUCCESS_MSG} from '../constants/static-content';
+import {ERROR_CODES, FAILURE_MSG, INFO_MSG, SUCCESS_MSG} from '../constants/static-content';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {ForageService} from './storage.service';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../interfaces/state/plm.interface';
+import {handleOtherErrors, handleValidationError, parseJwt} from '../utils/utils';
 import {USER} from '../state/actions/user.action';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,73 +24,97 @@ export class UserService {
     private _route: ActivatedRoute,
     private _toastr: ToastrService,
     private _storage: ForageService,
-    private _ngRedux: NgRedux<AppState>
+    private _ngRedux: NgRedux<AppState>,
+    private _auth: AuthService
   ) {
   }
 
-  registerUser(userData) {
-    return this._http.post(`${this.hostApi}/auth/register`, userData)
-      .then((response) => {
-        const returnUrl = '/auth/sign-in';
-        this._toastr.success(SUCCESS_MSG.ACCOUNT_CREATED, '', {timeOut: 7000});
-        this._router.navigate([returnUrl]);
-      })
-      .catch((err) => {
-        if (err.error.code === ERROR_CODES.DUPLICATE_KEY) {
-          this._toastr.error(FAILURE_MSG.ACCOUNT_EXISTS);
-        } else if (err.error.code === ERROR_CODES.VALIDATION_ERROR) {
-          let message = '';
-          err.error.errors.forEach((error) => {
-            message += error + '<br>';
-          });
-          this._toastr.error(message, '', {
-            enableHtml: true,
-            timeOut: 7000
+  async getProfile() {
+    await this._storage.localGet('token').then((token: string) => {
+      this._http.setHeaders({token});
+      const {id} = parseJwt(token);
+      this._http.get(`${this.hostApi}/user/${id}`).then((data) => {
+        return this._ngRedux.dispatch({type: USER.CHANGE_USER_DATA, data});
+      }).catch((err) => {
+        const {error: {code}} = err;
+        if (code === ERROR_CODES.NOT_FOUND) {
+          this._auth.logout().then(() => {
+            this._router.navigate(['/auth/sign-in']);
           });
         } else {
-          console.log(err);
+          handleOtherErrors(code);
         }
       });
-  }
-
-  login(loginData) {
-    const returnUrl = this._route.snapshot.queryParamMap.get('returnUrl') || '/dashboard/home';
-    this._http.post(`${this.hostApi}/auth/login`, loginData)
-      .then(async (response: any) => {
-        this._storage.localSet({key: 'token', data: response.token}).then((data) => {
-          this._toastr.success(SUCCESS_MSG.LOGIN_SUCCESSFUL);
-          this._router.navigate([returnUrl]);
-          delete response.token;
-          this._ngRedux.dispatch({type: USER.CHANGE_LOGIN_STATUS, status: true});
-          return this._ngRedux.dispatch({type: USER.CHANGE_USER_DATA, data: response});
-        });
-      })
-      .catch((err) => {
-        const {error: {errors}} = err;
-        let message = '';
-        errors.forEach((error) => {
-          message += error + '<br>';
-        });
-        this._toastr.error(message, '', {
-          enableHtml: true,
-          timeOut: 7000
-        });
-      });
-  }
-
-  async logout() {
-    await this._storage.localRemove('token').then(() => {
-      this._ngRedux.dispatch({type: USER.CHANGE_LOGIN_STATUS, status: false});
     });
   }
 
-  async isLoggedin() {
-    await this._storage.localGet('token').then((token) => {
-      if (token) {
-        this._ngRedux.dispatch({type: USER.CHANGE_LOGIN_STATUS, status: true});
-      }
-    }).catch((err) => {
-      console.log(err);
+  async updateProfile(data) {
+    await this._storage.localGet('token').then(async (token: string) => {
+      this._http.setHeaders({token});
+      const {id} = parseJwt(token);
+      await this._http.put(`${this.hostApi}/user/profile/${id}`, data).then(async (response: any) => {
+        this._ngRedux.dispatch({type: USER.CHANGE_USER_DATA, data: response.data});
+        return this._toastr.success(SUCCESS_MSG.successMessage('Profile', 'Updated'));
+      }).catch((err) => {
+        const {error: {code, errors}} = err;
+        if (code === ERROR_CODES.NOT_FOUND) {
+          this._auth.logout().then(() => {
+            this._router.navigate(['/auth/sign-in']);
+          });
+        } else if (code === ERROR_CODES.VALIDATION_ERROR) {
+          handleValidationError(errors, this._toastr);
+        } else {
+          handleOtherErrors(code);
+        }
+        return;
+      });
+    });
+  }
+
+  async updatePersonalDetails(data) {
+    await this._storage.localGet('token').then(async (token: string) => {
+      this._http.setHeaders({token});
+      const {id} = parseJwt(token);
+      await this._http.put(`${this.hostApi}/user/personal-details/${id}`, data).then(async (response: any) => {
+        this._ngRedux.dispatch({type: USER.CHANGE_USER_DATA, data: response.data});
+        return this._toastr.success(SUCCESS_MSG.successMessage('Personal Details', 'Updated'));
+      }).catch((err) => {
+        const {error: {code, errors}} = err;
+        if (code === ERROR_CODES.NOT_FOUND) {
+          this._auth.logout().then(() => {
+            this._router.navigate(['/auth/sign-in']);
+          });
+        } else if (code === ERROR_CODES.VALIDATION_ERROR) {
+          handleValidationError(errors, this._toastr);
+        } else {
+          handleOtherErrors(code);
+        }
+        return;
+      });
+    });
+  }
+
+  async updatePassword(data) {
+    await this._storage.localGet('token').then(async (token: string) => {
+      this._http.setHeaders({token});
+      const {id} = parseJwt(token);
+      await this._http.put(`${this.hostApi}/user/password/${id}`, data).then(async (response: any) => {
+        return this._toastr.success(SUCCESS_MSG.successMessage('Password', 'Updated'));
+      }).catch((err) => {
+        const {error: {code, errors}} = err;
+        if (code === ERROR_CODES.NOT_FOUND) {
+          this._auth.logout().then(() => {
+            this._router.navigate(['/auth/sign-in']);
+          });
+        } else if (code === ERROR_CODES.VALIDATION_ERROR) {
+          handleValidationError(errors, this._toastr);
+        } else if (code === ERROR_CODES.UNAUTHORIZED_KEY) {
+          this._toastr.error(FAILURE_MSG.INCORRECT_OLD_PASSWORD);
+        } else {
+          handleOtherErrors(code);
+        }
+        return;
+      });
     });
   }
 }

@@ -1,4 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {UserService} from '../../system/services/user.service';
 
 @Component({
   selector: 'plm-dashboard',
@@ -6,9 +7,11 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 })
 export class Dashboard implements OnInit, OnDestroy {
 
-  constructor() {}
+  constructor(private _user: UserService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._user.getProfile();
+  }
 
   ngOnDestroy() {}
 }
