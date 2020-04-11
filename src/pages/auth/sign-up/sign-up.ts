@@ -2,10 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {patternMatch, confirmPassword} from '../../../system/utils/validators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {REGEX} from '../../../system/constants/regex';
-import {BUTTON, ERROR_CODES, FAILURE_MSG, SUCCESS_MSG} from '../../../system/constants/static-content';
-import {UserService} from '../../../system/services/user.service';
-import {ToastrService} from 'ngx-toastr';
-import {ActivatedRoute, Router} from '@angular/router';
+import {BUTTON} from '../../../system/constants/static-content';
+import {AuthService} from '../../../system/services/auth.service';
 
 @Component({
   selector: 'plm-sign-up',
@@ -19,7 +17,7 @@ export class SignUp implements OnInit, OnDestroy {
 
   constructor(
     private _fb: FormBuilder,
-    private _user: UserService) {}
+    private _auth: AuthService) {}
 
   ngOnInit() {
     this.btnText = BUTTON.CREATE_ACCOUNT;
@@ -62,7 +60,7 @@ export class SignUp implements OnInit, OnDestroy {
         email: this.email.value,
         password: this.password.value
       };
-      await this._user.registerUser(userData);
+      await this._auth.registerUser(userData);
       this.showLoader = false;
       this.btnText = BUTTON.CREATE_ACCOUNT;
     }

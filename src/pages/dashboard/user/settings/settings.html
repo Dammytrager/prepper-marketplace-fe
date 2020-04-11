@@ -1,12 +1,12 @@
 <div class="plm-dashboard-user-settings mxw-1200 mx-auto p-24">
   <div class="plm-dashboard-user-settings-header my-50 text-center">
-    <h2 class="font-w700 mb-10 text-black">John Smith</h2>
+    <h2 class="font-w700 mb-10 text-black">{{fullname}}</h2>
     <h3 class="h5 text-muted">Crypto Investor</h3>
   </div>
   <div class="plm-dashboard-user-settings-body bg-white course-box-shadow">
     <div class="p-20">
       <!-- User Profile -->
-      <form>
+      <form [formGroup]="profileForm">
         <h2 class="form-heading">User Profile</h2>
         <div class="row">
           <div class="col-lg-3">
@@ -15,21 +15,56 @@
             </p>
           </div>
           <div class="col-lg-7 offset-lg-1">
+            <!-- Username -->
             <div class="form-group row">
               <div class="col-12">
                 <label class="font-w600 nm-size" for="nickname">Nickname</label>
-                <input type="text" class="form-control form-control-lg" id="nickname" name="nickname" placeholder="Enter your nickname..">
+                <input type="text" class="form-control form-control-lg"
+                       id="nickname" name="nickname"
+                       [class.is-invalid]="username?.errors && username?.touched"
+                       formControlName="username"
+                       placeholder="Enter your nickname..">
+                <!--errors-->
+                <div *ngIf="username?.errors && username?.touched">
+                  <small *ngIf="username?.errors.required" class="text-danger">
+                    This field is required
+                  </small>
+                </div>
               </div>
             </div>
+
+            <!-- Email -->
             <div class="form-group row">
               <div class="col-12">
                 <label class="font-w600 nm-size" for="email">Email Address</label>
-                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email..">
+                <input type="email" class="form-control form-control-lg"
+                       formControlName="email"
+                       [class.is-invalid]="email.touched && email.invalid"
+                       id="email" name="email"
+                       placeholder="Enter your email..">
+                <!--errors-->
+                <div *ngIf="email?.errors && email?.touched">
+                  <small *ngIf="email?.errors.required" class="text-danger">
+                    This field is required
+                  </small>
+                  <small *ngIf="!email?.errors.required && email.errors.patternFail" class="text-danger">
+                    Enter a valid Email
+                  </small>
+              </div>
               </div>
             </div>
+
+            <!-- Profile Update Button -->
             <div class="form-group row">
               <div class="col-12">
-                <button type="submit" class="btn btn-alt-primary nm-size font-w600">Update</button>
+                <button type="submit" class="btn btn-alt-primary nm-size font-w600"
+                        [class.disabled]="profileForm.invalid || showProfileLoader"
+                        [disabled]="profileForm.invalid || showProfileLoader"
+                        (click)="updateProfile()">
+                    <span class="nm-size">{{profileBtnText}}</span>
+                    <plm-loader *ngIf="showProfileLoader" class="float-right ml-3" [data]="{type: 2, color: 'blue'}">
+                    </plm-loader>
+                </button>
               </div>
             </div>
           </div>
@@ -37,7 +72,7 @@
       </form>
 
       <!-- Personal Details -->
-      <form>
+      <form [formGroup]="personalDetailsForm">
         <h2 class="form-heading text-black">Personal Details</h2>
         <div class="row items-push">
           <div class="col-lg-3">
@@ -47,42 +82,113 @@
           </div>
           <div class="col-lg-7 offset-lg-1">
             <div class="form-group row">
-              <div class="col-6">
+              <!-- Firstname -->
+              <div class="col-md-6">
                 <label class="font-w600 nm-size" for="firstname">Firstname</label>
-                <input type="text" class="form-control form-control-lg" id="firstname">
+                <input type="text" class="form-control form-control-lg"
+                       id="firstname"
+                       [class.is-invalid]="firstname?.errors && firstname?.touched"
+                       formControlName="firstname">
+                <!--errors-->
+                <div *ngIf="firstname?.errors && firstname?.touched">
+                  <small *ngIf="firstname?.errors.required" class="text-danger">
+                    This field is required
+                  </small>
+                </div>
               </div>
-              <div class="col-6">
+
+              <!-- Lastname -->
+              <div class="col-md-6">
                 <label class="font-w600 nm-size" for="lastname">Lastname</label>
-                <input type="text" class="form-control form-control-lg" id="lastname">
+                <input type="text" class="form-control form-control-lg"
+                       id="lastname"
+                       [class.is-invalid]="lastname?.errors && lastname?.touched"
+                       formControlName="lastname">
+                <!--errors-->
+                <div *ngIf="lastname?.errors && lastname?.touched">
+                  <small *ngIf="lastname?.errors.required" class="text-danger">
+                    This field is required
+                  </small>
+                </div>
               </div>
             </div>
+
+            <!-- Address -->
+            <div formGroupName="address">
+              <!-- Street1 -->
+              <div class="form-group row">
+                <div class="col-12">
+                  <label class="font-w600 nm-size" for="street-1">Street Address 1</label>
+                  <input type="text" class="form-control form-control-lg"
+                         id="street-1"
+                         [class.is-invalid]="street1?.errors && street1?.touched"
+                         formControlName="street1">
+                  <!--errors-->
+                  <div *ngIf="street1?.errors && street1?.touched">
+                    <small *ngIf="street1?.errors.required" class="text-danger">
+                      This field is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Street2 -->
+              <div class="form-group row">
+                <div class="col-12">
+                  <label class="font-w600 nm-size" for="street-2">Street Address 2</label>
+                  <input type="text" class="form-control form-control-lg"
+                         id="street-2"
+                         [class.is-invalid]="street2?.errors && street2?.touched"
+                         formControlName="street2">
+                </div>
+              </div>
+
+              <!-- City -->
+              <div class="form-group row">
+                <div class="col-12">
+                  <label class="font-w600 nm-size" for="city">City</label>
+                  <input type="text" class="form-control form-control-lg"
+                         id="city"
+                         [class.is-invalid]="city?.errors && city?.touched"
+                         formControlName="city">
+                  <!--errors-->
+                  <div *ngIf="city?.errors && city?.touched">
+                    <small *ngIf="city?.errors.required" class="text-danger">
+                      This field is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Postal Code -->
+              <div class="form-group row">
+                <div class="col-12">
+                  <label class="font-w600 nm-size" for="postalCode">Postal COde</label>
+                  <input type="text" class="form-control form-control-lg"
+                         id="postalCode"
+                         [class.is-invalid]="postalCode?.errors && postalCode?.touched"
+                         formControlName="postalCode">
+                  <!--errors-->
+                  <div *ngIf="postalCode?.errors && postalCode?.touched">
+                    <small *ngIf="postalCode?.errors.required" class="text-danger">
+                      This field is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Personal Details Update Button -->
             <div class="form-group row">
               <div class="col-12">
-                <label class="font-w600 nm-size" for="street-1">Street Address 1</label>
-                <input type="text" class="form-control form-control-lg" id="street-1" name="street-1">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-12">
-                <label class="font-w600 nm-size" for="street-2">Street Address 2</label>
-                <input type="text" class="form-control form-control-lg" id="street-2" name="street-2">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-12">
-                <label class="font-w600 nm-size" for="city">City</label>
-                <input type="text" class="form-control form-control-lg" id="city" name="city">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-6">
-                <label class="font-w600 nm-size" for="postal">Postal code</label>
-                <input type="text" class="form-control form-control-lg" id="postal" name="postal">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-12">
-                <button type="submit" class="btn btn-alt-primary nm-size font-w600">Update</button>
+                <button type="submit" class="btn btn-alt-primary nm-size font-w600"
+                        [class.disabled]="personalDetailsForm.invalid || showPersonalDetailsLoader"
+                        [disabled]="personalDetailsForm.invalid || showPersonalDetailsLoader"
+                        (click)="updatePersonalDetails()">
+                  <span class="nm-size">{{personalDetailsBtnText}}</span>
+                  <plm-loader *ngIf="showPersonalDetailsLoader" class="float-right ml-3" [data]="{type: 2, color: 'blue'}">
+                  </plm-loader>
+                </button>
               </div>
             </div>
           </div>
@@ -90,7 +196,7 @@
       </form>
 
       <!-- Change Password -->
-      <form>
+      <form [formGroup]="passwordForm">
         <h2 class="form-heading text-black">Change Password</h2>
         <div class="row items-push">
           <div class="col-lg-3">
@@ -99,27 +205,70 @@
             </p>
           </div>
           <div class="col-lg-7 offset-lg-1">
+            <!-- Current Password -->
             <div class="form-group row">
               <div class="col-12">
                 <label class="font-w600 nm-size" for="password">Current Password</label>
-                <input type="password" class="form-control form-control-lg" id="password" name="password">
+                <input type="password" class="form-control form-control-lg"
+                       id="password"
+                       [class.is-invalid]="currentPassword?.errors && currentPassword?.touched"
+                       formControlName="currentPassword">
+                <!--errors-->
+                <div *ngIf="currentPassword?.errors && currentPassword?.touched">
+                  <small *ngIf="currentPassword?.errors.required" class="text-danger">
+                    This field is required
+                  </small>
+                </div>
               </div>
             </div>
+
+            <!-- New Password -->
             <div class="form-group row">
               <div class="col-12">
                 <label class="font-w600 nm-size" for="password-new">New Password</label>
-                <input type="password" class="form-control form-control-lg" id="password-new" name="password-new">
+                <input type="password" class="form-control form-control-lg"
+                       id="password-new"
+                       [class.is-invalid]="password?.errors && password?.touched"
+                       formControlName="password">
+                <!--errors-->
+                <div *ngIf="password?.errors && password?.touched">
+                  <small *ngIf="password?.errors.required" class="text-danger">
+                    This field is required
+                  </small>
+                </div>
               </div>
             </div>
+
+            <!-- Confirm Password -->
             <div class="form-group row">
               <div class="col-12">
                 <label class="font-w600 nm-size" for="password-new-confirm">Confirm New Password</label>
-                <input type="password" class="form-control form-control-lg" id="password-new-confirm" name="password-new-confirm">
+                <input class="form-control" id="password-new-confirm"
+                        [class.is-invalid]="(confirm_password.touched && password.touched) &&
+                                             (confirm_password.invalid || passwordForm.errors?.misMatch)"
+                        formControlName="confirm_password" type="password" placeholder=" ">
+                <!--errors-->
+                <div class="" *ngIf='passwordForm.errors'>
+                  <small *ngIf='(!password.errors?.required && confirm_password.touched) &&
+                                (confirm_password.errors?.required || passwordForm.errors?.misMatch)'
+                         class='text-danger'>
+                    Passwords do not Match
+                  </small>
+                </div>
               </div>
             </div>
+
+            <!--Password Update Submit Button -->
             <div class="form-group row">
               <div class="col-12">
-                <button type="submit" class="btn btn-alt-primary nm-size font-w600">Update</button>
+                <button type="submit" class="btn btn-alt-primary nm-size font-w600"
+                        [class.disabled]="passwordForm.invalid || showPasswordLoader"
+                        [disabled]="passwordForm.invalid || showPasswordLoader"
+                        (click)="updatePassword()">
+                  <span class="nm-size">{{passwordBtnText}}</span>
+                  <plm-loader *ngIf="showPasswordLoader" class="float-right ml-3" [data]="{type: 2, color: 'blue'}">
+                  </plm-loader>
+                </button>
               </div>
             </div>
           </div>

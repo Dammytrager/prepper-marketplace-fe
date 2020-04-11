@@ -1,33 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NOTIFICATIONS} from '../../static/dummy/notifications';
-import {UserService} from '../../system/services/user.service';
 import {Router} from '@angular/router';
+import {select} from '@angular-redux/store';
+import {Observable, Subscription} from 'rxjs';
+import {AuthService} from '../../system/services/auth.service';
 
 @Component({
   selector: 'plm-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
+  @select(['user', 'data', 'username']) displayName$: Observable<string>;
+  $displayName$: Subscription;
   showSearch = false;
   showMobile = false;
   notifications = NOTIFICATIONS;
+  displayName;
 
-  constructor(private _user: UserService,
+  constructor(private _auth: AuthService,
               private _router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.$displayName$ = this.displayName$.subscribe((data) => {
+      this.displayName = data;
+    });
+  }
 
   notificationIcon(type) {
     let icon = [];
-    if (type === 'success') {
-      icon = ['fas', 'check'];
-    } else if (type === 'info') {
-      icon = ['fas', 'plus'];
-    } else if (type === 'warning') {
-      icon = ['fas', 'exclamation-triangle'];
-    } else if (type === 'danger') {
-      icon = ['fas', 'times'];
+    switch (type) {
+      case 'success':
+        icon = ['fas', 'check'];
+        break;
+      case 'info':
+        icon = ['fas', 'plus'];
+        break;
+      case 'warning':
+        icon = ['fas', 'exclamation-triangle'];
+        break;
+      case 'danger':
+        icon = ['fas', 'times'];
+        break;
     }
 
     return icon;
@@ -42,7 +56,11 @@ export class NavbarComponent implements OnInit {
   }
 
   async logout() {
-    await this._user.logout();
+    await this._auth.logout();
     this._router.navigate(['/auth/sign-in']);
+  }
+
+  ngOnDestroy() {
+    this.$displayName$.unsubscribe();
   }
 }

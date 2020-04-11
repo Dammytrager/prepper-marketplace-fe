@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BUTTON} from '../../../system/constants/static-content';
-import {UserService} from '../../../system/services/user.service';
+import {AuthService} from '../../../system/services/auth.service';
 
 @Component({
   selector: 'plm-sign-in',
@@ -15,7 +15,7 @@ export class SignIn implements OnInit, OnDestroy {
 
   constructor(
     private _fb: FormBuilder,
-    private _user: UserService
+    private _auth: AuthService
   ) {}
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class SignIn implements OnInit, OnDestroy {
     if (this.signInForm.valid) {
       this.btnText = BUTTON.SIGNING_IN;
       this.showLoader = true;
-      await this._user.login(this.signInForm.value);
+      await this._auth.login(this.signInForm.value);
       this.btnText = BUTTON.SIGN_IN;
       this.showLoader = false;
     }
