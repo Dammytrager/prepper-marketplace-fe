@@ -89,7 +89,7 @@ export class Settings implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.$userData$ = this.userData$.subscribe((data) => {
-      this.fullname = data.firstname + ' ' + data.lastname || data.username;
+      this.fullname = (data.firstname && data.lastname) ? data.firstname + ' ' + data.lastname : data.username;
       this.username.setValue(data.username);
       this.email.setValue(data.email);
       this.firstname.setValue(data.firstname);
