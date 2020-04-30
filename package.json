@@ -35,7 +35,7 @@
     "core-js": "^2.5.4",
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "localforage": "^1.7.3",
     "ng2-charts": "2.2.0",
     "ngx-toastr": "9.2.0",
