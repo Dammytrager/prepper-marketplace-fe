@@ -1,0 +1,31 @@
+<div class="plm-modal" role="dialog">
+    <div class="modal-header">
+      <h5 class="modal-title">Create Coursepack</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="coursepackForm">
+        <div class="form-group">
+          <label for="coursepack-name">Coursepack Title</label>
+          <input type="text" id="coursepack-name" class="form-control" formControlName="title">
+        </div>
+
+        <div class="form-group">
+          <label for="coursepack-price">Coursepack Price</label>
+          <input type="number" min="0" id="coursepack-price" class="form-control" formControlName="price">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn font-w600 btn-alt-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+      <button type="button" class="btn font-w600 btn-primary"
+              [class.disabled]="coursepackForm.invalid || showLoader"
+              [disabled]="coursepackForm.invalid || showLoader"
+              (click)="createCoursepack()">
+        <span>Save</span>
+        <plm-loader class="ml-2" [data]="{type: 2, color: 'white'}" *ngIf="showLoader"></plm-loader>
+      </button>
+    </div>
+</div>

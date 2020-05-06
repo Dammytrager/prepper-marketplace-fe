@@ -3,9 +3,13 @@ export interface CoursePackData {
   price: number;
   lessons: number;
   hours: string;
-  approved?: boolean;
+  approve?: boolean;
+  user?: string;
   ratings?: number;
   reviews?: number;
+  _id?: string;
+  createdAt?: string;
+  __v?: string;
 }
 
 export interface CourseInterface {

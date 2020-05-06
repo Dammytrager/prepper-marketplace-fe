@@ -1,3 +1,4 @@
 export interface DashboardInterface {
-  test: string;
+  coursepacks: any[];
+  coursepacksLength: number;
 }
