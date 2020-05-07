@@ -1,20 +1,46 @@
 <div class="plm-dashboard-coursepacks plm-dashboard-content mxw-1200 mx-auto">
-  <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
+  <div *ngIf="!showLoading; else loading">
+    <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
 
-  <plm-subheader [data]="subheaderData1" (open)="showCreateContent()"></plm-subheader>
-  <plm-create-content *ngIf="showCreate" [data]="createContentData" (close)="hideCreateContent()"></plm-create-content>
-  <div class="row">
-    <div class="col-md-6 col-xl-3" *ngFor="let course of courses">
-      <plm-course *ngIf="!course.ratings" [data]="course" routerLink="some"></plm-course>
+    <plm-subheader [data]="subheaderData1" (open)="addCoursepack()"></plm-subheader>
+    <!-- Coursepacks -->
+    <div>
+      <div class="row" *ngIf="coursepacks.length; else emptyMessage">
+        <div class="col-md-6 col-xl-3" *ngFor="let course of coursepacks">
+          <plm-course *ngIf="!course.ratings" [data]="course" (edit)="editCoursepack(course)" (navigate)="viewCourses(course._id)"></plm-course>
+        </div>
+      </div>
+
+      <ng-template #emptyMessage>
+        <div class="text-muted">
+          You don't have any coursepack yet
+        </div>
+      </ng-template>
+
+    </div>
+
+    <!-- Approved Coursepacks -->
+    <div>
+      <plm-subheader [data]="subheaderData2"></plm-subheader>
+      <div class="row" *ngIf="approvedCourses; else emptyApprovedMessage">
+        <div class="col-md-6 col-xl-3" *ngFor="let course of approvedCourses">
+          <plm-course [data]="course"></plm-course>
+        </div>
+      </div>
+
+      <ng-template #emptyApprovedMessage>
+        <div class="text-muted">
+          You don't have any approved coursepack yet
+        </div>
+      </ng-template>
     </div>
   </div>
 
-  <plm-subheader [data]="subheaderData2"></plm-subheader>
-  <div class="row">
-    <div class="col-md-6 col-xl-3" *ngFor="let course of courses">
-      <plm-course *ngIf="course.ratings" [data]="course"></plm-course>
+  <ng-template #loading>
+    <div style="height: 90vh" class="d-flex justify-content-center align-items-center">
+      loading...
     </div>
-  </div>
+  </ng-template>
 
   <plm-dashboard-footer></plm-dashboard-footer>
 </div>

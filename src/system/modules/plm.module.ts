@@ -13,10 +13,11 @@ import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardGuard} from '../routes/dashboard.guard';
 import {AuthGuard} from '../routes/auth.guard';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    PlmComponent
+    PlmComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,12 @@ import {AuthGuard} from '../routes/auth.guard';
     ToastrModule.forRoot(),
     MainRoute
   ],
-  providers: [DashboardGuard, AuthGuard],
+  providers: [
+    DashboardGuard,
+    AuthGuard,
+    NgbActiveModal,
+    NgbModal,
+  ],
   bootstrap: [PlmComponent]
 })
 export class PlmModule {

@@ -7,19 +7,19 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import {RatingsComponent} from '../../components/ratings/ratings.component';
-import {NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {PaginationComponent} from '../../components/pagination/pagination.component';
 import {LoaderComponent} from '../../components/loader/loader.component';
 import {HttpClientModule} from '@angular/common/http';
-import {ToastrModule} from 'ngx-toastr';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CoursepacksModal} from '../../pages/dashboard/coursepacks/modal/coursepacks.modal';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     RatingsComponent,
     PaginationComponent,
-    LoaderComponent
+    LoaderComponent,
+    CoursepacksModal
   ],
   imports: [
     CommonModule,
@@ -27,6 +27,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModalModule,
     NgbPaginationModule,
     HttpClientModule
   ],
@@ -40,8 +41,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     NavbarComponent,
     RatingsComponent,
     PaginationComponent,
-    LoaderComponent
+    LoaderComponent,
+    CoursepacksModal
   ],
-  entryComponents: []
+  entryComponents: [
+    CoursepacksModal
+  ]
 })
 export class SharedModule {}

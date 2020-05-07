@@ -1,7 +1,22 @@
-<div class="plm-courses mb-24 card ribbon box-shadow cursor-pointer">
+<div class="plm-courses mb-24 card ribbon box-shadow">
   <div class="card-body p-0">
     <div class="ribbon-box font-w600">
       ${{data.price}}
+    </div>
+    <div class="float-right m-2">
+      <!-- dropdown menu-->
+      <div class="dropdown">
+        <button class="btn btn-light option-button text-muted"
+                type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+          <fa-icon [icon]="['fas', 'ellipsis-v']"></fa-icon>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item cursor-pointer nm-size" (click)="triggerEdit()">Edit</a>
+          <a class="dropdown-item cursor-pointer nm-size" (click)="triggerNavigation()">View Courses</a>
+        </div>
+      </div>
     </div>
     <div class="book-icon p-20 w-100">
       <div class="mx-auto my-20 circle d-flex justify-content-center bg-corporate align-items-center icon">
@@ -12,8 +27,8 @@
         ({{data.reviews}} reviews)
       </div>
     </div>
-    <div class="lessons nm-size bg-body-light text-center">
-      {{data.lessons}} lessons &bull; {{data.hours}} hours
+    <div class="lessons nm-size bg-body-light text-center cursor-pointer">
+      {{data.courses}} courses
     </div>
     <div class="title p-20 font-w600 nm-size text-center">
       {{data.title}}

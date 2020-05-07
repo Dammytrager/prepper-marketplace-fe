@@ -1,3 +1,11 @@
 export interface DashboardInterface {
-  test: string;
+  coursepacks: any[];
+  coursepacksLength: number;
+  popupData: PopupInterface;
+}
+
+export interface PopupInterface {
+  title?: string;
+  button?: string;
+  data?: any;
 }

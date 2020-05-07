@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CoursePackData} from './courses.interface';
 
 @Component({
@@ -8,5 +8,15 @@ import {CoursePackData} from './courses.interface';
 })
 export class CourseComponent {
   @Input() data: CoursePackData;
+  @Output() navigate = new EventEmitter();
+  @Output() edit = new EventEmitter();
   constructor() {}
+
+  triggerNavigation() {
+    this.navigate.emit();
+  }
+
+  triggerEdit() {
+    this.edit.emit();
+  }
 }

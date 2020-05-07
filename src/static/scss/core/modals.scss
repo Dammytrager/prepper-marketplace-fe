@@ -1,0 +1,16 @@
+.plm-modal {
+    .close {
+      &:focus {
+        outline: none;
+      }
+   }
+
+  label {
+    font-size: $nm-size;
+    font-weight: 600;
+  }
+}
+
+.modal-content {
+  border-radius: 0 $im;
+}
