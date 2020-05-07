@@ -1,7 +1,7 @@
 export interface CoursePackData {
   title: string;
   price: number;
-  lessons: number;
+  courses: number;
   hours: string;
   approve?: boolean;
   user?: string;

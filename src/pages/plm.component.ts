@@ -6,14 +6,32 @@ import {SITE} from '../system/state/actions/site.action';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import {Title} from '@angular/platform-browser';
 import {
-  faArrowCircleRight, faAsterisk,
+  faArrowCircleRight,
+  faAsterisk,
   faBars,
-  faBook, faCalendar, faCaretDown, faCaretUp, faCheck, faChevronDown, faChevronUp, faEdit, faExclamationTriangle, faFlag, faHeart, faPlus,
+  faBook,
+  faCalendar,
+  faCaretDown,
+  faCaretUp,
+  faCheck,
+  faChevronDown,
+  faChevronUp,
+  faEdit,
+  faEllipsisV,
+  faExclamationTriangle,
+  faFlag,
+  faHeart,
+  faPlus,
   faSearch,
-  faSignOutAlt, faSpinner, faStarHalf, faSyncAlt,
+  faSignOutAlt,
+  faSpinner,
+  faStarHalf,
+  faSyncAlt,
   faTachometerAlt,
-  faTimes, faUser,
-  faWallet, faWrench
+  faTimes,
+  faUser,
+  faWallet,
+  faWrench
 } from '@fortawesome/free-solid-svg-icons';
 import {faCalendarAlt, faCheckCircle, faCircle, faStar} from '@fortawesome/free-regular-svg-icons';
 
@@ -45,7 +63,8 @@ library.add(
   faFlag,
   faExclamationTriangle,
   faEdit,
-  faAsterisk
+  faAsterisk,
+  faEllipsisV
 );
 
 dom.watch();

@@ -2,13 +2,12 @@
   <div *ngIf="!showLoading; else loading">
     <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
 
-    <plm-subheader [data]="subheaderData1" (open)="openModal()"></plm-subheader>
-    <plm-create-content *ngIf="showCreate" [data]="createContentData" (close)="hideCreateContent()"></plm-create-content>
+    <plm-subheader [data]="subheaderData1" (open)="addCoursepack()"></plm-subheader>
     <!-- Coursepacks -->
     <div>
       <div class="row" *ngIf="coursepacks.length; else emptyMessage">
         <div class="col-md-6 col-xl-3" *ngFor="let course of coursepacks">
-          <plm-course *ngIf="!course.ratings" [data]="course" routerLink="some"></plm-course>
+          <plm-course *ngIf="!course.ratings" [data]="course" (edit)="editCoursepack(course)" (navigate)="viewCourses(course._id)"></plm-course>
         </div>
       </div>
 

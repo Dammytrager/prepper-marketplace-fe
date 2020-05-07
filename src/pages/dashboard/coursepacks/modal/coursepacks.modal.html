@@ -1,6 +1,6 @@
 <div class="plm-modal" role="dialog">
     <div class="modal-header">
-      <h5 class="modal-title">Create Coursepack</h5>
+      <h5 class="modal-title">{{popupData?.title}}</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -23,8 +23,8 @@
       <button type="button" class="btn font-w600 btn-primary"
               [class.disabled]="coursepackForm.invalid || showLoader"
               [disabled]="coursepackForm.invalid || showLoader"
-              (click)="createCoursepack()">
-        <span>Save</span>
+              (click)="action()">
+        <span>{{popupData?.button}}</span>
         <plm-loader class="ml-2" [data]="{type: 2, color: 'white'}" *ngIf="showLoader"></plm-loader>
       </button>
     </div>

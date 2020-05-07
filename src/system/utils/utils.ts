@@ -10,6 +10,10 @@ export function parseJwt (token) {
   return JSON.parse(jsonPayload);
 }
 
+export function handleNotFoundError(entity, toast) {
+  return toast.error(`${entity} cannot be found`);
+}
+
 export function handleOtherErrors(code) {
  if (code === ERROR_CODES.UNKNOWN_ERROR) {
     return this._toastr.error(FAILURE_MSG.UNKNOWN_ERROR);
