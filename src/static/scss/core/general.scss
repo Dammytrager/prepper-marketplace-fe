@@ -131,3 +131,14 @@ body {
 .disabled {
   cursor: not-allowed;
 }
+
+.dropdown {
+  .option-button  {
+    border-radius: 50% !important;
+    width: 32px;
+    height: 32px;
+    &:focus  {
+      background-color: $bg-light-hover;
+    }
+  }
+}

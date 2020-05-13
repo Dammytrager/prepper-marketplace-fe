@@ -7,9 +7,10 @@ import {ToastrService} from 'ngx-toastr';
 import {ForageService} from './storage.service';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../interfaces/state/plm.interface';
-import {handleOtherErrors, handleValidationError, parseJwt} from '../utils/utils';
+import {parseJwt} from '../utils/utils';
 import {USER} from '../state/actions/user.action';
 import {AuthService} from './auth.service';
+import {ErrorHandlerService} from './error-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class UserService {
     private _toastr: ToastrService,
     private _storage: ForageService,
     private _ngRedux: NgRedux<AppState>,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _errorHandler: ErrorHandlerService
   ) {
   }
 
@@ -42,7 +44,7 @@ export class UserService {
             this._router.navigate(['/auth/sign-in']);
           });
         } else {
-          handleOtherErrors(code);
+          this._errorHandler.handleOtherErrors(err);
         }
       });
     });
@@ -62,9 +64,9 @@ export class UserService {
             this._router.navigate(['/auth/sign-in']);
           });
         } else if (code === ERROR_CODES.VALIDATION_ERROR) {
-          handleValidationError(errors, this._toastr);
+          this._errorHandler.handleValidationError(errors);
         } else {
-          handleOtherErrors(code);
+          this._errorHandler.handleOtherErrors(err);
         }
         return;
       });
@@ -85,9 +87,9 @@ export class UserService {
             this._router.navigate(['/auth/sign-in']);
           });
         } else if (code === ERROR_CODES.VALIDATION_ERROR) {
-          handleValidationError(errors, this._toastr);
+          this._errorHandler.handleValidationError(errors);
         } else {
-          handleOtherErrors(code);
+          this._errorHandler.handleOtherErrors(err);
         }
         return;
       });
@@ -107,11 +109,11 @@ export class UserService {
             this._router.navigate(['/auth/sign-in']);
           });
         } else if (code === ERROR_CODES.VALIDATION_ERROR) {
-          handleValidationError(errors, this._toastr);
+          this._errorHandler.handleValidationError(errors);
         } else if (code === ERROR_CODES.UNAUTHORIZED_KEY) {
           this._toastr.error(FAILURE_MSG.INCORRECT_OLD_PASSWORD);
         } else {
-          handleOtherErrors(code);
+          this._errorHandler.handleOtherErrors(err);
         }
         return;
       });

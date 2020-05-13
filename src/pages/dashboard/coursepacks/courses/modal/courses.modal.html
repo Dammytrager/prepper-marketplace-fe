@@ -6,23 +6,18 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="coursepackForm">
+      <form [formGroup]="courseForm">
         <div class="form-group">
-          <label for="coursepack-name">Coursepack Title</label>
-          <input type="text" id="coursepack-name" class="form-control" formControlName="title">
-        </div>
-
-        <div class="form-group">
-          <label for="coursepack-price">Coursepack Price</label>
-          <input type="number" min="0" id="coursepack-price" class="form-control" formControlName="price">
+          <label for="course-name">Course Name</label>
+          <input type="text" id="course-name" class="form-control" formControlName="name">
         </div>
       </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn font-w600 btn-alt-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
       <button type="button" class="btn font-w600 btn-primary"
-              [class.disabled]="coursepackForm.invalid || showLoader"
-              [disabled]="coursepackForm.invalid || showLoader"
+              [class.disabled]="courseForm.invalid || showLoader"
+              [disabled]="courseForm.invalid || showLoader"
               (click)="action()">
         <span>{{popupData?.button}}</span>
         <plm-loader class="ml-2" [data]="{type: 2, color: 'white'}" *ngIf="showLoader"></plm-loader>

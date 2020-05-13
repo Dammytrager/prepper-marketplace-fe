@@ -51,7 +51,6 @@ export class Coursepacks implements OnInit, OnDestroy {
   };
 
   approvedCourses = [];
-  showCreate = false;
   showLoading = true;
   popupData: PopupInterface = {
     title: 'Create Coursepack',
@@ -69,16 +68,8 @@ export class Coursepacks implements OnInit, OnDestroy {
     });
   }
 
-  showCreateContent() {
-    this.showCreate = true;
-  }
-
-  hideCreateContent() {
-    this.showCreate = false;
-  }
-
-  viewCourses(id) {
-    this._router.navigate(['/dashboard/courses', id]);
+  viewCourses(coursepack) {
+    this._router.navigate(['/dashboard/courses', coursepack._id]);
   }
 
   addCoursepack() {
