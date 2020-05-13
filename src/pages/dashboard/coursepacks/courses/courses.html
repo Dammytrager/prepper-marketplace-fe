@@ -1,31 +1,60 @@
 <div class="plm-dashboard-courses plm-dashboard-content mxw-1200 mx-auto">
-  <plm-dashboard-header [data]="dashboardHeaderdata">
-    <ng-container class="additional-content">
-      <div class="mt-10">
-        <div class="text-center nm-size mb-1 font-w600">
-          Published
+  <div *ngIf="!showLoading; else loading">
+    <plm-dashboard-header [data]="dashboardHeaderdata">
+      <ng-container class="additional-content">
+        <div class="mt-10">
+          <div class="text-center nm-size mb-1 font-w600">
+            Published
+          </div>
+          <div class="switch-cont">
+            <label class="switch mx-auto">
+              <input type="checkbox" class="switch_1">
+              <span class="slider"></span>
+            </label>
+          </div>
         </div>
-        <div class="switch-cont">
-          <label class="switch mx-auto">
-            <input type="checkbox" class="switch_1">
-            <span class="slider"></span>
-          </label>
+      </ng-container>
+    </plm-dashboard-header>
+    <plm-subheader [data]="subheaderData" (open)="addCourse()"></plm-subheader>
+    <div class="row" *ngIf="courses.length; else emptyMessage">
+      <div class="col-lg-4" *ngFor="let course of courses; let i = index">
+        <div>
+          <div class="float-right m-2">
+            <!-- dropdown menu-->
+            <div class="dropdown">
+              <button class="btn btn-light option-button text-muted"
+                      type="button" id="dropdownMenuButton"
+                      data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                <fa-icon [icon]="['fas', 'ellipsis-v']"></fa-icon>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item cursor-pointer nm-size" (click)="editCourse(course)">Edit</a>
+                <a class="dropdown-item cursor-pointer nm-size" (click)="viewLessons(course)">View Lessons</a>
+              </div>
+            </div>
+          </div>
+          <div class="text-center course-item p-20 mb-24 course-box-shadow">
+            <div class="p-20 mb-1">
+              <fa-icon [icon]="['fas', 'book']" [size]="'3x'" [ngClass]="bookColors(i)"></fa-icon>
+            </div>
+            <p class="font-w600 font-size-lg mb-0">{{course?.name}}</p>
+            <p class="font-w600 font-size-sm text-muted mb-0 text-uppercase">{{course?.lessons.length}} lessons</p>
+          </div>
         </div>
-      </div>
-    </ng-container>
-  </plm-dashboard-header>
-  <plm-subheader [data]="subheaderData" (open)="showCreateContent()"></plm-subheader>
-  <plm-create-content *ngIf="showCreate" [data]="createContentData" (close)="hideCreateContent()"></plm-create-content>
-  <div class="row">
-    <div class="col-lg-4" *ngFor="let course of courses; let i = index">
-      <div class="text-center course-item p-20 mb-24 course-box-shadow cursor-pointer" [routerLink]="['/dashboard/cours', 'some']">
-        <div class="p-20 mb-1">
-          <fa-icon [icon]="['fas', 'book']" [size]="'3x'" [ngClass]="bookColors(i)"></fa-icon>
-        </div>
-        <p class="font-w600 font-size-lg mb-0">{{course.title}}</p>
-        <p class="font-w600 font-size-sm text-muted mb-0 text-uppercase">{{course.lessons}} lessons</p>
       </div>
     </div>
+    <ng-template #emptyMessage>
+      <div class="text-muted">
+        You don't have any coursepack yet
+      </div>
+    </ng-template>
   </div>
+
+  <ng-template #loading>
+    <div style="height: 90vh" class="d-flex justify-content-center align-items-center">
+      loading...
+    </div>
+  </ng-template>
   <plm-dashboard-footer></plm-dashboard-footer>
 </div>

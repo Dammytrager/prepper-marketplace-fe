@@ -1,7 +1,7 @@
 export interface CoursePackData {
   title: string;
   price: number;
-  courses: number;
+  courses: [] | number;
   hours: string;
   approve?: boolean;
   user?: string;
@@ -9,10 +9,11 @@ export interface CoursePackData {
   reviews?: number;
   _id?: string;
   createdAt?: string;
+  updatedAt?: string;
   __v?: string;
 }
 
 export interface CourseInterface {
-  title: string;
-  lessons: number;
+  name: string;
+  lessons: number | any[];
 }

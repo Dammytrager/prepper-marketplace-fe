@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, UrlSegment} from '@angular/router';
 import {Dashboard} from '../../pages/dashboard/dashboard';
 import {Coursepacks} from '../../pages/dashboard/coursepacks/coursepacks';
 import {Earnings} from '../../pages/dashboard/earnings/earnings';
@@ -41,14 +41,34 @@ const DASHBOARD_ROUTES: Routes = [
         loadChildren: '../modules/user.module#UserModule'
       },
       {
-        path: 'courses/:id',
+        matcher: (url) => {
+          if (url.length === 2 && url[1].path.match(/^[a-f\d]{24}$/i) && url[0].path === 'courses') {
+            return {
+              consumed: url,
+              posParams: {
+                id: new UrlSegment(url[1].path, {})
+              }
+            };
+          }
+          return null;
+        },
         component: Courses,
         data: {
           title: TITLE.DASHBOARD_COURSES
         }
       },
       {
-        path: ':courseId/:lessonId',
+        matcher: (url) => {
+          if (url.length === 2 && url[0].path.match(/^[a-f\d]{24}$/i) && url[1].path.match(/^[a-f\d]{24}$/i)) {
+            return {
+              consumed: url,
+              posParams: {
+                id: new UrlSegment(url[1].path, {})
+              }
+            };
+          }
+          return null;
+        },
         component: Lessons,
         data: {
           title: TITLE.DASHBOARD_LESSONS

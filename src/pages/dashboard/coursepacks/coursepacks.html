@@ -7,7 +7,7 @@
     <div>
       <div class="row" *ngIf="coursepacks.length; else emptyMessage">
         <div class="col-md-6 col-xl-3" *ngFor="let course of coursepacks">
-          <plm-course *ngIf="!course.ratings" [data]="course" (edit)="editCoursepack(course)" (navigate)="viewCourses(course._id)"></plm-course>
+          <plm-course *ngIf="!course.ratings" [data]="course" (edit)="editCoursepack(course)" (navigate)="viewCourses(course)"></plm-course>
         </div>
       </div>
 
@@ -16,7 +16,6 @@
           You don't have any coursepack yet
         </div>
       </ng-template>
-
     </div>
 
     <!-- Approved Coursepacks -->
