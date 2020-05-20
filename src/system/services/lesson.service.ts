@@ -13,7 +13,7 @@ import {ErrorHandlerService} from './error-handler.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService {
+export class LessonService {
 
   hostApi = environment.HOST_API;
 
@@ -28,17 +28,17 @@ export class CourseService {
   ) {
   }
 
-  async getCourses(coursepackId) {
+  async getLessons(courseId) {
     await this._storage.localGet('token').then((token: string) => {
       this._http.setHeaders({token});
-      this._http.get(`${this.hostApi}/coursepacks/${coursepackId}/courses`).then((data: any) => {
-        this._ngRedux.dispatch({type: DASHBOARD.CHANGE_COURSES, courses: data.data || []});
-        this._ngRedux.dispatch({type: DASHBOARD.CHANGE_SELECTED_COURSEPACK, selectedCoursepack: data.coursepack});
+      this._http.get(`${this.hostApi}/courses/${courseId}/lessons`).then((data: any) => {
+        this._ngRedux.dispatch({type: DASHBOARD.CHANGE_LESSONS, lessons: data.data || []});
+        this._ngRedux.dispatch({type: DASHBOARD.CHANGE_SELECTED_COURSE, selectedCourse: data.course});
         return data;
       }).catch((err) => {
         const {error: {code}} = err;
         if (code === ERROR_CODES.NOT_FOUND) {
-          this._errorHandler.handleNotFoundError('Coursepack');
+          this._errorHandler.handleNotFoundError('Course');
         } else {
           return this._errorHandler.handleOtherErrors(err);
         }
@@ -46,19 +46,18 @@ export class CourseService {
     });
   }
 
-  async createCourse(coursepackId, course) {
+  async createLesson(courseId, lesson) {
     await this._storage.localGet('token').then(async (token: string) => {
       this._http.setHeaders({token});
-      await this._http.post(`${this.hostApi}/coursepacks/${coursepackId}/courses`, course).then((data) => {
-        this._toastr.success(SUCCESS_MSG.successMessage('Course', 'created'));
-        this._ngRedux.dispatch({type: DASHBOARD.UPDATE_COURSE_DATA, courses: data});
-        this._ngRedux.dispatch({type: DASHBOARD.UPDATE_COURSES_LENGTH});
+      await this._http.post(`${this.hostApi}/courses/${courseId}/lessons`, lesson).then((data) => {
+        this._toastr.success(SUCCESS_MSG.successMessage('Lesson', 'created'));
+        this._ngRedux.dispatch({type: DASHBOARD.UPDATE_LESSON_DATA, lessons: data});
+        this._ngRedux.dispatch({type: DASHBOARD.UPDATE_LESSONS_LENGTH});
         return data;
       }).catch((err) => {
-        console.log(err);
         const {error: {code, errors}} = err;
         if (code === ERROR_CODES.NOT_FOUND) {
-          this._errorHandler.handleNotFoundError('Coursepack');
+          this._errorHandler.handleNotFoundError('Course');
         } else if (code === ERROR_CODES.VALIDATION_ERROR) {
           this._errorHandler.handleValidationError(errors);
         } else {
@@ -69,17 +68,17 @@ export class CourseService {
     });
   }
 
-  async editCourse(coursepackId, courseId, course) {
+  async editLesson(courseId, lessonId, lesson) {
     await this._storage.localGet('token').then(async (token: string) => {
       this._http.setHeaders({token});
-      await this._http.put(`${this.hostApi}/coursepacks/${coursepackId}/courses/${courseId}`, course).then((data: any) => {
+      await this._http.put(`${this.hostApi}/courses/${courseId}/lessons/${lessonId}`, lesson).then((data: any) => {
         this._toastr.success(SUCCESS_MSG.successMessage('Course', 'updated'));
-        this._ngRedux.dispatch({type: DASHBOARD.UPDATE_COURSE_DATA, courses: data.data});
+        this._ngRedux.dispatch({type: DASHBOARD.UPDATE_LESSON_DATA, lessons: data.data});
         return data;
       }).catch((err) => {
         const {error: {code, errors}} = err;
         if (code === ERROR_CODES.NOT_FOUND) {
-          this._errorHandler.handleNotFoundError('Coursepack');
+          this._errorHandler.handleNotFoundError('Course');
         } else if (code === ERROR_CODES.VALIDATION_ERROR) {
           this._errorHandler.handleValidationError(errors);
         } else {

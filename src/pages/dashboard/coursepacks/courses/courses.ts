@@ -11,7 +11,6 @@ import {ModalService} from '../../../../system/services/modal.service';
 import {AppState} from '../../../../system/interfaces/state/plm.interface';
 import {CoursesModal} from './modal/courses.modal';
 import {CourseInterface} from '../../../../components/courses/courses.interface';
-import {CoursepacksModal} from '../modal/coursepacks.modal';
 
 @Component({
   selector: 'plm-dashboard-coursepacks-courses',
@@ -111,7 +110,7 @@ export class Courses implements OnInit, OnDestroy {
   }
 
   viewLessons(course) {
-    this._router.navigate(['/dashboard', this.selectedCoursepack._id, course._id]);
+    this._router.navigate(['/dashboard/courses/lessons', course._id]);
   }
 
   async getCourses() {

@@ -1,15 +1,31 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DashboardHeaderInterface} from '../../../../../components/dashboard-header/dashboard-header.interface';
-import {CreateContentInterface} from '../../../../../components/create-content/create-content.interface';
 import {SubheaderInterface} from '../../../../../components/subheader/subheader.interface';
-import {LESSONS} from '../../../../../static/dummy/lessons';
+import {ActivatedRoute} from '@angular/router';
+import {LessonService} from '../../../../../system/services/lesson.service';
+import {NgRedux, select} from '@angular-redux/store';
+import {Observable, Subscription} from 'rxjs';
+import {DASHBOARD} from '../../../../../system/state/actions/dashboard.action';
+import {CoursesModal} from '../modal/courses.modal';
+import {PopupInterface} from '../../../../../system/interfaces/state/dashboard.interface';
+import {ModalService} from '../../../../../system/services/modal.service';
+import {AppState} from '../../../../../system/interfaces/state/plm.interface';
+import {LessonsModal} from './modal/lessons.modal';
 
 @Component({
   selector: 'plm-dashboard-coursepacks-courses-lessons',
   templateUrl: './lessons.html'
 })
 export class Lessons implements OnInit, OnDestroy {
-  lessons = LESSONS;
+  @select(['dashboard', 'lessons']) lessons$: Observable<any>;
+  @select(['dashboard', 'lessonsLength']) lessonsLength$: Observable<any>;
+  @select(['dashboard', 'selectedCourse']) selectedCourse$: Observable<any>;
+  $lessons$: Subscription;
+  $lessonsLength$: Subscription;
+  $selectedCourse$: Subscription;
+  lessons = [];
+  lessonsLength;
+  selectedCourse;
   dashboardHeaderdata: DashboardHeaderInterface = {
     bigHeader: 'Creative Thinking',
     smallHeader: '3 Lessons',
@@ -26,34 +42,68 @@ export class Lessons implements OnInit, OnDestroy {
       icon: ['fas', 'plus']
     }
   };
-  createContentData: CreateContentInterface = {
-    title: 'Add a new Lesson',
-    formFieldsCount: 1,
-    formFields: [
-      {
-        placeholder: 'Lesson title',
-        type: 'text'
-      }
-    ],
-    button: {
-      text: 'Add',
-      icon: ['fas', 'plus']
-    }
-  };
-  showCreate = false;
+  showLoading = true;
+  popupData: PopupInterface;
 
-  constructor() {
+  constructor(
+    private _route: ActivatedRoute,
+    private _lesson: LessonService,
+    private _modal: ModalService,
+    private _ngRedux: NgRedux<AppState>
+  ) {
+    this.getLessons().then(() => {
+      this.showLoading = false;
+    });
   }
 
-  ngOnInit() {}
-
-  showCreateContent() {
-    this.showCreate = true;
+  ngOnInit() {
+    this.$lessons$ = this.lessons$.subscribe((data: any) => {
+      this.lessons = data;
+    });
+    this.$lessonsLength$ = this.lessonsLength$.subscribe((data: any) => {
+      this.lessonsLength = data;
+      this.subheaderData.title.text = `Lessons(${this.lessonsLength})`;
+      this.dashboardHeaderdata.smallHeader = `${this.lessonsLength} Lessons`;
+    });
+    this.$selectedCourse$ = this.selectedCourse$.subscribe((data: any) => {
+      this.selectedCourse = data;
+      this.dashboardHeaderdata = {
+        bigHeader: data && data.name || null,
+        smallHeader: data && data.lessons ? `${data.lessons.length} Lessons` : null,
+        bgColor: 'white',
+        additionalContent: true
+      };
+      this.subheaderData.title.text = data && data.lessons ? `Lessons(${data.lessons.length})` : 'Lessons';
+    });
   }
 
-  hideCreateContent() {
-    this.showCreate = false;
+  addLesson() {
+    this.popupData = {
+      title: 'Create Lesson',
+      button: 'Create',
+    };
+    this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});
+    this._modal.openModal(LessonsModal);
   }
 
-  ngOnDestroy() {}
+  editLesson(lesson) {
+    this.popupData = {
+      title: 'Edit Lesson',
+      button: 'Save',
+      data: lesson
+    };
+    this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});
+    this._modal.openModal(LessonsModal);
+  }
+
+  async getLessons() {
+    const courseId = this._route.snapshot.paramMap.get('id');
+    this._lesson.getLessons(courseId);
+  }
+
+  ngOnDestroy() {
+    this.$lessons$.unsubscribe();
+    this.$lessonsLength$.unsubscribe();
+    this.$selectedCourse$.unsubscribe();
+  }
 }
