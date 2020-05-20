@@ -3,6 +3,8 @@ export interface DashboardInterface {
   coursepacksLength: number;
   courses: any[];
   coursesLength: number;
+  lessons: any[];
+  lessonsLength: number;
   popupData: PopupInterface;
   selectedCoursepack: any;
   selectedCourse: any;

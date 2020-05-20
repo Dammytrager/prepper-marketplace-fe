@@ -1,21 +1,35 @@
 <div class="plm-dashboard-lessons plm-dashboard-content mxw-1200 mx-auto">
-  <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
-  <plm-subheader [data]="subheaderData" (open)="showCreateContent()"></plm-subheader>
-  <plm-create-content *ngIf="showCreate" [data]="createContentData" (close)="hideCreateContent()"></plm-create-content>
-  <div class="lessons">
-    <div class="lesson d-md-flex justify-content-between p-20 bg-white mb-20" *ngFor="let lesson of lessons">
-      <div class="text py-10 font-w700 h5">{{lesson}}</div>
-      <div class="actions d--flex py-10">
-        <button type="button" class="btn btn-outline-info btn-rounded btn-sm action mr-2">
-          <fa-icon [icon]="['fas', 'edit']" class="ml-1"></fa-icon>
-          Edit
-        </button>
-        <button type="button" class="btn btn-outline-danger btn-rounded btn-sm action">
-          <fa-icon [icon]="['fas', 'times']" class="ml-1"></fa-icon>
-          Delete
-        </button>
+  <div  *ngIf="!showLoading; else loading">
+    <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
+    <plm-subheader [data]="subheaderData" (open)="addLesson()"></plm-subheader>
+    <div class="lessons" *ngIf="lessons.length; else emptyMessage">
+      <div class="lesson d-md-flex justify-content-between p-20 bg-white mb-20" *ngFor="let lesson of lessons">
+        <div class="text py-10 font-w700 h5">{{lesson.name}}</div>
+        <div class="actions d--flex py-10">
+          <button type="button" class="btn btn-outline-info btn-rounded btn-sm action mr-2" (click)="editLesson(lesson)">
+            <fa-icon [icon]="['fas', 'edit']" class="ml-1"></fa-icon>
+            Edit
+          </button>
+          <button type="button" class="btn btn-outline-danger btn-rounded btn-sm action">
+            <fa-icon [icon]="['fas', 'times']" class="ml-1"></fa-icon>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
+
+    <ng-template #emptyMessage>
+      <div class="text-muted">
+        You don't have any lesson yet
+      </div>
+    </ng-template>
   </div>
+
+  <ng-template #loading>
+    <div style="height: 90vh" class="d-flex justify-content-center align-items-center">
+      loading...
+    </div>
+  </ng-template>
+
   <plm-dashboard-footer></plm-dashboard-footer>
 </div>

@@ -13,6 +13,7 @@ import {LoaderComponent} from '../../components/loader/loader.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CoursepacksModal} from '../../pages/dashboard/coursepacks/modal/coursepacks.modal';
 import {CoursesModal} from '../../pages/dashboard/coursepacks/courses/modal/courses.modal';
+import {LessonsModal} from '../../pages/dashboard/coursepacks/courses/lessons/modal/lessons.modal';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {CoursesModal} from '../../pages/dashboard/coursepacks/courses/modal/cour
     PaginationComponent,
     LoaderComponent,
     CoursepacksModal,
-    CoursesModal
+    CoursesModal,
+    LessonsModal
   ],
   imports: [
     CommonModule,
@@ -45,11 +47,13 @@ import {CoursesModal} from '../../pages/dashboard/coursepacks/courses/modal/cour
     PaginationComponent,
     LoaderComponent,
     CoursepacksModal,
-    CoursesModal
+    CoursesModal,
+    LessonsModal
   ],
   entryComponents: [
     CoursepacksModal,
-    CoursesModal
+    CoursesModal,
+    LessonsModal
   ]
 })
 export class SharedModule {}

@@ -8,6 +8,7 @@ import {Courses} from '../../pages/dashboard/coursepacks/courses/courses';
 import {Lessons} from '../../pages/dashboard/coursepacks/courses/lessons/lessons';
 import {TITLE} from '../constants/route-data';
 import {DashboardGuard} from './dashboard.guard';
+import {RouteMatcher} from '../classes/route-matcher';
 
 const DASHBOARD_ROUTES: Routes = [
   {
@@ -41,34 +42,14 @@ const DASHBOARD_ROUTES: Routes = [
         loadChildren: '../modules/user.module#UserModule'
       },
       {
-        matcher: (url) => {
-          if (url.length === 2 && url[1].path.match(/^[a-f\d]{24}$/i) && url[0].path === 'courses') {
-            return {
-              consumed: url,
-              posParams: {
-                id: new UrlSegment(url[1].path, {})
-              }
-            };
-          }
-          return null;
-        },
+        matcher: RouteMatcher.coursesRoute,
         component: Courses,
         data: {
           title: TITLE.DASHBOARD_COURSES
         }
       },
       {
-        matcher: (url) => {
-          if (url.length === 2 && url[0].path.match(/^[a-f\d]{24}$/i) && url[1].path.match(/^[a-f\d]{24}$/i)) {
-            return {
-              consumed: url,
-              posParams: {
-                id: new UrlSegment(url[1].path, {})
-              }
-            };
-          }
-          return null;
-        },
+        matcher: RouteMatcher.lessonsRoute,
         component: Lessons,
         data: {
           title: TITLE.DASHBOARD_LESSONS

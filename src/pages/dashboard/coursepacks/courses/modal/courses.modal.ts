@@ -47,7 +47,7 @@ export class CoursesModal extends BaseModal implements OnInit, OnDestroy {
     return this.courseForm.get('name');
   }
 
-  createCoursepack() {
+  createCourse() {
     if (this.courseForm.valid) {
       this.showLoader = true;
       this._course.createCourse(this.selectedCoursepack._id, this.courseForm.value).finally(() => {
@@ -70,7 +70,7 @@ export class CoursesModal extends BaseModal implements OnInit, OnDestroy {
   action() {
     switch (this.popupData.title) {
       case 'Create Course':
-        this.createCoursepack();
+        this.createCourse();
         break;
       case 'Edit Course':
         this.editCourse();
