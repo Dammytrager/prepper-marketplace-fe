@@ -11,6 +11,7 @@ import {ModalService} from '../../../../system/services/modal.service';
 import {AppState} from '../../../../system/interfaces/state/plm.interface';
 import {CoursesModal} from './modal/courses.modal';
 import {CourseInterface} from '../../../../components/courses/courses.interface';
+import {COURSE} from '../../../../system/constants/static-content';
 
 @Component({
   selector: 'plm-dashboard-coursepacks-courses',
@@ -101,8 +102,18 @@ export class Courses implements OnInit, OnDestroy {
 
   editCourse(course) {
     this.popupData = {
-      title: 'Edit Course',
+      title: `Edit ${COURSE}`,
       button: 'Save',
+      data: course
+    };
+    this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});
+    this._modal.openModal(CoursesModal);
+  }
+
+  deleteCourse(course) {
+    this.popupData = {
+      title: `Delete ${COURSE}`,
+      button: 'Delete',
       data: course
     };
     this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});

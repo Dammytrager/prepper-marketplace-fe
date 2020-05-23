@@ -6,6 +6,7 @@ import {CoursepackService} from '../../../../system/services/coursepack.service'
 import {select} from '@angular-redux/store';
 import {Observable, Subscription} from 'rxjs';
 import {PopupInterface} from '../../../../system/interfaces/state/dashboard.interface';
+import {COURSEPACK} from '../../../../system/constants/static-content';
 
 @Component({
   selector: 'plm-dashboard-coursepacks-modal',
@@ -17,6 +18,8 @@ export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
   popupData: PopupInterface;
   coursepackForm: FormGroup;
   showLoader = false;
+  isDelete;
+  btnClass;
 
   constructor(
     public _ngbModal: NgbActiveModal,
@@ -33,6 +36,11 @@ export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
     });
     this.$popupData$ = this.popupData$.subscribe((data) => {
       this.popupData = data;
+      this.isDelete = this.popupData.data && this.popupData.title === `Delete ${COURSEPACK}`;
+      this.btnClass = {
+        'btn-danger': this.isDelete,
+        'btn-primary': !this.isDelete
+      };
       this.title.setValue(this.popupData.data && this.popupData.data.title || '');
       this.price.setValue(this.popupData.data && this.popupData.data.price || '');
     });
@@ -66,13 +74,24 @@ export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
     }
   }
 
+  deleteCoursepack() {
+    this.showLoader = true;
+    this._coursepack.deleteCoursepack(this.popupData.data._id).finally(() => {
+      this.showLoader = false;
+      this.closeModal();
+    });
+  }
+
   action() {
     switch (this.popupData.title) {
-      case 'Create Coursepack':
+      case `Create ${COURSEPACK}`:
         this.createCoursepack();
         break;
-      case 'Edit Coursepack':
+      case `Edit ${COURSEPACK}`:
         this.editCoursepack();
+        break;
+      case `Delete ${COURSEPACK}`:
+        this.deleteCoursepack();
         break;
     }
   }

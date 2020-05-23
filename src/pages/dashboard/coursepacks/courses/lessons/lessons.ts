@@ -11,6 +11,7 @@ import {PopupInterface} from '../../../../../system/interfaces/state/dashboard.i
 import {ModalService} from '../../../../../system/services/modal.service';
 import {AppState} from '../../../../../system/interfaces/state/plm.interface';
 import {LessonsModal} from './modal/lessons.modal';
+import {LESSON} from '../../../../../system/constants/static-content';
 
 @Component({
   selector: 'plm-dashboard-coursepacks-courses-lessons',
@@ -88,8 +89,18 @@ export class Lessons implements OnInit, OnDestroy {
 
   editLesson(lesson) {
     this.popupData = {
-      title: 'Edit Lesson',
+      title: `Edit ${LESSON}`,
       button: 'Save',
+      data: lesson
+    };
+    this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});
+    this._modal.openModal(LessonsModal);
+  }
+
+  deleteLesson(lesson) {
+    this.popupData = {
+      title: `Delete ${LESSON}`,
+      button: 'Delete',
       data: lesson
     };
     this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});

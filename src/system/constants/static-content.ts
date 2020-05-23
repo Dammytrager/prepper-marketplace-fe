@@ -22,6 +22,12 @@ const FAILURE_MSG = {
 
 const WARNING_MSG = {};
 
+const TASK = {
+  CREATED: 'created',
+  UPDATED: 'updated',
+  DELETED: 'deleted'
+};
+
 const INFO_MSG = {
   CHECK_INTERNET: 'No Internet connection'
 };
@@ -38,5 +44,9 @@ const ERROR_MESSAGE = {
   JWT_EXPIRED: 'jwt expired'
 };
 
+export const COURSEPACK = 'Coursepack';
+export const COURSE = 'Course';
+export const LESSON = 'Lesson';
+export const USER = 'User';
 
-export { CURRENCY, BUTTON, SUCCESS_MSG, FAILURE_MSG, ERROR_CODES, INFO_MSG, WARNING_MSG, ERROR_MESSAGE };
+export { CURRENCY, BUTTON, SUCCESS_MSG, FAILURE_MSG, ERROR_CODES, INFO_MSG, WARNING_MSG, ERROR_MESSAGE, TASK };

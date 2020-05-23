@@ -91,6 +91,16 @@ export class Coursepacks implements OnInit, OnDestroy {
     this._modal.openModal(CoursepacksModal);
   }
 
+  deleteCoursepack(coursepack) {
+    this.popupData = {
+      title: 'Delete Coursepack',
+      button: 'Delete',
+      data: coursepack
+    };
+    this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});
+    this._modal.openModal(CoursepacksModal);
+  }
+
   async ngOnInit() {
     this.$coursepacks$ = this.coursepacks$.subscribe((data: any) => {
       this.coursepacks = data;
