@@ -10,6 +10,7 @@ export class CourseComponent {
   @Input() data: CoursePackData;
   @Output() navigate = new EventEmitter();
   @Output() edit = new EventEmitter();
+  @Output() delete = new EventEmitter();
   constructor() {}
 
   triggerNavigation() {
@@ -18,5 +19,9 @@ export class CourseComponent {
 
   triggerEdit() {
     this.edit.emit();
+  }
+
+  triggerDelete() {
+    this.delete.emit();
   }
 }

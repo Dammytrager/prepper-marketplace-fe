@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="coursepackForm">
+      <form [formGroup]="coursepackForm" *ngIf="!isDelete; else deleteTemplate">
         <div class="form-group">
           <label for="coursepack-name">Coursepack Title</label>
           <input type="text" id="coursepack-name" class="form-control" formControlName="title">
@@ -17,10 +17,14 @@
           <input type="number" min="0" id="coursepack-price" class="form-control" formControlName="price">
         </div>
       </form>
+      <ng-template #deleteTemplate>
+        <p>Deleting this Coursepack will remove all the courses and lessons in it, are you sure you want to continue?</p>
+      </ng-template>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn font-w600 btn-alt-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
-      <button type="button" class="btn font-w600 btn-primary"
+      <button type="button" class="btn font-w600"
+              [ngClass]="btnClass"
               [class.disabled]="coursepackForm.invalid || showLoader"
               [disabled]="coursepackForm.invalid || showLoader"
               (click)="action()">

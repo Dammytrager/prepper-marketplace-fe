@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from './http.service';
 import {environment} from '../../environments/environment';
-import {ERROR_CODES, SUCCESS_MSG} from '../constants/static-content';
+import {COURSE, COURSEPACK, ERROR_CODES, SUCCESS_MSG, TASK} from '../constants/static-content';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {ForageService} from './storage.service';
@@ -38,7 +38,7 @@ export class CourseService {
       }).catch((err) => {
         const {error: {code}} = err;
         if (code === ERROR_CODES.NOT_FOUND) {
-          this._errorHandler.handleNotFoundError('Coursepack');
+          this._errorHandler.handleNotFoundError(COURSEPACK);
         } else {
           return this._errorHandler.handleOtherErrors(err);
         }
@@ -50,7 +50,7 @@ export class CourseService {
     await this._storage.localGet('token').then(async (token: string) => {
       this._http.setHeaders({token});
       await this._http.post(`${this.hostApi}/coursepacks/${coursepackId}/courses`, course).then((data) => {
-        this._toastr.success(SUCCESS_MSG.successMessage('Course', 'created'));
+        this._toastr.success(SUCCESS_MSG.successMessage(COURSE, TASK.CREATED));
         this._ngRedux.dispatch({type: DASHBOARD.UPDATE_COURSE_DATA, courses: data});
         this._ngRedux.dispatch({type: DASHBOARD.UPDATE_COURSES_LENGTH});
         return data;
@@ -58,7 +58,7 @@ export class CourseService {
         console.log(err);
         const {error: {code, errors}} = err;
         if (code === ERROR_CODES.NOT_FOUND) {
-          this._errorHandler.handleNotFoundError('Coursepack');
+          this._errorHandler.handleNotFoundError(COURSEPACK);
         } else if (code === ERROR_CODES.VALIDATION_ERROR) {
           this._errorHandler.handleValidationError(errors);
         } else {
@@ -73,13 +73,33 @@ export class CourseService {
     await this._storage.localGet('token').then(async (token: string) => {
       this._http.setHeaders({token});
       await this._http.put(`${this.hostApi}/coursepacks/${coursepackId}/courses/${courseId}`, course).then((data: any) => {
-        this._toastr.success(SUCCESS_MSG.successMessage('Course', 'updated'));
+        this._toastr.success(SUCCESS_MSG.successMessage(COURSE, TASK.UPDATED));
         this._ngRedux.dispatch({type: DASHBOARD.UPDATE_COURSE_DATA, courses: data.data});
         return data;
       }).catch((err) => {
         const {error: {code, errors}} = err;
         if (code === ERROR_CODES.NOT_FOUND) {
-          this._errorHandler.handleNotFoundError('Coursepack');
+          this._errorHandler.handleNotFoundError(COURSEPACK);
+        } else if (code === ERROR_CODES.VALIDATION_ERROR) {
+          this._errorHandler.handleValidationError(errors);
+        } else {
+          return this._errorHandler.handleOtherErrors(err);
+        }
+      });
+    });
+  }
+
+  async deleteCourse(coursepackId, courseId) {
+    await this._storage.localGet('token').then(async (token: string) => {
+      this._http.setHeaders({token});
+      await this._http.delete(`${this.hostApi}/coursepacks/${coursepackId}/courses/${courseId}`).then((data: any) => {
+        this._toastr.success(SUCCESS_MSG.successMessage(COURSE, TASK.DELETED));
+        this._ngRedux.dispatch({type: DASHBOARD.REMOVE_COURSE, course: {_id: courseId}});
+        return data;
+      }).catch((err) => {
+        const {error: {code, errors}} = err;
+        if (code === ERROR_CODES.NOT_FOUND) {
+          this._errorHandler.handleNotFoundError(COURSEPACK);
         } else if (code === ERROR_CODES.VALIDATION_ERROR) {
           this._errorHandler.handleValidationError(errors);
         } else {

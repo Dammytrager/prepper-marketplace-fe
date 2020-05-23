@@ -6,16 +6,20 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="lessonForm">
+      <form [formGroup]="lessonForm" *ngIf="!isDelete; else deleteTemplate;">
         <div class="form-group">
           <label for="lesson-name">Lesson Name</label>
           <input type="text" id="lesson-name" class="form-control" formControlName="name">
         </div>
       </form>
+      <ng-template #deleteTemplate>
+        <p>Are you sure you want to delete this lesson?</p>
+      </ng-template>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn font-w600 btn-alt-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
-      <button type="button" class="btn font-w600 btn-primary"
+      <button type="button" class="btn font-w600"
+              [ngClass]="btnClass"
               [class.disabled]="lessonForm.invalid || showLoader"
               [disabled]="lessonForm.invalid || showLoader"
               (click)="action()">

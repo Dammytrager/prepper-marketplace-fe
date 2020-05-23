@@ -7,6 +7,7 @@ import {BaseModal} from '../../../../../../system/classes/base-modal';
 import {PopupInterface} from '../../../../../../system/interfaces/state/dashboard.interface';
 import {CoursePackData} from '../../../../../../components/courses/courses.interface';
 import {LessonService} from '../../../../../../system/services/lesson.service';
+import {LESSON} from '../../../../../../system/constants/static-content';
 
 @Component({
   selector: 'plm-dashboard-lessons-modal',
@@ -21,6 +22,8 @@ export class LessonsModal extends BaseModal implements OnInit, OnDestroy {
   selectedCourse: CoursePackData;
   lessonForm: FormGroup;
   showLoader = false;
+  isDelete;
+  btnClass;
 
   constructor(
     public _ngbModal: NgbActiveModal,
@@ -36,6 +39,11 @@ export class LessonsModal extends BaseModal implements OnInit, OnDestroy {
     });
     this.$popupData$ = this.popupData$.subscribe((data) => {
       this.popupData = data;
+      this.isDelete = this.popupData.data && this.popupData.title === `Delete ${LESSON}`;
+      this.btnClass = {
+        'btn-danger': this.isDelete,
+        'btn-primary': !this.isDelete
+      };
       this.name.setValue(this.popupData.data && this.popupData.data.name || '');
     });
     this.$selectedCourse$ = this.selectedCourse$.subscribe((data) => {
@@ -67,13 +75,24 @@ export class LessonsModal extends BaseModal implements OnInit, OnDestroy {
     }
   }
 
+  deleteLesson() {
+    this.showLoader = true;
+    this._lesson.deleteLesson(this.selectedCourse._id, this.popupData.data._id).finally(() => {
+      this.showLoader = false;
+      this.closeModal();
+    });
+  }
+
   action() {
     switch (this.popupData.title) {
-      case 'Create Lesson':
+      case `Create ${LESSON}`:
         this.createLesson();
         break;
-      case 'Edit Lesson':
+      case `Edit ${LESSON}`:
         this.editLesson();
+        break;
+      case `Delete ${LESSON}`:
+        this.deleteLesson();
         break;
     }
   }
