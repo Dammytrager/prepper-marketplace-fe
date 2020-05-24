@@ -17,7 +17,7 @@
     </plm-dashboard-header>
     <plm-subheader [data]="subheaderData" (open)="addCourse()"></plm-subheader>
     <div class="row" *ngIf="courses.length; else emptyMessage">
-      <div class="col-lg-4" *ngFor="let course of courses; let i = index">
+      <div class="col-lg-4" *ngFor="let course of courses; let i = index" (click)="viewLessons(course)">
         <div>
           <div class="float-right m-2">
             <!-- dropdown menu-->
@@ -25,13 +25,12 @@
               <button class="btn btn-light option-button text-muted"
                       type="button" id="dropdownMenuButton"
                       data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">
+                      aria-expanded="false" (click)="course.show = !course.show; $event.stopPropagation()">
                 <fa-icon [icon]="['fas', 'ellipsis-v']"></fa-icon>
               </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item cursor-pointer nm-size" (click)="editCourse(course)">Edit</a>
-                <a class="dropdown-item cursor-pointer nm-size" (click)="viewLessons(course)">View Lessons</a>
-                <a class="dropdown-item cursor-pointer nm-size" (click)="deleteCourse(course)">Delete</a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" [class.show]="course.show">
+                <a class="dropdown-item cursor-pointer nm-size" (click)="editCourse(course); $event.stopPropagation()">Edit</a>
+                <a class="dropdown-item cursor-pointer nm-size" (click)="deleteCourse(course); $event.stopPropagation()">Delete</a>
               </div>
             </div>
           </div>

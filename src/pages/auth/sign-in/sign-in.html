@@ -4,7 +4,7 @@
       <input class="form-control"
              [class.is-invalid]="username.touched && username.invalid"
              type="text" placeholder=" " formControlName="username">
-      <span>Username</span>
+      <span>Username or Email address</span>
       <!--errors-->
       <div *ngIf="username?.errors && username?.touched">
         <small *ngIf="username?.errors.required" class="text-danger">
