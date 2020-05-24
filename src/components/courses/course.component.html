@@ -1,4 +1,4 @@
-<div class="plm-courses mb-24 card ribbon box-shadow">
+<div class="plm-courses mb-24 card ribbon box-shadow cursor-pointer" (click)="triggerNavigation()">
   <div class="card-body p-0">
     <div class="ribbon-box font-w600">
       ${{data.price}}
@@ -9,13 +9,12 @@
         <button class="btn btn-light option-button text-muted"
                 type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
+                aria-expanded="false" (click)="show = !show; $event.stopPropagation()">
           <fa-icon [icon]="['fas', 'ellipsis-v']"></fa-icon>
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item cursor-pointer nm-size" (click)="triggerEdit()">Edit</a>
-          <a class="dropdown-item cursor-pointer nm-size" (click)="triggerNavigation()">View Courses</a>
-          <a class="dropdown-item cursor-pointer nm-size" (click)="triggerDelete()">Delete</a>
+        <div class="dropdown-menu dropdown-menu-right" [class.show]="show" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item cursor-pointer nm-size" (click)="triggerEdit(); $event.stopPropagation()">Edit</a>
+          <a class="dropdown-item cursor-pointer nm-size" (click)="triggerDelete(); $event.stopPropagation()">Delete</a>
         </div>
       </div>
     </div>
