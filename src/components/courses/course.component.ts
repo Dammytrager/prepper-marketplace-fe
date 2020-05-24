@@ -11,6 +11,7 @@ export class CourseComponent {
   @Output() navigate = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Output() delete = new EventEmitter();
+  show = false;
   constructor() {}
 
   triggerNavigation() {

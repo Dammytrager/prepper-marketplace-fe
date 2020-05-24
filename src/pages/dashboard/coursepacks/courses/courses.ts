@@ -24,7 +24,7 @@ export class Courses implements OnInit, OnDestroy {
   $courses$: Subscription;
   $coursesLength$: Subscription;
   $selectedCoursepack$: Subscription;
-  courses: CourseInterface[] = [];
+  courses: CourseInterface[] | any[] = [];
   coursesLength;
   selectedCoursepack;
   showLoading = true;
