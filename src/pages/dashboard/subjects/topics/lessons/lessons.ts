@@ -6,7 +6,7 @@ import {LessonService} from '../../../../../system/services/lesson.service';
 import {NgRedux, select} from '@angular-redux/store';
 import {Observable, Subscription} from 'rxjs';
 import {DASHBOARD} from '../../../../../system/state/actions/dashboard.action';
-import {CoursesModal} from '../modal/courses.modal';
+import {TopicsModal} from '../modal/topics.modal';
 import {PopupInterface} from '../../../../../system/interfaces/state/dashboard.interface';
 import {ModalService} from '../../../../../system/services/modal.service';
 import {AppState} from '../../../../../system/interfaces/state/plm.interface';

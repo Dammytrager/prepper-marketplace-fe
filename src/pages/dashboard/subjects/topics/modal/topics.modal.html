@@ -8,12 +8,12 @@
     <div class="modal-body">
       <form [formGroup]="courseForm" *ngIf="!isDelete; else deleteTemplate">
         <div class="form-group">
-          <label for="course-name">Course Name</label>
+          <label for="course-name">Topic Name</label>
           <input type="text" id="course-name" class="form-control" formControlName="name">
         </div>
       </form>
       <ng-template #deleteTemplate>
-        <p>Deleting this Course will remove all lessons in it, are you sure you want to continue?</p>
+        <p>Deleting this Topic will remove all lessons in it, are you sure you want to continue?</p>
       </ng-template>
     </div>
     <div class="modal-footer">

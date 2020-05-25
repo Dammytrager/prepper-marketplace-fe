@@ -44,8 +44,8 @@ const ERROR_MESSAGE = {
   JWT_EXPIRED: 'jwt expired'
 };
 
-export const COURSEPACK = 'Coursepack';
-export const COURSE = 'Course';
+export const SUBJECT = 'Subject';
+export const TOPIC = 'Topic';
 export const LESSON = 'Lesson';
 export const USER = 'User';
 

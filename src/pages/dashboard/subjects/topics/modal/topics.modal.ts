@@ -5,15 +5,15 @@ import {select} from '@angular-redux/store';
 import {Observable, Subscription} from 'rxjs';
 import {BaseModal} from '../../../../../system/classes/base-modal';
 import {PopupInterface} from '../../../../../system/interfaces/state/dashboard.interface';
-import {CourseService} from '../../../../../system/services/course.service';
+import {TopicService} from '../../../../../system/services/topic.service';
 import {CoursePackData} from '../../../../../components/courses/courses.interface';
-import {COURSE} from '../../../../../system/constants/static-content';
+import {TOPIC} from '../../../../../system/constants/static-content';
 
 @Component({
-  selector: 'plm-dashboard-courses-modal',
-  templateUrl: './courses.modal.html'
+  selector: 'plm-dashboard-topics-modal',
+  templateUrl: './topics.modal.html'
 })
-export class CoursesModal extends BaseModal implements OnInit, OnDestroy {
+export class TopicsModal extends BaseModal implements OnInit, OnDestroy {
   @select(['dashboard', 'popupData']) popupData$: Observable<PopupInterface>;
   @select(['dashboard', 'selectedCoursepack']) selectedCoursepack$: Observable<CoursePackData>;
   $selectedCoursepack$: Subscription;
@@ -28,7 +28,7 @@ export class CoursesModal extends BaseModal implements OnInit, OnDestroy {
   constructor(
     public _ngbModal: NgbActiveModal,
     private _fb: FormBuilder,
-    private _course: CourseService
+    private _course: TopicService
   ) {
     super(_ngbModal);
   }
@@ -39,7 +39,7 @@ export class CoursesModal extends BaseModal implements OnInit, OnDestroy {
     });
     this.$popupData$ = this.popupData$.subscribe((data) => {
       this.popupData = data;
-      this.isDelete = this.popupData.data && this.popupData.title === `Delete ${COURSE}`;
+      this.isDelete = this.popupData.data && this.popupData.title === `Delete ${TOPIC}`;
       this.btnClass = {
         'btn-danger': this.isDelete,
         'btn-primary': !this.isDelete
@@ -58,7 +58,7 @@ export class CoursesModal extends BaseModal implements OnInit, OnDestroy {
   createCourse() {
     if (this.courseForm.valid) {
       this.showLoader = true;
-      this._course.createCourse(this.selectedCoursepack._id, this.courseForm.value).finally(() => {
+      this._course.createTopic(this.selectedCoursepack._id, this.courseForm.value).finally(() => {
         this.showLoader = false;
         this.closeModal();
       });
@@ -68,7 +68,7 @@ export class CoursesModal extends BaseModal implements OnInit, OnDestroy {
   editCourse() {
     if (this.courseForm.valid) {
       this.showLoader = true;
-      this._course.editCourse(this.selectedCoursepack._id, this.popupData.data._id, this.courseForm.value).finally(() => {
+      this._course.editTopic(this.selectedCoursepack._id, this.popupData.data._id, this.courseForm.value).finally(() => {
         this.showLoader = false;
         this.closeModal();
       });
@@ -77,7 +77,7 @@ export class CoursesModal extends BaseModal implements OnInit, OnDestroy {
 
   deleteCourse() {
     this.showLoader = true;
-    this._course.deleteCourse(this.selectedCoursepack._id, this.popupData.data._id).finally(() => {
+    this._course.deleteTopic(this.selectedCoursepack._id, this.popupData.data._id).finally(() => {
       this.showLoader = false;
       this.closeModal();
     });
@@ -85,13 +85,13 @@ export class CoursesModal extends BaseModal implements OnInit, OnDestroy {
 
   action() {
     switch (this.popupData.title) {
-      case `Create ${COURSE}`:
+      case `Create ${TOPIC}`:
         this.createCourse();
         break;
-      case `Edit ${COURSE}`:
+      case `Edit ${TOPIC}`:
         this.editCourse();
         break;
-      case `Delete ${COURSE}`:
+      case `Delete ${TOPIC}`:
         this.deleteCourse();
         break;
     }

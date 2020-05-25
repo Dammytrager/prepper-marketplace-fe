@@ -8,17 +8,17 @@
     <div class="modal-body">
       <form [formGroup]="coursepackForm" *ngIf="!isDelete; else deleteTemplate">
         <div class="form-group">
-          <label for="coursepack-name">Coursepack Title</label>
+          <label for="coursepack-name">Subject Title</label>
           <input type="text" id="coursepack-name" class="form-control" formControlName="title">
         </div>
 
         <div class="form-group">
-          <label for="coursepack-price">Coursepack Price</label>
+          <label for="coursepack-price">Subject Price</label>
           <input type="number" min="0" id="coursepack-price" class="form-control" formControlName="price">
         </div>
       </form>
       <ng-template #deleteTemplate>
-        <p>Deleting this Coursepack will remove all the courses and lessons in it, are you sure you want to continue?</p>
+        <p>Deleting this Subject will remove all the topics and lessons in it, are you sure you want to continue?</p>
       </ng-template>
     </div>
     <div class="modal-footer">

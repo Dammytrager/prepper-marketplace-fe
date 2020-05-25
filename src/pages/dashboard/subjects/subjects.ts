@@ -2,22 +2,23 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DashboardHeaderInterface} from '../../../components/dashboard-header/dashboard-header.interface';
 import {SubheaderInterface} from '../../../components/subheader/subheader.interface';
 import {CreateContentInterface} from '../../../components/create-content/create-content.interface';
-import {CoursepackService} from '../../../system/services/coursepack.service';
+import {SubjectService} from '../../../system/services/subject.service';
 import {NgRedux, select} from '@angular-redux/store';
 import {Observable, Subscription} from 'rxjs';
 import {CoursePackData} from '../../../components/courses/courses.interface';
 import {ModalService} from '../../../system/services/modal.service';
-import {CoursepacksModal} from './modal/coursepacks.modal';
+import {SubjectsModal} from './modal/subjects.modal';
 import {Router} from '@angular/router';
 import {AppState} from '../../../system/interfaces/state/plm.interface';
 import {DASHBOARD} from '../../../system/state/actions/dashboard.action';
 import {PopupInterface} from '../../../system/interfaces/state/dashboard.interface';
+import {SUBJECT} from '../../../system/constants/static-content';
 
 @Component({
-  selector: 'plm-dashboard-coursepacks',
-  templateUrl: './coursepacks.html'
+  selector: 'plm-dashboard-subjects',
+  templateUrl: './subjects.html'
 })
-export class Coursepacks implements OnInit, OnDestroy {
+export class Subjects implements OnInit, OnDestroy {
   @select(['dashboard', 'coursepacks']) coursepacks$: Observable<any>;
   @select(['dashboard', 'coursepacksLength']) coursepacksLength$: Observable<any>;
   $coursepacks$: Subscription;
@@ -29,11 +30,11 @@ export class Coursepacks implements OnInit, OnDestroy {
   subheaderData1: SubheaderInterface = {
     title: {
       icon: ['fas', 'book'],
-      text: 'Coursepacks'
+      text: `${SUBJECT}s`
     },
     action: {
       icon: ['fas', 'plus'],
-      text: 'Create Coursepack',
+      text: `Create ${SUBJECT}`,
       color: 'primary'
     }
   };
@@ -41,7 +42,7 @@ export class Coursepacks implements OnInit, OnDestroy {
   subheaderData2: SubheaderInterface = {
     title: {
       icon: ['far', 'check-circle'],
-      text: 'Approved Coursepacks'
+      text: `Approved ${SUBJECT}s`
     },
     action: {
       icon: false,
@@ -53,52 +54,52 @@ export class Coursepacks implements OnInit, OnDestroy {
   approvedCourses = [];
   showLoading = true;
   popupData: PopupInterface = {
-    title: 'Create Coursepack',
+    title: `Create ${SUBJECT}`,
     button: 'Create'
   };
 
   constructor(
-    private _coursepack: CoursepackService,
+    private _coursepack: SubjectService,
     private _modal: ModalService,
     private _router: Router,
     private _ngRedux: NgRedux<AppState>
   ) {
-    this._coursepack.getCoursepacks().then((data: any) => {
+    this._coursepack.getSubjects().then((data: any) => {
       this.showLoading = false;
     });
   }
 
   viewCourses(coursepack) {
-    this._router.navigate(['/dashboard/courses', coursepack._id]);
+    this._router.navigate(['/dashboard/subjects', coursepack._id]);
   }
 
   addCoursepack() {
     this.popupData = {
-      title: 'Create Coursepack',
+      title: `Create ${SUBJECT}`,
       button: 'Create',
     };
     this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});
-    this._modal.openModal(CoursepacksModal);
+    this._modal.openModal(SubjectsModal);
   }
 
   editCoursepack(coursepack) {
     this.popupData = {
-      title: 'Edit Coursepack',
+      title: `Edit ${SUBJECT}`,
       button: 'Save',
       data: coursepack
     };
     this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});
-    this._modal.openModal(CoursepacksModal);
+    this._modal.openModal(SubjectsModal);
   }
 
   deleteCoursepack(coursepack) {
     this.popupData = {
-      title: 'Delete Coursepack',
+      title: `Delete ${SUBJECT}`,
       button: 'Delete',
       data: coursepack
     };
     this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});
-    this._modal.openModal(CoursepacksModal);
+    this._modal.openModal(SubjectsModal);
   }
 
   async ngOnInit() {
@@ -106,16 +107,16 @@ export class Coursepacks implements OnInit, OnDestroy {
       this.coursepacks = data;
       this.approvedCourses = this.approvedCoursepacks(this.coursepacks);
       this.dashboardHeaderdata = {
-        bigHeader: 'Coursepacks',
-        smallHeader: `${this.coursepacksLength} Coursepacks | ${this.approvedCourses.length} Approved`,
+        bigHeader: `${SUBJECT}s`,
+        smallHeader: `${this.coursepacksLength} ${SUBJECT}s | ${this.approvedCourses.length} Approved`,
         bgColor: 'blue'
       };
     });
     this.$coursepacksLength$ = this.coursepacksLength$.subscribe((data: any) => {
       this.coursepacksLength = data;
       this.dashboardHeaderdata = {
-        bigHeader: 'Coursepacks',
-        smallHeader: `${this.coursepacksLength} Coursepacks | ${this.approvedCourses.length} Approved`,
+        bigHeader: `${SUBJECT}s`,
+        smallHeader: `${this.coursepacksLength} ${SUBJECT}s | ${this.approvedCourses.length} Approved`,
         bgColor: 'blue'
       };
     });

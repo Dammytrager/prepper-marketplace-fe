@@ -2,17 +2,17 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BaseModal} from '../../../../system/classes/base-modal';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CoursepackService} from '../../../../system/services/coursepack.service';
+import {SubjectService} from '../../../../system/services/subject.service';
 import {select} from '@angular-redux/store';
 import {Observable, Subscription} from 'rxjs';
 import {PopupInterface} from '../../../../system/interfaces/state/dashboard.interface';
-import {COURSEPACK} from '../../../../system/constants/static-content';
+import {SUBJECT} from '../../../../system/constants/static-content';
 
 @Component({
-  selector: 'plm-dashboard-coursepacks-modal',
-  templateUrl: './coursepacks.modal.html'
+  selector: 'plm-dashboard-subjects-modal',
+  templateUrl: './subjects.modal.html'
 })
-export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
+export class SubjectsModal extends BaseModal implements OnInit, OnDestroy {
   @select(['dashboard', 'popupData']) popupData$: Observable<PopupInterface>;
   $popupData$: Subscription;
   popupData: PopupInterface;
@@ -24,7 +24,7 @@ export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
   constructor(
     public _ngbModal: NgbActiveModal,
     private _fb: FormBuilder,
-    private _coursepack: CoursepackService
+    private _coursepack: SubjectService
   ) {
     super(_ngbModal);
   }
@@ -36,7 +36,7 @@ export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
     });
     this.$popupData$ = this.popupData$.subscribe((data) => {
       this.popupData = data;
-      this.isDelete = this.popupData.data && this.popupData.title === `Delete ${COURSEPACK}`;
+      this.isDelete = this.popupData.data && this.popupData.title === `Delete ${SUBJECT}`;
       this.btnClass = {
         'btn-danger': this.isDelete,
         'btn-primary': !this.isDelete
@@ -57,7 +57,7 @@ export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
   createCoursepack() {
     if (this.coursepackForm.valid) {
       this.showLoader = true;
-      this._coursepack.createCoursepack(this.coursepackForm.value).finally(() => {
+      this._coursepack.createSubject(this.coursepackForm.value).finally(() => {
         this.showLoader = false;
         this.closeModal();
       });
@@ -67,7 +67,7 @@ export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
   editCoursepack() {
     if (this.coursepackForm.valid) {
       this.showLoader = true;
-      this._coursepack.editCoursepack(this.popupData.data._id, this.coursepackForm.value).finally(() => {
+      this._coursepack.editSubject(this.popupData.data._id, this.coursepackForm.value).finally(() => {
         this.showLoader = false;
         this.closeModal();
       });
@@ -76,7 +76,7 @@ export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
 
   deleteCoursepack() {
     this.showLoader = true;
-    this._coursepack.deleteCoursepack(this.popupData.data._id).finally(() => {
+    this._coursepack.deleteSubject(this.popupData.data._id).finally(() => {
       this.showLoader = false;
       this.closeModal();
     });
@@ -84,13 +84,13 @@ export class CoursepacksModal extends BaseModal implements OnInit, OnDestroy {
 
   action() {
     switch (this.popupData.title) {
-      case `Create ${COURSEPACK}`:
+      case `Create ${SUBJECT}`:
         this.createCoursepack();
         break;
-      case `Edit ${COURSEPACK}`:
+      case `Edit ${SUBJECT}`:
         this.editCoursepack();
         break;
-      case `Delete ${COURSEPACK}`:
+      case `Delete ${SUBJECT}`:
         this.deleteCoursepack();
         break;
     }

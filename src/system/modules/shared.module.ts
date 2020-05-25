@@ -11,9 +11,9 @@ import {NgbModalModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {PaginationComponent} from '../../components/pagination/pagination.component';
 import {LoaderComponent} from '../../components/loader/loader.component';
 import {HttpClientModule} from '@angular/common/http';
-import {CoursepacksModal} from '../../pages/dashboard/coursepacks/modal/coursepacks.modal';
-import {CoursesModal} from '../../pages/dashboard/coursepacks/courses/modal/courses.modal';
-import {LessonsModal} from '../../pages/dashboard/coursepacks/courses/lessons/modal/lessons.modal';
+import {SubjectsModal} from '../../pages/dashboard/subjects/modal/subjects.modal';
+import {TopicsModal} from '../../pages/dashboard/subjects/topics/modal/topics.modal';
+import {LessonsModal} from '../../pages/dashboard/subjects/topics/lessons/modal/lessons.modal';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import {LessonsModal} from '../../pages/dashboard/coursepacks/courses/lessons/mo
     RatingsComponent,
     PaginationComponent,
     LoaderComponent,
-    CoursepacksModal,
-    CoursesModal,
+    SubjectsModal,
+    TopicsModal,
     LessonsModal
   ],
   imports: [
@@ -46,13 +46,13 @@ import {LessonsModal} from '../../pages/dashboard/coursepacks/courses/lessons/mo
     RatingsComponent,
     PaginationComponent,
     LoaderComponent,
-    CoursepacksModal,
-    CoursesModal,
+    SubjectsModal,
+    TopicsModal,
     LessonsModal
   ],
   entryComponents: [
-    CoursepacksModal,
-    CoursesModal,
+    SubjectsModal,
+    TopicsModal,
     LessonsModal
   ]
 })

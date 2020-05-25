@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import {Routes, RouterModule, UrlSegment} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import {Dashboard} from '../../pages/dashboard/dashboard';
-import {Coursepacks} from '../../pages/dashboard/coursepacks/coursepacks';
+import {Subjects} from '../../pages/dashboard/subjects/subjects';
 import {Earnings} from '../../pages/dashboard/earnings/earnings';
 import {DashboardHome} from '../../pages/dashboard/dashboard-home/dashboard-home';
-import {Courses} from '../../pages/dashboard/coursepacks/courses/courses';
-import {Lessons} from '../../pages/dashboard/coursepacks/courses/lessons/lessons';
+import {Topics} from '../../pages/dashboard/subjects/topics/topics';
+import {Lessons} from '../../pages/dashboard/subjects/topics/lessons/lessons';
 import {TITLE} from '../constants/route-data';
 import {DashboardGuard} from './dashboard.guard';
 import {RouteMatcher} from '../classes/route-matcher';
@@ -24,10 +24,10 @@ const DASHBOARD_ROUTES: Routes = [
         }
       },
       {
-        path: 'courses',
-        component: Coursepacks,
+        path: 'subjects',
+        component: Subjects,
         data: {
-          title: TITLE.DASHBOARD_COURSEPACKS
+          title: TITLE.DASHBOARD_SUBJECTS
         }
       },
       {
@@ -42,8 +42,8 @@ const DASHBOARD_ROUTES: Routes = [
         loadChildren: '../modules/user.module#UserModule'
       },
       {
-        matcher: RouteMatcher.coursesRoute,
-        component: Courses,
+        matcher: RouteMatcher.subjectsRoute,
+        component: Topics,
         data: {
           title: TITLE.DASHBOARD_COURSES
         }

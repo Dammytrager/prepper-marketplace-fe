@@ -83,8 +83,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'courses']">
-            <fa-icon [icon]="['fas', 'book']"></fa-icon> &nbsp; Coursepacks
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'subjects']">
+            <fa-icon [icon]="['fas', 'book']"></fa-icon> &nbsp; Subjects
           </a>
         </li>
         <li class="nav-item">
@@ -93,7 +93,9 @@
           </a>
         </li>
       </ul>
+
       <div class="form-inline d-flex search-form my-2 my-lg-0">
+        <!-- Dropdown -->
         <div class="dropdown mr-1">
           <button class="btn text-white nm-size bg-transparent dropdown-btn" type="button" id="userOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{displayName}}
@@ -102,22 +104,22 @@
           <div class="dropdown-menu dropdown-menu-right dropdown-memu-user" aria-labelledby="userOptions">
             <a class="dropdown-item disabled text-center py-10 font-w600 text-uppercase">User</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <span class="iconify mr-2" data-icon="simple-line-icons:user" data-inline="false"></span>
-              Profile
-            </a>
-            <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
-              <div>
-                <span class="iconify mr-2" data-icon="simple-line-icons:envelope-open" data-inline="false"></span>
-                Inbox
-              </div>
-              <div class="badge text-white font-w600 bg-alt-primary">3</div>
-            </a>
-            <a class="dropdown-item" href="#">
-              <span class="iconify mr-2" data-icon="simple-line-icons:note" data-inline="false"></span>
-              Invoice
-            </a>
-            <div class="dropdown-divider"></div>
+<!--            <a class="dropdown-item" href="#">-->
+<!--              <span class="iconify mr-2" data-icon="simple-line-icons:user" data-inline="false"></span>-->
+<!--              Profile-->
+<!--            </a>-->
+<!--            <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">-->
+<!--              <div>-->
+<!--                <span class="iconify mr-2" data-icon="simple-line-icons:envelope-open" data-inline="false"></span>-->
+<!--                Inbox-->
+<!--              </div>-->
+<!--              <div class="badge text-white font-w600 bg-alt-primary">3</div>-->
+<!--            </a>-->
+<!--            <a class="dropdown-item" href="#">-->
+<!--              <span class="iconify mr-2" data-icon="simple-line-icons:note" data-inline="false"></span>-->
+<!--              Invoice-->
+<!--            </a>-->
+<!--            <div class="dropdown-divider"></div>-->
             <a class="dropdown-item" [routerLink]="['/dashboard', 'user', 'settings']">
               <span class="iconify mr-2" data-icon="simple-line-icons:wrench" data-inline="false"></span>
               Settings
@@ -129,33 +131,37 @@
             </a>
           </div>
         </div>
-        <div class="dropdown mr-4">
-          <button class="btn text-white nm-size bg-transparent" type="button" id="notificationOptions"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="['fas', 'flag']" class=" d-inline-block mr-1 nm-size"></fa-icon>
-            <span class="badge bg-alt-primary">5</span>
-          </button>
-          <div class="dropdown-menu dropdown-menu-right dropdown-menu-notification" aria-labelledby="notificationOptions">
-            <a class="dropdown-item disabled text-center py-10 font-w600 text-uppercase">Notifications</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item d-flex" href="#" *ngFor="let notification of notifications">
-              <fa-icon [icon]="notificationIcon(notification?.type)" [class]="'mr-15 text-' + notification?.type"></fa-icon>
-              <div class="">
-                <div style="white-space: initial">
-                  {{notification?.message}}
-                </div>
-                <div class="text-muted font-italic">
-                  {{notification?.time}}
-                </div>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-center" href="#">
-              <fa-icon [icon]="['fas', 'flag']"></fa-icon> &nbsp;
-              View All
-            </a>
-          </div>
-        </div>
+
+        <!-- Notifications -->
+<!--        <div class="dropdown mr-4">-->
+<!--          <button class="btn text-white nm-size bg-transparent" type="button" id="notificationOptions"-->
+<!--                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--            <fa-icon [icon]="['fas', 'flag']" class=" d-inline-block mr-1 nm-size"></fa-icon>-->
+<!--            <span class="badge bg-alt-primary">5</span>-->
+<!--          </button>-->
+<!--          <div class="dropdown-menu dropdown-menu-right dropdown-menu-notification" aria-labelledby="notificationOptions">-->
+<!--            <a class="dropdown-item disabled text-center py-10 font-w600 text-uppercase">Notifications</a>-->
+<!--            <div class="dropdown-divider"></div>-->
+<!--            <a class="dropdown-item d-flex" href="#" *ngFor="let notification of notifications">-->
+<!--              <fa-icon [icon]="notificationIcon(notification?.type)" [class]="'mr-15 text-' + notification?.type"></fa-icon>-->
+<!--              <div class="">-->
+<!--                <div style="white-space: initial">-->
+<!--                  {{notification?.message}}-->
+<!--                </div>-->
+<!--                <div class="text-muted font-italic">-->
+<!--                  {{notification?.time}}-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </a>-->
+<!--            <div class="dropdown-divider"></div>-->
+<!--            <a class="dropdown-item text-center" href="#">-->
+<!--              <fa-icon [icon]="['fas', 'flag']"></fa-icon> &nbsp;-->
+<!--              View All-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <!-- Search -->
         <fa-icon [icon]="['fas', 'search']" class="text-white cursor-pointer" (click)="showSearch = true"></fa-icon>
       </div>
     </div>
@@ -198,8 +204,8 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'courses']" (click)="hideSideNav()">
-        <fa-icon [icon]="['fas', 'book']"></fa-icon> &nbsp; Coursepacks
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard', 'subjects']" (click)="hideSideNav()">
+        <fa-icon [icon]="['fas', 'book']"></fa-icon> &nbsp; Subjects
       </a>
     </li>
     <li class="nav-item">

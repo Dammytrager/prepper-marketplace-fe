@@ -1,6 +1,6 @@
 const TITLE = {
   DASHBOARD_HOME: 'Dashboard',
-  DASHBOARD_COURSEPACKS: 'Dashboard | Your Coursepacks',
+  DASHBOARD_SUBJECTS: 'Dashboard | Your Subjects',
   DASHBOARD_EARNINGS: 'Dashboard | Your Earnings',
   DASHBOARD_COURSES: 'Dashboard | Your Courses',
   DASHBOARD_LESSONS: 'Dashboard | Your Lessons',

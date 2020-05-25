@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from './http.service';
 import {environment} from '../../environments/environment';
-import {COURSEPACK, ERROR_CODES, FAILURE_MSG, INFO_MSG, SUCCESS_MSG, TASK, USER} from '../constants/static-content';
+import {SUBJECT, ERROR_CODES, FAILURE_MSG, INFO_MSG, SUCCESS_MSG, TASK, USER} from '../constants/static-content';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {ForageService} from './storage.service';
@@ -14,7 +14,7 @@ import {ErrorHandlerService} from './error-handler.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CoursepackService {
+export class SubjectService {
 
   hostApi = environment.HOST_API;
 
@@ -29,7 +29,7 @@ export class CoursepackService {
   ) {
   }
 
-  async getCoursepacks() {
+  async getSubjects() {
     await this._storage.localGet('token').then((token: string) => {
       this._http.setHeaders({token});
       const {id} = parseJwt(token);
@@ -47,12 +47,12 @@ export class CoursepackService {
     });
   }
 
-  async createCoursepack(coursepack) {
+  async createSubject(coursepack) {
     await this._storage.localGet('token').then(async (token: string) => {
       this._http.setHeaders({token});
       const {id} = parseJwt(token);
       await this._http.post(`${this.hostApi}/user/${id}/coursepacks`, coursepack).then((data) => {
-        this._toastr.success(SUCCESS_MSG.successMessage(COURSEPACK, TASK.CREATED));
+        this._toastr.success(SUCCESS_MSG.successMessage(SUBJECT, TASK.CREATED));
         this._ngRedux.dispatch({type: DASHBOARD.UPDATE_USER_COURSEPACKS_DATA, coursepacks: data});
         this._ngRedux.dispatch({type: DASHBOARD.UPDATE_USER_COURSEPACKS_LENGTH});
         return data;
@@ -70,12 +70,12 @@ export class CoursepackService {
     });
   }
 
-  async editCoursepack(coursepackId, coursepack) {
+  async editSubject(coursepackId, coursepack) {
     await this._storage.localGet('token').then(async (token: string) => {
       this._http.setHeaders({token});
       const {id} = parseJwt(token);
       await this._http.put(`${this.hostApi}/user/${id}/coursepacks/${coursepackId}`, coursepack).then((data: any) => {
-        this._toastr.success(SUCCESS_MSG.successMessage(COURSEPACK, TASK.CREATED));
+        this._toastr.success(SUCCESS_MSG.successMessage(SUBJECT, TASK.CREATED));
         this._ngRedux.dispatch({type: DASHBOARD.UPDATE_USER_COURSEPACKS_DATA, coursepacks: data.data});
         return data;
       }).catch((err) => {
@@ -91,12 +91,12 @@ export class CoursepackService {
     });
   }
 
-  async deleteCoursepack(coursepackId) {
+  async deleteSubject(coursepackId) {
     await this._storage.localGet('token').then(async (token: string) => {
       this._http.setHeaders({token});
       const {id} = parseJwt(token);
       await this._http.delete(`${this.hostApi}/user/${id}/coursepacks/${coursepackId}`).then((data: any) => {
-        this._toastr.success(SUCCESS_MSG.successMessage(COURSEPACK, TASK.DELETED));
+        this._toastr.success(SUCCESS_MSG.successMessage(SUBJECT, TASK.DELETED));
         this._ngRedux.dispatch({type: DASHBOARD.REMOVE_COURSEPACK, coursepack: {_id: coursepackId}});
         return data;
       }).catch((err) => {

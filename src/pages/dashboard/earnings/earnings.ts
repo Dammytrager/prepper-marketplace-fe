@@ -13,7 +13,7 @@ import {PAYMENTS} from '../../../static/dummy/payments';
 export class Earnings implements OnInit, OnDestroy {
   dashboardHeaderdata: DashboardHeaderInterface = {
     bigHeader: 'Earnings',
-    smallHeader: '$15,000 Earned | $7,500 Paid'
+    smallHeader: '$0 Earned | $0 Paid'
   };
 
   subheaderData1: SubheaderInterface = {
@@ -34,8 +34,8 @@ export class Earnings implements OnInit, OnDestroy {
     }
   };
 
-  sales = SALES;
-  payments = PAYMENTS;
+  sales = [];
+  payments = [];
 
   constructor() {
   }
