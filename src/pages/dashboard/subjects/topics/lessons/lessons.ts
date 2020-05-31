@@ -1,12 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DashboardHeaderInterface} from '../../../../../components/dashboard-header/dashboard-header.interface';
 import {SubheaderInterface} from '../../../../../components/subheader/subheader.interface';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {LessonService} from '../../../../../system/services/lesson.service';
 import {NgRedux, select} from '@angular-redux/store';
 import {Observable, Subscription} from 'rxjs';
 import {DASHBOARD} from '../../../../../system/state/actions/dashboard.action';
-import {TopicsModal} from '../modal/topics.modal';
 import {PopupInterface} from '../../../../../system/interfaces/state/dashboard.interface';
 import {ModalService} from '../../../../../system/services/modal.service';
 import {AppState} from '../../../../../system/interfaces/state/plm.interface';
@@ -48,6 +47,7 @@ export class Lessons implements OnInit, OnDestroy {
 
   constructor(
     private _route: ActivatedRoute,
+    private _router: Router,
     private _lesson: LessonService,
     private _modal: ModalService,
     private _ngRedux: NgRedux<AppState>
@@ -78,9 +78,13 @@ export class Lessons implements OnInit, OnDestroy {
     });
   }
 
+  viewConversations(lesson) {
+    this._router.navigate(['/dashboard/subjects/topics/lessons', lesson._id]);
+  }
+
   addLesson() {
     this.popupData = {
-      title: 'Create Lesson',
+      title: `Create ${LESSON}`,
       button: 'Create',
     };
     this._ngRedux.dispatch({type: DASHBOARD.CHANGE_POPUP_DATA, popupData: this.popupData});

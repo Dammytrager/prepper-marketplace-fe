@@ -1,0 +1,163 @@
+<div class="plm-modal" role="dialog">
+    <div class="modal-header">
+      <h5 class="modal-title font-w600">{{popupData?.title}}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="!isDelete; else deleteTemplate;">
+        <ul class="nav nav-tabs mb-3">
+          <li class="nav-item">
+            <a class="nav-link cursor-pointer" (click)="type='message'" [class.active]="type === 'message'">Message</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link cursor-pointer" (click)="type='question'" [class.active]="type === 'question'">Question</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link cursor-pointer" (click)="type='image'" [class.active]="type === 'image'">Image</a>
+          </li>
+        </ul>
+
+        <!-- Message Form -->
+        <form [formGroup]="messageForm" *ngIf="type === 'message'">
+          <div class="form-group" formGroupName="message">
+            <label>Message</label>
+            <ckeditor [editor]="editor" [data]="editorData" [config]="editorConfig" (change)="editorOnChange($event)"></ckeditor>
+          </div>
+        </form>
+
+        <!-- Question Form -->
+        <form [formGroup]="questionForm" *ngIf="type === 'question'">
+          <div formGroupName="question" class="row">
+            <!--question-->
+            <div class="col-md-12">
+              <label for="question">Question</label>
+              <div class="form-group">
+                <textarea class="form-control" id="question" placeholder="Question"
+                      formControlName="question"></textarea>
+              </div>
+            </div>
+
+            <!-- option 1-->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="option1">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input"
+                             value="a"
+                             formControlName="answer">Option 1
+                    </label>
+                  </div>
+                </label>
+                <input type="text" #option1 id="option1" formControlName="option1" class="form-control" [placeholder]="'Option 1'">
+              </div>
+            </div>
+
+            <!-- option 2-->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="option2">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input"
+                             value="b"
+                             formControlName="answer">Option 2
+                    </label>
+                  </div>
+                </label>
+                <input type="text" #option2 id="option2" formControlName="option2" class="form-control"
+                       [placeholder]="'Option 2'">
+              </div>
+            </div>
+
+            <!-- option 3-->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="option3">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input"
+                             value="c"
+                             formControlName="answer">Option 3
+                    </label>
+                  </div>
+                </label>
+                <input type="text" #option3 id="option3" formControlName="option3" class="form-control"
+                       [placeholder]="'Option 3'">
+              </div>
+            </div>
+
+            <!-- option 4-->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="option4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input"
+                             value="d"
+                             formControlName="answer">Option 4
+                    </label>
+                  </div>
+                </label>
+                <input type="text" #option4 id="option4" formControlName="option4" class="form-control"
+                       [placeholder]="'Option 4'">
+              </div>
+            </div>
+
+            <!-- success message-->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="success">
+                  Success Message
+                </label>
+                <input type="text" id="success" formControlName="successMessage" class="form-control"
+                       [placeholder]="'Success Message'">
+              </div>
+            </div>
+
+            <!-- failure message-->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="failure">
+                  Failure Message
+                </label>
+                <input type="text" id="failure" formControlName="failureMessage" class="form-control"
+                       [placeholder]="'Failure Message'">
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Image Form -->
+        <form [formGroup]="imageForm" *ngIf="type === 'image'">
+          <div class="form-group">
+            <label>Select Image</label>
+            <input type="file" (change)="file = $event.target.files[0]"
+                   formControlName="content" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Caption</label>
+            <input type="text" formControlName="caption" class="form-control" [placeholder]="'caption'">
+          </div>
+        </form>
+      </div>
+
+      <ng-template #deleteTemplate>
+        <p>Are you sure you want to delete this Conversation?</p>
+      </ng-template>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn font-w600 btn-alt-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+      <button type="button" class="btn font-w600"
+              [ngClass]="btnClass"
+              [class.disabled]="(messageForm.invalid && questionForm.invalid && caption.invalid) || showLoader"
+              [disabled]="(messageForm.invalid && questionForm.invalid && caption.invalid) || showLoader"
+              (click)="action()">
+        <span>{{popupData?.button}}</span>
+        <plm-loader class="ml-2" [data]="{type: 2, color: 'white'}" *ngIf="showLoader"></plm-loader>
+      </button>
+    </div>
+</div>

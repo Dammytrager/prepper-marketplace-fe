@@ -18,7 +18,7 @@
     <plm-subheader [data]="subheaderData" (open)="addCourse()"></plm-subheader>
     <div class="row" *ngIf="courses.length; else emptyMessage">
       <div class="col-lg-4" *ngFor="let course of courses; let i = index" (click)="viewLessons(course)">
-        <div>
+        <div class="cursor-pointer">
           <div class="float-right m-2">
             <!-- dropdown menu-->
             <div class="dropdown">

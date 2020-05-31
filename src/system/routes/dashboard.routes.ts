@@ -9,6 +9,7 @@ import {Lessons} from '../../pages/dashboard/subjects/topics/lessons/lessons';
 import {TITLE} from '../constants/route-data';
 import {DashboardGuard} from './dashboard.guard';
 import {RouteMatcher} from '../classes/route-matcher';
+import {Conversations} from '../../pages/dashboard/subjects/topics/lessons/conversations/conversations';
 
 const DASHBOARD_ROUTES: Routes = [
   {
@@ -42,10 +43,10 @@ const DASHBOARD_ROUTES: Routes = [
         loadChildren: '../modules/user.module#UserModule'
       },
       {
-        matcher: RouteMatcher.subjectsRoute,
+        matcher: RouteMatcher.topicsRoute,
         component: Topics,
         data: {
-          title: TITLE.DASHBOARD_COURSES
+          title: TITLE.DASHBOARD_TOPICS
         }
       },
       {
@@ -53,6 +54,13 @@ const DASHBOARD_ROUTES: Routes = [
         component: Lessons,
         data: {
           title: TITLE.DASHBOARD_LESSONS
+        }
+      },
+      {
+        matcher: RouteMatcher.conversationsRoute,
+        component: Conversations,
+        data: {
+          title: TITLE.DASHBOARD_CONVERSATIONS
         }
       },
       {

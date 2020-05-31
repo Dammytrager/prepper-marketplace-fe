@@ -14,6 +14,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {SubjectsModal} from '../../pages/dashboard/subjects/modal/subjects.modal';
 import {TopicsModal} from '../../pages/dashboard/subjects/topics/modal/topics.modal';
 import {LessonsModal} from '../../pages/dashboard/subjects/topics/lessons/modal/lessons.modal';
+import {ConversationsModal} from '../../pages/dashboard/subjects/topics/lessons/conversations/modal/conversations.modal';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import {LessonsModal} from '../../pages/dashboard/subjects/topics/lessons/modal/
     LoaderComponent,
     SubjectsModal,
     TopicsModal,
-    LessonsModal
+    LessonsModal,
+    ConversationsModal
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import {LessonsModal} from '../../pages/dashboard/subjects/topics/lessons/modal/
     FormsModule,
     NgbModalModule,
     NgbPaginationModule,
-    HttpClientModule
+    HttpClientModule,
+    CKEditorModule
   ],
   exports: [
     CommonModule,
@@ -42,18 +46,21 @@ import {LessonsModal} from '../../pages/dashboard/subjects/topics/lessons/modal/
     ReactiveFormsModule,
     FormsModule,
     NgbPaginationModule,
+    CKEditorModule,
     NavbarComponent,
     RatingsComponent,
     PaginationComponent,
     LoaderComponent,
     SubjectsModal,
     TopicsModal,
-    LessonsModal
+    LessonsModal,
+    ConversationsModal
   ],
   entryComponents: [
     SubjectsModal,
     TopicsModal,
-    LessonsModal
+    LessonsModal,
+    ConversationsModal
   ]
 })
 export class SharedModule {}

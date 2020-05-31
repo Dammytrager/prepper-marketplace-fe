@@ -5,9 +5,12 @@ export interface DashboardInterface {
   coursesLength: number;
   lessons: any[];
   lessonsLength: number;
+  conversations: any[];
+  conversationsLength: number;
   popupData: PopupInterface;
   selectedCoursepack: any;
   selectedCourse: any;
+  selectedLesson: any;
 }
 
 export interface PopupInterface {

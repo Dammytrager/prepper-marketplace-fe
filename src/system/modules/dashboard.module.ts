@@ -14,6 +14,8 @@ import {CourseComponent} from '../../components/courses/course.component';
 import {CreateContentComponent} from '../../components/create-content/create-content.component';
 import {Topics} from '../../pages/dashboard/subjects/topics/topics';
 import {Lessons} from '../../pages/dashboard/subjects/topics/lessons/lessons';
+import {Conversations} from '../../pages/dashboard/subjects/topics/lessons/conversations/conversations';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import {Lessons} from '../../pages/dashboard/subjects/topics/lessons/lessons';
     Earnings,
     Topics,
     Lessons,
+    Conversations,
     DashboardHeaderComponent,
     DashboardFooterComponent,
     SubheaderComponent,

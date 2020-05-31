@@ -9,9 +9,12 @@ export const INITIAL_DASHBOARD_STATE: DashboardInterface = {
   coursesLength: 0,
   lessons: [],
   lessonsLength: 0,
+  conversations: [],
+  conversationsLength: 0,
   popupData: {},
   selectedCoursepack: {},
-  selectedCourse: {}
+  selectedCourse: {},
+  selectedLesson: {}
 };
 
 export function dashboardReducer(state: DashboardInterface = INITIAL_DASHBOARD_STATE, action) {
@@ -40,12 +43,27 @@ export function dashboardReducer(state: DashboardInterface = INITIAL_DASHBOARD_S
       return {...state, ...{lessonsLength: state.lessonsLength + 1}};
     case DASHBOARD.CHANGE_SELECTED_COURSE:
       return {...state, ...{selectedCourse: action.selectedCourse}};
+    case DASHBOARD.CHANGE_CONVERSATIONS:
+      return {...state, ...{conversations: action.conversations, conversationsLength: action.conversations.length}};
+    case DASHBOARD.UPDATE_CONVERSATION_DATA:
+      return {...state, ...{conversations: updateArray(state.conversations, action.conversations)}};
+    case DASHBOARD.UPDATE_CONVERSATIONS_LENGTH:
+      return {...state, ...{conversationsLength: state.conversationsLength + 1}};
+    case DASHBOARD.CHANGE_SELECTED_LESSON:
+      return {...state, ...{selectedLesson: action.selectedLesson}};
     case DASHBOARD.REMOVE_COURSEPACK:
       return {...state, ...{coursepacks: removeItem(state.coursepacks, action.coursepack), coursepacksLength: state.coursepacksLength - 1}};
     case DASHBOARD.REMOVE_COURSE:
       return {...state, ...{courses: removeItem(state.courses, action.course), coursesLength: state.coursesLength - 1}};
     case DASHBOARD.REMOVE_LESSON:
       return {...state, ...{lessons: removeItem(state.lessons, action.lesson), lessonsLength: state.lessonsLength - 1}};
+    case DASHBOARD.REMOVE_CONVERSATION:
+      return {
+        ...state, ...{
+          conversations: removeItem(state.conversations, action.conversations),
+          conversationsLength: state.conversationsLength - 1
+        }
+      };
     default:
       return state;
   }

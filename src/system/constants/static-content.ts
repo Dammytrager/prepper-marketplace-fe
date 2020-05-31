@@ -47,6 +47,7 @@ const ERROR_MESSAGE = {
 export const SUBJECT = 'Subject';
 export const TOPIC = 'Topic';
 export const LESSON = 'Lesson';
+export const CONVERSATION = 'Conversation';
 export const USER = 'User';
 
 export { CURRENCY, BUTTON, SUCCESS_MSG, FAILURE_MSG, ERROR_CODES, INFO_MSG, WARNING_MSG, ERROR_MESSAGE, TASK };

@@ -1,0 +1,52 @@
+<div class="plm-dashboard-lessons plm-dashboard-content mxw-1200 mx-auto">
+  <div  *ngIf="!showLoading; else loading">
+    <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
+    <plm-subheader [data]="subheaderData" (open)="addConversation()"></plm-subheader>
+    <div class="lessons" *ngIf="conversations.length; else emptyMessage">
+      <div class="lesson d-md-flex justify-content-between p-20 bg-white mb-20" *ngFor="let conversation of conversations">
+        <div class="text py-10 md-size" *ngIf="conversation.type === 'message'" [innerHTML]="conversation.message"></div>
+        <div *ngIf="conversation.type === 'image'">
+          <div class="mb-2">{{conversation.image.caption}}</div>
+          <img [src]="conversation.image.url" width="250" [alt]="conversation.image.caption">
+        </div>
+        <div class="text py-10" *ngIf="conversation.type === 'question'">
+          <div class="options md-size">
+            <div><b class="">Question</b> - {{conversation?.question?.question}}</div>
+            <div><b class="">Option 1</b> - {{conversation?.question?.option1}}</div>
+            <div><b class="">Option 2</b> - {{conversation?.question?.option2}}</div>
+            <div><b class="">Option 3</b> - {{conversation?.question?.option3}}</div>
+            <div><b class="">Option 4</b> - {{conversation?.question?.option4}}</div>
+            <div><b class="text-red">Failure</b> - {{conversation?.question?.failureMessage}}</div>
+            <div><b class="text-success">Success</b> - {{conversation?.question?.successMessage}}</div>
+        </div>
+      </div>
+        <div class="actions d--flex py-10">
+          <button type="button" class="btn btn-outline-secondary btn-rounded btn-sm action mr-2" (click)="editConversation(conversation)">
+            <fa-icon [icon]="['fas', 'edit']" class="ml-1"></fa-icon>
+            Edit
+          </button>
+          <button type="button" class="btn btn-outline-danger btn-rounded btn-sm action" (click)="deleteConversation(conversation)">
+            <fa-icon [icon]="['fas', 'times']" class="ml-1"></fa-icon>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty state message -->
+    <ng-template #emptyMessage>
+      <div class="text-muted">
+        You don't have any Conversation yet
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Loading -->
+  <ng-template #loading>
+      <div style="height: 90vh" class="d-flex justify-content-center align-items-center">
+        loading...
+      </div>
+    </ng-template>
+
+  <plm-dashboard-footer></plm-dashboard-footer>
+</div>

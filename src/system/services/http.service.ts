@@ -54,7 +54,7 @@ export class HttpService {
 
   setHeaders(data?: { token: string }, content_type?) {
     let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('Content-Type', content_type || 'application/json');
+    // headers = headers.append('Content-Type', content_type || 'application/json');
     if (data && data.token) {
       headers = headers.append('Authorization', `Bearer ${data.token}`);
     }

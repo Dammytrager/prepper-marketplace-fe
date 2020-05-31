@@ -3,14 +3,14 @@
     <plm-dashboard-header [data]="dashboardHeaderdata"></plm-dashboard-header>
     <plm-subheader [data]="subheaderData" (open)="addLesson()"></plm-subheader>
     <div class="lessons" *ngIf="lessons.length; else emptyMessage">
-      <div class="lesson d-md-flex justify-content-between p-20 bg-white mb-20" *ngFor="let lesson of lessons">
+      <div class="lesson d-md-flex justify-content-between p-20 bg-white mb-20 cursor-pointer" *ngFor="let lesson of lessons" (click)="viewConversations(lesson)">
         <div class="text py-10 font-w700 h5">{{lesson.name}}</div>
         <div class="actions d--flex py-10">
-          <button type="button" class="btn btn-outline-info btn-rounded btn-sm action mr-2" (click)="editLesson(lesson)">
+          <button type="button" class="btn btn-outline-info btn-rounded btn-sm action mr-2" (click)="$event.stopPropagation(); editLesson(lesson)">
             <fa-icon [icon]="['fas', 'edit']" class="ml-1"></fa-icon>
             Edit
           </button>
-          <button type="button" class="btn btn-outline-danger btn-rounded btn-sm action" (click)="deleteLesson(lesson)">
+          <button type="button" class="btn btn-outline-danger btn-rounded btn-sm action" (click)="$event.stopPropagation(); deleteLesson(lesson)">
             <fa-icon [icon]="['fas', 'times']" class="ml-1"></fa-icon>
             Delete
           </button>
