@@ -41,7 +41,7 @@
     "localforage": "^1.7.3",
     "ng2-charts": "2.2.0",
     "ngx-toastr": "9.2.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "popper.js": "^1.16.0",
     "redux": "4.0.1",
     "redux-devtools-extension": "^2.13.8",
